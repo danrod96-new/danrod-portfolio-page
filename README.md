@@ -31,8 +31,16 @@ Light/dark theme follows the OS and can be toggled; motion respects `prefers-red
 ## Deploy
 
 Pushing to `main` builds and publishes the site to GitHub Pages via
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
-https://danrod96-new.github.io/danrod-portfolio-page/
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), served at
+**https://danrod.ca** (`public/CNAME`).
 
-One-time setup: in the repo, **Settings → Pages → Source: GitHub Actions**.
-If the repo is renamed or a custom domain is used, update `base` in `vite.config.js`.
+One-time setup:
+
+1. Repo **Settings → Pages**: Source **GitHub Actions**, Custom domain `danrod.ca`, then **Enforce HTTPS**.
+2. DNS (Route 53):
+   - `danrod.ca` A → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - `danrod.ca` AAAA → `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`
+   - `www.danrod.ca` CNAME → `danrod96-new.github.io`
+3. Optional: verify the domain under your account's **Settings → Pages** (TXT record).
+
+If the site ever moves back under a sub-path, update `base` in `vite.config.js`.
