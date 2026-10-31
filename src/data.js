@@ -301,6 +301,7 @@ export const projects = [
     },
     tags: ['Drupal', 'Accessibility', 'JavaScript', 'WCAG'],
     url: 'https://www.drupal.org/project/fluidui',
+    cover: 'fluidproject-ui-options',
   },
   {
     title: 'Date Timepicker',
