@@ -259,6 +259,7 @@ export const projects = [
     },
     tags: ['Drupal', 'PHP', 'JavaScript', 'Security'],
     url: 'https://www.drupal.org/project/antibot',
+    cover: 'antibot',
   },
   {
     title: 'jQuery Deprecated Functions',
