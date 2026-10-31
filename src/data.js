@@ -315,6 +315,7 @@ export const projects = [
     },
     tags: ['Drupal', 'JavaScript', 'jQuery', 'Forms'],
     url: 'https://www.drupal.org/project/timepicker',
+    cover: 'date-timepicker',
   },
   {
     title: 'Languages Dropdown (Bootstrap)',
@@ -328,6 +329,7 @@ export const projects = [
     },
     tags: ['Drupal', 'Bootstrap', 'Multilingual'],
     url: 'https://www.drupal.org/project/languages_dropdown',
+    cover: 'languages-dropdown',
   },
   {
     title: 'SShop',
@@ -354,6 +356,7 @@ export const projects = [
     },
     tags: ['Drupal', 'JavaScript', 'Forms'],
     url: 'https://www.drupal.org/project/radiostoslider',
+    cover: 'radios-to-slider',
   },
   {
     title: 'jQCloud',
@@ -367,6 +370,7 @@ export const projects = [
     },
     tags: ['Drupal', 'JavaScript', 'Taxonomy'],
     url: 'https://www.drupal.org/project/jqcloud',
+    cover: 'jqcloud',
   },
   {
     title: 'Gutenberg AI Tools',
