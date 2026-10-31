@@ -76,6 +76,8 @@ export const experience = [
     highlights: {
       en: [
         'Built opto.ca from scratch on Drupal 8 with a Bootstrap 5 sub-theme, plus custom Eye Health Library and Find a Doc modules.',
+        'Built the Drupal 10 site for the CAO Vision at Work campaign (visionatwork.ca): Bootstrap 5 sub-theme, a glasses catalog for people with vision impairment and the Find a Doc tool (Wicket AI integration).',
+        'Built the CAO “Don’t lose sight” campaign site (dontlosesight.ca): Bootstrap 5 sub-theme, reusable Paragraphs components and Elasticsearch indexing for the Information Hub.',
         'Stripe-backed donation gateway for Beechwood Cemetery on Drupal Commerce 2.',
         'Drupal 8 → 9/10 upgrades with Composer, patches and refactored custom modules.',
         'Ran the company Linux server and GitLab CI/CD pipelines for live/stage deployments.',
@@ -87,6 +89,8 @@ export const experience = [
       ],
       es: [
         'Construí opto.ca desde cero en Drupal 8 con un subtema Bootstrap 5 y módulos personalizados para Eye Health Library y Find a Doc.',
+        'Construí el sitio en Drupal 10 de la campaña Vision at Work de la CAO (visionatwork.ca): subtema Bootstrap 5, un catálogo de gafas para personas con discapacidad visual y la herramienta Find a Doc (integración con Wicket AI).',
+        'Construí el sitio de la campaña “Don’t lose sight” de la CAO (dontlosesight.ca): subtema Bootstrap 5, componentes reutilizables con Paragraphs e indexación con Elasticsearch para el Information Hub.',
         'Pasarela de donaciones con Stripe para Beechwood Cemetery sobre Drupal Commerce 2.',
         'Actualizaciones de Drupal 8 a 9/10 con Composer, patches y refactorización de módulos personalizados.',
         'Administré el servidor Linux de la empresa y los pipelines de GitLab CI/CD para despliegues a producción y staging.',
@@ -97,7 +101,7 @@ export const experience = [
         'QA automatizado con Selenium y PHPUnit (Unit, Kernel, Functional, FunctionalJavascript).',
       ],
     },
-    tags: ['Drupal 8/9/10/11', 'Stripe', 'Bootstrap 5', 'Wicket API', 'Azure SSO', 'GitLab CI/CD', 'PHPUnit'],
+    tags: ['Drupal 8/9/10/11', 'Stripe', 'Bootstrap 5', 'Wicket API', 'Elasticsearch', 'Azure SSO', 'GitLab CI/CD', 'PHPUnit'],
   },
   {
     role: { en: 'Drupal Developer', es: 'Desarrollador Drupal' },
@@ -430,6 +434,34 @@ export const projects = [
     },
     tags: ['Drupal', 'Bootstrap', 'REST', 'PHP'],
     url: 'https://opto.ca/',
+  },
+  {
+    title: 'Vision at Work',
+    category: 'client',
+    shot: 'visionatwork',
+    year: 2023,
+    role: { en: 'Developer', es: 'Desarrollador' },
+    metric: { en: 'CAO campaign', es: 'Campaña de la CAO' },
+    description: {
+      en: 'Drupal 10 site for a Canadian Association of Optometrists campaign: Bootstrap 5 sub-theme, informative pages, a catalog of glasses for people with vision impairment and the Find a Doc tool (Wicket AI integration).',
+      es: 'Sitio en Drupal 10 para una campaña de la Canadian Association of Optometrists: subtema Bootstrap 5, páginas informativas, un catálogo de gafas para personas con discapacidad visual y la herramienta Find a Doc (integración con Wicket AI).',
+    },
+    tags: ['Drupal', 'Bootstrap', 'REST', 'AI'],
+    url: 'https://visionatwork.ca/',
+  },
+  {
+    title: 'Don’t Lose Sight',
+    category: 'client',
+    shot: 'dontlosesight',
+    year: 2023,
+    role: { en: 'Developer', es: 'Desarrollador' },
+    metric: { en: 'Information hub', es: 'Centro de información' },
+    description: {
+      en: 'Drupal site for the CAO “Don’t lose sight” campaign: Bootstrap 5 sub-theme, reusable Paragraphs components (CTA boxes, content cards, image, button, text and media sections) and Elasticsearch indexing for the Information Hub.',
+      es: 'Sitio en Drupal para la campaña “Don’t lose sight” de la CAO: subtema Bootstrap 5, componentes reutilizables con Paragraphs (cajas CTA, tarjetas de contenido, imagen, botón, secciones de texto y multimedia) e indexación con Elasticsearch para el Information Hub.',
+    },
+    tags: ['Drupal', 'Bootstrap', 'Elasticsearch', 'Search API', 'Multilingual'],
+    url: 'https://dontlosesight.ca/',
   },
   {
     title: 'GiveGreen',
