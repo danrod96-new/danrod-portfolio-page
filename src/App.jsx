@@ -8,6 +8,7 @@ import Skills from './components/Skills.jsx'
 import Terminal from './components/Terminal.jsx'
 import Contact from './components/Contact.jsx'
 import { profile } from './data.js'
+import { useLang } from './lang.js'
 
 function initialTheme() {
   try {
@@ -20,6 +21,7 @@ function initialTheme() {
 }
 
 export default function App() {
+  const { t } = useLang()
   const [theme, setTheme] = useState(initialTheme)
   const [tag, setTag] = useState(null)
 
@@ -39,7 +41,7 @@ export default function App() {
 
   return (
     <>
-      <a className="skip-link" href="#about">Skip to content</a>
+      <a className="skip-link" href="#about">{t.skip}</a>
       <Nav theme={theme} onToggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
       <Hero />
       <main>
@@ -53,7 +55,7 @@ export default function App() {
       <footer className="footer">
         <div className="container footer__inner">
           <p className="muted">© {new Date().getFullYear()} {profile.name}</p>
-          <p className="muted mono">Built with React + Vite · <a href="#top">back to top ↑</a></p>
+          <p className="muted mono">{t.footer.built} · <a href="#top">{t.footer.top}</a></p>
         </div>
       </footer>
     </>

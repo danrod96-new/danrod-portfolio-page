@@ -289,13 +289,42 @@ h3 {
   text-decoration: none;
   background: var(--surface-hover);
 }
+.nav__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 6px;
+}
+.lang-switch {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+}
+.lang-switch button {
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 9px;
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+.lang-switch button:hover {
+  color: var(--text);
+}
+.lang-switch button.is-active {
+  background: var(--accent);
+  color: #fff;
+}
 .theme-toggle {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   border: 1px solid var(--border-strong);
   background: var(--surface);
-  margin-left: 6px;
   transition: transform 0.3s;
 }
 .theme-toggle:hover {
@@ -488,21 +517,6 @@ h3 {
   font-size: clamp(1.9rem, 4vw, 2.8rem);
   font-weight: 800;
   letter-spacing: -0.02em;
-}
-.section__num {
-  color: var(--accent);
-  font-size: 0.85rem;
-  display: block;
-  margin-bottom: 8px;
-}
-.section__num::after {
-  content: '';
-  display: inline-block;
-  width: 40px;
-  height: 1px;
-  background: var(--accent);
-  vertical-align: middle;
-  margin-left: 10px;
 }
 .section__sub {
   color: var(--muted);
@@ -1240,7 +1254,7 @@ h3 {
   .nav.is-open {
     background: var(--bg);
   }
-  .theme-toggle {
+  .nav__controls {
     margin: 8px 0 0 12px;
   }
   .section {

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { profile, stats, education, events } from '../data.js'
 import Reveal from './Reveal.jsx'
 import { useReveal } from '../hooks/useReveal.js'
+import { useLang } from '../lang.js'
 import photo from '../assets/daniel.jpg'
 
 function Counter({ value, suffix, format }) {
@@ -31,34 +32,34 @@ function Counter({ value, suffix, format }) {
 }
 
 export default function About() {
+  const { t, p } = useLang()
+
   return (
     <section className="section" id="about">
       <div className="container">
         <Reveal className="section__head">
-          <span className="section__num mono">01</span>
-          <h2>About me</h2>
+          <h2>{t.about.title}</h2>
         </Reveal>
 
         <div className="about">
           <Reveal className="about__text">
-            <p className="lead">{profile.summary}</p>
+            <p className="lead">{p(profile.summary)}</p>
             <p>
-              I like projects that push me to learn something new. I enjoy explaining technical ideas to people who
-              aren’t technical, and I always get a kick out of closing an issue an end user reported. {profile.learning}
+              {t.about.body} {p(profile.learning)}
             </p>
             <div className="about__meta">
               <div>
-                <h3 className="mono">Education</h3>
-                <p>{education.degree}</p>
+                <h3 className="mono">{t.about.education}</h3>
+                <p>{p(education.degree)}</p>
                 <p className="muted">{education.school} · {education.period}</p>
                 <p className="muted">{education.cert}</p>
               </div>
               <div>
-                <h3 className="mono">Community</h3>
+                <h3 className="mono">{t.about.community}</h3>
                 <ul className="plain">
                   {events.map((e) => (
-                    <li key={e.name}>
-                      <span className="muted mono">{e.year}</span> {e.name}
+                    <li key={e.year + p(e.name)}>
+                      <span className="muted mono">{e.year}</span> {p(e.name)}
                     </li>
                   ))}
                 </ul>
@@ -69,17 +70,17 @@ export default function About() {
           <div className="about__side">
             <Reveal as="figure" className="portrait">
               <div className="portrait__frame">
-                <img src={photo} alt={`Portrait of ${profile.name}`} width="460" height="460" loading="lazy" />
+                <img src={photo} alt={t.about.portrait(profile.name)} width="460" height="460" loading="lazy" />
               </div>
               <figcaption className="portrait__badge mono">
-                <span className="pulse" /> {profile.location.split(' · ')[0]}
+                <span className="pulse" /> {p(profile.location).split(' · ')[0]}
               </figcaption>
             </Reveal>
             <div className="stats">
               {stats.map((s, i) => (
-                <Reveal key={s.label} className="stat card" delay={i * 90}>
+                <Reveal key={s.value} className="stat card" delay={i * 90}>
                   <Counter {...s} />
-                  <span className="stat__label">{s.label}</span>
+                  <span className="stat__label">{p(s.label)}</span>
                 </Reveal>
               ))}
             </div>

@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { categories, projects } from '../data.js'
 import Reveal from './Reveal.jsx'
-
-const categoryLabel = { contrib: 'Drupal.org', client: 'Client site', oss: 'Open source' }
+import { useLang } from '../lang.js'
 
 const shots = Object.fromEntries(
   Object.entries(import.meta.glob('../assets/sites/*.webp', { eager: true, import: 'default' })).map(([path, url]) => [
@@ -15,6 +14,7 @@ const domain = (url) => url && new URL(url).hostname.replace(/^www\./, '')
 
 // Screenshot inside a small browser frame; client sites without one get a placeholder with the domain.
 function BrowserShot({ project, large = false }) {
+  const { t } = useLang()
   const src = shots[project.shot]
   return (
     <span className={`browser ${large ? 'browser--large' : ''}`}>
@@ -23,7 +23,7 @@ function BrowserShot({ project, large = false }) {
         <span className="browser__url mono">{domain(project.url)}</span>
       </span>
       {src ? (
-        <img className="browser__img" src={src} alt={`Screenshot of ${domain(project.url)}`} loading="lazy" />
+        <img className="browser__img" src={src} alt={t.work.shotAlt(domain(project.url))} loading="lazy" />
       ) : (
         <span className="browser__empty mono" aria-hidden="true">{domain(project.url)}</span>
       )}
@@ -48,6 +48,7 @@ function untilt(e) {
 }
 
 function ProjectModal({ project, onClose }) {
+  const { t, p, tag } = useLang()
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && onClose()
     document.addEventListener('keydown', onKey)
@@ -61,35 +62,35 @@ function ProjectModal({ project, onClose }) {
   return (
     <div className="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onClick={onClose}>
       <div className="modal__panel card" onClick={(e) => e.stopPropagation()}>
-        <button className="modal__close" onClick={onClose} aria-label="Close" autoFocus>
+        <button className="modal__close" onClick={onClose} aria-label={t.work.close} autoFocus>
           ×
         </button>
         <p className="mono muted">
-          {categoryLabel[project.category]} · {project.year} · {project.role}
+          {t.work.category[project.category]} · {project.year} · {p(project.role)}
         </p>
         {project.category === 'client' && (
           <figure className="modal__shot">
             <BrowserShot project={project} large />
-            {project.shot && <figcaption className="muted">The live site as of October 2026 — it may have changed since my work on it.</figcaption>}
+            {project.shot && <figcaption className="muted">{t.work.shotCaption}</figcaption>}
           </figure>
         )}
-        <h3 id="modal-title">{project.title}</h3>
-        <p className="modal__metric gradient-text">{project.metric}</p>
-        <p>{project.description}</p>
+        <h3 id="modal-title">{p(project.title)}</h3>
+        <p className="modal__metric gradient-text">{p(project.metric)}</p>
+        <p>{p(project.description)}</p>
         <div className="tags">
-          {project.tags.map((t) => (
-            <span className="tag" key={t}>{t}</span>
+          {project.tags.map((tg) => (
+            <span className="tag" key={tg}>{tag(tg)}</span>
           ))}
         </div>
         <div className="modal__links">
           {project.url && (
             <a className="btn btn--primary" href={project.url} target="_blank" rel="noreferrer">
-              {project.category === 'contrib' ? 'View on Drupal.org' : 'Visit site'} ↗
+              {project.category === 'contrib' ? t.work.viewDrupal : t.work.visit} ↗
             </a>
           )}
           {project.repo && (
             <a className="btn btn--ghost" href={project.repo} target="_blank" rel="noreferrer">
-              Source code ↗
+              {t.work.source} ↗
             </a>
           )}
         </div>
@@ -98,27 +99,28 @@ function ProjectModal({ project, onClose }) {
   )
 }
 
-export default function Projects({ tag, onClearTag }) {
+export default function Projects({ tag: activeTag, onClearTag }) {
+  const { t, p, tag } = useLang()
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState(null)
 
   // A skill picked from the Skills section searches across every category.
   useEffect(() => {
-    if (tag) setCategory('all')
-  }, [tag])
+    if (activeTag) setCategory('all')
+  }, [activeTag])
 
   const list = useMemo(() => {
     const q = query.trim().toLowerCase()
     return projects
-      .filter((p) => category === 'all' || p.category === category)
-      .filter((p) => !tag || p.tags.includes(tag))
-      .filter((p) => !q || [p.title, p.description, ...p.tags].join(' ').toLowerCase().includes(q))
-  }, [category, query, tag])
+      .filter((pr) => category === 'all' || pr.category === category)
+      .filter((pr) => !activeTag || pr.tags.includes(activeTag))
+      .filter((pr) => !q || [p(pr.title), p(pr.description), ...pr.tags, ...pr.tags.map(tag)].join(' ').toLowerCase().includes(q))
+  }, [category, query, activeTag, p, tag])
 
   const counts = useMemo(() => {
     const c = { all: projects.length }
-    for (const p of projects) c[p.category] = (c[p.category] || 0) + 1
+    for (const pr of projects) c[pr.category] = (c[pr.category] || 0) + 1
     return c
   }, [])
 
@@ -126,64 +128,63 @@ export default function Projects({ tag, onClearTag }) {
     <section className="section" id="work">
       <div className="container">
         <Reveal className="section__head">
-          <span className="section__num mono">03</span>
-          <h2>Selected work</h2>
-          <p className="section__sub">Contrib modules, client sites and open source projects. Click any card for details.</p>
+          <h2>{t.work.title}</h2>
+          <p className="section__sub">{t.work.sub}</p>
         </Reveal>
 
         <div className="toolbar">
-          <div className="chips" role="tablist" aria-label="Filter projects">
+          <div className="chips" role="tablist" aria-label={t.work.filterLabel}>
             {categories.map((c) => (
               <button
-                key={c.id}
+                key={c}
                 role="tab"
-                aria-selected={category === c.id}
-                className={`chip ${category === c.id ? 'is-active' : ''}`}
-                onClick={() => setCategory(c.id)}
+                aria-selected={category === c}
+                className={`chip ${category === c ? 'is-active' : ''}`}
+                onClick={() => setCategory(c)}
               >
-                {c.label} <span className="chip__count">{counts[c.id]}</span>
+                {t.work.categories[c]} <span className="chip__count">{counts[c]}</span>
               </button>
             ))}
           </div>
           <label className="search">
-            <span className="sr-only">Search projects</span>
-            <input type="search" placeholder="Search… e.g. commerce, react, a11y" value={query} onChange={(e) => setQuery(e.target.value)} />
+            <span className="sr-only">{t.work.search}</span>
+            <input type="search" placeholder={t.work.searchPlaceholder} value={query} onChange={(e) => setQuery(e.target.value)} />
           </label>
         </div>
 
-        {tag && (
+        {activeTag && (
           <p className="active-tag">
-            Showing projects tagged <strong>{tag}</strong>
-            <button className="link" onClick={onClearTag}>clear</button>
+            {t.work.tagged} <strong>{tag(activeTag)}</strong>
+            <button className="link" onClick={onClearTag}>{t.work.clear}</button>
           </p>
         )}
 
         <div className="grid">
-          {list.map((p) => (
+          {list.map((pr) => (
             <button
-              key={p.title}
-              className={`project card project--${p.category}`}
+              key={pr.url || pr.repo}
+              className={`project card project--${pr.category}`}
               onMouseMove={tilt}
               onMouseLeave={untilt}
-              onClick={() => setSelected(p)}
+              onClick={() => setSelected(pr)}
             >
               <span className="project__glow" aria-hidden="true" />
-              {p.category === 'client' && <BrowserShot project={p} />}
+              {pr.category === 'client' && <BrowserShot project={pr} />}
               <span className="project__top">
-                <span className="project__cat mono">{categoryLabel[p.category]}</span>
-                <span className="project__year mono">{p.year}</span>
+                <span className="project__cat mono">{t.work.category[pr.category]}</span>
+                <span className="project__year mono">{pr.year}</span>
               </span>
-              <span className="project__title">{p.title}</span>
-              <span className="project__metric">{p.metric}</span>
-              <span className="project__desc">{p.description}</span>
+              <span className="project__title">{p(pr.title)}</span>
+              <span className="project__metric">{p(pr.metric)}</span>
+              <span className="project__desc">{p(pr.description)}</span>
               <span className="tags">
-                {p.tags.slice(0, 4).map((t) => (
-                  <span className={`tag ${t === tag ? 'is-match' : ''}`} key={t}>{t}</span>
+                {pr.tags.slice(0, 4).map((tg) => (
+                  <span className={`tag ${tg === activeTag ? 'is-match' : ''}`} key={tg}>{tag(tg)}</span>
                 ))}
               </span>
             </button>
           ))}
-          {list.length === 0 && <p className="empty">Nothing matches that filter yet.</p>}
+          {list.length === 0 && <p className="empty">{t.work.empty}</p>}
         </div>
       </div>
       {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}

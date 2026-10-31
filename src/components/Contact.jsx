@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { profile } from '../data.js'
 import Reveal from './Reveal.jsx'
+import { useLang } from '../lang.js'
 
 export default function Contact() {
+  const { t } = useLang()
   const [copied, setCopied] = useState(false)
 
   async function copy() {
@@ -17,7 +19,7 @@ export default function Contact() {
 
   const links = [
     { label: 'GitHub', sub: 'danrod96-new', href: profile.links.github },
-    { label: 'GitHub (archive)', sub: 'danrod96', href: profile.links.githubOld },
+    { label: t.contact.archive, sub: 'danrod96', href: profile.links.githubOld },
     { label: 'Drupal.org', sub: 'u/danrod', href: profile.links.drupal },
     { label: 'LinkedIn', sub: 'Daniel Rodriguez', href: profile.links.linkedin },
   ]
@@ -26,19 +28,16 @@ export default function Contact() {
     <section className="section section--alt" id="contact">
       <div className="container contact">
         <Reveal className="section__head">
-          <span className="section__num mono">06</span>
-          <h2>Let’s build something</h2>
-          <p className="section__sub">
-            Drupal builds, migrations and upgrades, custom modules, accessibility work or DevOps — I’m happy to talk it through.
-          </p>
+          <h2>{t.contact.title}</h2>
+          <p className="section__sub">{t.contact.sub}</p>
         </Reveal>
         <Reveal className="contact__card card">
           <a className="contact__email gradient-text" href={`mailto:${profile.email}`}>
             {profile.email}
           </a>
           <div className="contact__actions">
-            <a className="btn btn--primary" href={`mailto:${profile.email}`}>Send an email</a>
-            <button className="btn btn--ghost" onClick={copy}>{copied ? 'Copied ✓' : 'Copy address'}</button>
+            <a className="btn btn--primary" href={`mailto:${profile.email}`}>{t.contact.send}</a>
+            <button className="btn btn--ghost" onClick={copy}>{copied ? t.contact.copied : t.contact.copy}</button>
           </div>
           <ul className="contact__links">
             {links.map((l) => (

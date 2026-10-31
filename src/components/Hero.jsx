@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import NetworkCanvas from './NetworkCanvas.jsx'
 import { profile } from '../data.js'
+import { useLang } from '../lang.js'
 
 function useTypewriter(words, speed = 70, pause = 1600) {
   const [index, setIndex] = useState(0)
@@ -26,33 +27,31 @@ function useTypewriter(words, speed = 70, pause = 1600) {
 }
 
 export default function Hero() {
-  const role = useTypewriter(profile.roles)
+  const { t, p } = useLang()
+  const roles = p(profile.roles)
+  const role = useTypewriter(roles)
 
   return (
     <header className="hero" id="top">
       <NetworkCanvas />
       <div className="hero__inner container">
         <p className="eyebrow mono">
-          <span className="pulse" /> Available for Drupal & full stack projects
+          <span className="pulse" /> {t.hero.available}
         </p>
         <h1 className="hero__title">
-          Hi, I’m <span className="gradient-text">{profile.name}</span>
+          {t.hero.hi} <span className="gradient-text">{profile.name}</span>
         </h1>
-        <p className="hero__role mono" aria-label={profile.roles.join(', ')}>
+        <p className="hero__role mono" aria-label={roles.join(', ')}>
           <span className="prompt">&gt;</span> {role}
           <span className="caret" aria-hidden="true" />
         </p>
-        <p className="hero__lead">
-          15+ years building, migrating and maintaining Drupal sites — from Drupal 6 to Drupal 11 — for
-          newspapers, universities, associations and e-commerce platforms. I also write the modules other Drupal
-          sites depend on.
-        </p>
+        <p className="hero__lead">{t.hero.lead}</p>
         <div className="hero__cta">
           <a className="btn btn--primary" href="#work">
-            View my work
+            {t.hero.work}
           </a>
           <a className="btn btn--ghost" href="#contact">
-            Get in touch
+            {t.hero.contact}
           </a>
         </div>
         <ul className="hero__social">
@@ -61,7 +60,7 @@ export default function Hero() {
           <li><a href={profile.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>
         </ul>
       </div>
-      <a className="scroll-hint" href="#about" aria-label="Scroll to about">
+      <a className="scroll-hint" href="#about" aria-label={t.hero.scroll}>
         <span />
       </a>
     </header>

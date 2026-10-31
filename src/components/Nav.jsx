@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react'
+import { languages, useLang } from '../lang.js'
 
-const sections = [
-  { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'work', label: 'Work' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'contact', label: 'Contact' },
-]
+const sections = ['about', 'experience', 'work', 'skills', 'contact']
 
 export default function Nav({ theme, onToggleTheme }) {
+  const { t, lang, setLang } = useLang()
   const [active, setActive] = useState('')
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -27,8 +23,8 @@ export default function Nav({ theme, onToggleTheme }) {
       (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
       { rootMargin: '-45% 0px -50% 0px' },
     )
-    sections.forEach((s) => {
-      const el = document.getElementById(s.id)
+    sections.forEach((id) => {
+      const el = document.getElementById(id)
       if (el) io.observe(el)
     })
     return () => {
@@ -36,6 +32,8 @@ export default function Nav({ theme, onToggleTheme }) {
       io.disconnect()
     }
   }, [])
+
+  const nextTheme = theme === 'dark' ? 'light' : 'dark'
 
   return (
     <nav className={`nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`} aria-label="Main">
@@ -45,19 +43,32 @@ export default function Nav({ theme, onToggleTheme }) {
           <span className="muted">~/</span>
           <span className="gradient-text">danrod</span>
         </a>
-        <button className="nav__burger" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>
+        <button className="nav__burger" aria-label={t.nav.menu} aria-expanded={open} onClick={() => setOpen(!open)}>
           <span /><span />
         </button>
         <ul className="nav__links">
-          {sections.map((s) => (
-            <li key={s.id}>
-              <a href={`#${s.id}`} className={active === s.id ? 'is-active' : ''} onClick={() => setOpen(false)}>
-                {s.label}
+          {sections.map((id) => (
+            <li key={id}>
+              <a href={`#${id}`} className={active === id ? 'is-active' : ''} onClick={() => setOpen(false)}>
+                {t.nav[id]}
               </a>
             </li>
           ))}
-          <li>
-            <button className="theme-toggle" onClick={onToggleTheme} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
+          <li className="nav__controls">
+            <div className="lang-switch mono" role="group" aria-label={t.nav.language}>
+              {languages.map((l) => (
+                <button
+                  key={l}
+                  lang={l}
+                  className={lang === l ? 'is-active' : ''}
+                  aria-pressed={lang === l}
+                  onClick={() => setLang(l)}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+            <button className="theme-toggle" onClick={onToggleTheme} aria-label={t.nav.theme(nextTheme)}>
               {theme === 'dark' ? '☀' : '☾'}
             </button>
           </li>

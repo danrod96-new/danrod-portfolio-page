@@ -1,32 +1,29 @@
 import { useEffect, useRef, useState } from 'react'
 import { experience, profile, projects, skills } from '../data.js'
 import Reveal from './Reveal.jsx'
+import { useLang } from '../lang.js'
 
-const commands = {
-  help: () => [
-    'Available commands:',
-    '  whoami      who is this guy?',
-    '  experience  career history',
-    '  modules     my Drupal.org projects',
-    '  skills      the stack',
-    '  contact     how to reach me',
-    '  uname -a    system info',
-    '  clear       clear the screen',
-  ],
-  whoami: () => [`${profile.name} — ${profile.title}`, profile.location],
-  experience: () => experience.map((e) => `${e.period.padEnd(20)} ${e.role} @ ${e.company}`),
-  modules: () =>
-    projects.filter((p) => p.category === 'contrib').map((p) => `${p.title.padEnd(32)} ${p.role.padEnd(12)} ${p.metric}`),
-  skills: () => skills.map((g) => `${g.group}: ${g.items.join(', ')}`),
-  contact: () => [`email:    ${profile.email}`, `github:   ${profile.links.github}`, `drupal:   ${profile.links.drupal}`, `linkedin: ${profile.links.linkedin}`],
-  'uname -a': () => ['GNU/Linux danrod-portfolio 6.17 x86_64 — 10+ years of uptime as a sysadmin'],
-  ls: () => ['about  experience  work  skills  contact'],
-  sudo: () => ['Nice try. This incident will be reported. 🙂'],
-  'rm -rf /': () => ['Permission denied. (I’ve done Linux too long to fall for that.)'],
+// Command names stay in English (it's a shell); their output follows the selected language.
+function buildCommands(t, p) {
+  return {
+    help: () => t.terminal.help,
+    whoami: () => [`${profile.name} — ${p(profile.title)}`, p(profile.location)],
+    experience: () => experience.map((e) => `${p(e.period).padEnd(20)} ${p(e.role)} @ ${p(e.company)}`),
+    modules: () =>
+      projects.filter((pr) => pr.category === 'contrib').map((pr) => `${p(pr.title).padEnd(32)} ${p(pr.role).padEnd(12)} ${p(pr.metric)}`),
+    skills: () => skills.map((g) => `${p(g.group)}: ${g.items.join(', ')}`),
+    contact: () => [`email:    ${profile.email}`, `github:   ${profile.links.github}`, `drupal:   ${profile.links.drupal}`, `linkedin: ${profile.links.linkedin}`],
+    'uname -a': () => [t.terminal.uname],
+    ls: () => ['about  experience  work  skills  contact'],
+    sudo: () => [t.terminal.sudo],
+    'rm -rf /': () => [t.terminal.rm],
+  }
 }
 
 export default function Terminal() {
-  const [lines, setLines] = useState([{ type: 'out', text: 'Welcome! Type `help` to get started.' }])
+  const { t, p } = useLang()
+  const commands = buildCommands(t, p)
+  const [lines, setLines] = useState([{ type: 'welcome' }])
   const [value, setValue] = useState('')
   const [history, setHistory] = useState([])
   const [hIndex, setHIndex] = useState(-1)
@@ -44,7 +41,7 @@ export default function Terminal() {
     setHIndex(-1)
     if (cmd === 'clear') return setLines([])
     const fn = commands[cmd] || commands[cmd.split(' ')[0]]
-    const out = fn ? fn() : [`command not found: ${cmd}. Try \`help\`.`]
+    const out = fn ? fn() : [t.terminal.notFound(cmd)]
     setLines((l) => [...l, { type: 'in', text: cmd }, ...out.map((text) => ({ type: 'out', text }))])
   }
 
@@ -73,9 +70,8 @@ export default function Terminal() {
     <section className="section" id="terminal">
       <div className="container">
         <Reveal className="section__head">
-          <span className="section__num mono">05</span>
-          <h2>Prefer the command line?</h2>
-          <p className="section__sub">Me too. Try a few commands.</p>
+          <h2>{t.terminal.title}</h2>
+          <p className="section__sub">{t.terminal.sub}</p>
         </Reveal>
         <Reveal className="terminal" onClick={() => inputRef.current?.focus()}>
           <div className="terminal__bar">
@@ -86,7 +82,7 @@ export default function Terminal() {
             {lines.map((l, i) => (
               <div key={i} className={`terminal__line terminal__line--${l.type}`}>
                 {l.type === 'in' && <span className="terminal__ps">danrod@portfolio:~$ </span>}
-                {l.text}
+                {l.type === 'welcome' ? t.terminal.welcome : l.text}
               </div>
             ))}
             <div className="terminal__line terminal__line--in">
@@ -97,7 +93,7 @@ export default function Terminal() {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 onKeyDown={onKeyDown}
-                aria-label="Terminal input"
+                aria-label={t.terminal.input}
                 autoComplete="off"
                 spellCheck="false"
               />
