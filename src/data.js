@@ -447,7 +447,7 @@ export const projects = [
       en: 'Multi-domain Drupal 11 platform (courthouseregular.com + findlawyerbycourthouse.com) where law firms post court appearance assignments for local attorneys. Migrated up from Drupal 6, with Domain Access, Organic Groups and subscription tiers. Set up GitHub Actions (CI/CD) to deploy the changes to an external server.',
       es: 'Plataforma multidominio en Drupal 11 (courthouseregular.com + findlawyerbycourthouse.com) donde los bufetes publican asignaciones de comparecencia ante tribunales para abogados locales. Migrada desde Drupal 6, con Domain Access, Organic Groups y niveles de suscripción. Configuré GitHub Actions (CI/CD) para desplegar los cambios en un servidor externo.',
     },
-    tags: ['Drupal', 'Migration', 'Multi-domain', 'PHP', 'GitHub Actions'],
+    tags: ['Drupal', 'Migration', 'Multi-domain', 'PHP', 'GitHub Actions', 'AI', 'Claude'],
     url: 'https://www.courthouseregular.com',
     repo: 'https://github.com/danrod96-new/court-house-regular-drupal11',
   },
