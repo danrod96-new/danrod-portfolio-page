@@ -310,6 +310,20 @@ export const projects = [
     cover: 'media-thumbnails-svg',
   },
   {
+    title: 'Media Entity Link',
+    category: 'contrib',
+    year: 2025,
+    role: { en: 'Co-maintainer', es: 'Co-mantenedor' },
+    metric: { en: '1.7k sites', es: '1,7 mil sitios' },
+    description: {
+      en: 'Adds a “Link” media type and source plugin, so internal or external URLs can be managed as media, browsed in the Media Library and used in any media view.',
+      es: 'Agrega un tipo de medio y un plugin de origen “Link”, para gestionar URL internas o externas como medios, explorarlas en la Biblioteca de medios y usarlas en cualquier vista de medios.',
+    },
+    tags: ['Drupal', 'PHP', 'Media'],
+    url: 'https://www.drupal.org/project/media_entity_link',
+    cover: 'media-entity-link',
+  },
+  {
     title: 'Fluidproject UI Options',
     category: 'contrib',
     year: 2018,
