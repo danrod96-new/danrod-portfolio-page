@@ -55,7 +55,7 @@ export default function App() {
       <footer className="footer">
         <div className="container footer__inner">
           <p className="muted">© {new Date().getFullYear()} {profile.name}</p>
-          <p className="muted mono">{t.footer.built} · <a href="#top">{t.footer.top}</a></p>
+          <p className="muted mono"><a href="#top">{t.footer.top}</a></p>
         </div>
       </footer>
     </>

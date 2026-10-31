@@ -85,7 +85,7 @@ const en = {
     copied: 'Copied ✓',
     archive: 'GitHub (archive)',
   },
-  footer: { built: 'Built with React + Vite', top: 'back to top ↑' },
+  footer: { top: 'back to top ↑' },
   tags: {},
 }
 
@@ -174,7 +174,7 @@ const es = {
     copied: 'Copiado ✓',
     archive: 'GitHub (archivo)',
   },
-  footer: { built: 'Hecho con React + Vite', top: 'volver arriba ↑' },
+  footer: { top: 'volver arriba ↑' },
   // Display names for skill/project tags; the English name stays the filter key.
   tags: {
     'Accessibility': 'Accesibilidad',
