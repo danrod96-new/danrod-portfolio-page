@@ -287,6 +287,7 @@ export const projects = [
     },
     tags: ['Drupal', 'PHP', 'Media'],
     url: 'https://www.drupal.org/project/media_thumbnails_svg',
+    cover: 'media-thumbnails-svg',
   },
   {
     title: 'Fluidproject UI Options',
@@ -378,6 +379,7 @@ export const projects = [
     },
     tags: ['Drupal', 'React', 'AI', 'Gutenberg'],
     url: 'https://www.drupal.org/project/gutenberg_ai_tools',
+    cover: 'gutenberg-ai-tools',
   },
   {
     title: 'Group LMS API Integration',
