@@ -10,6 +10,7 @@ import Contact from './components/Contact.jsx'
 import { profile } from './data.js'
 import { useLang } from './lang.js'
 
+// Dark on the first visit, whatever the system setting; after that, the visitor's own choice.
 function initialTheme() {
   try {
     const saved = localStorage.getItem('theme')
@@ -17,7 +18,7 @@ function initialTheme() {
   } catch {
     // storage unavailable
   }
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+  return 'dark'
 }
 
 export default function App() {
