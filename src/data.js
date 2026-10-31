@@ -343,6 +343,7 @@ export const projects = [
     },
     tags: ['Drupal', 'Theme', 'SASS', 'Commerce'],
     url: 'https://www.drupal.org/project/sshop',
+    cover: 'sshop',
   },
   {
     title: 'Radios to Slider',
