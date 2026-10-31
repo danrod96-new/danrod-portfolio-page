@@ -541,6 +541,7 @@ export const projects = [
     },
     tags: ['Drupal', 'JavaScript', 'HTML5'],
     url: 'https://www.bluradio.com/',
+    shot: 'bluradio',
   },
   {
     title: 'Portafolio & ALO Mujeres',
@@ -554,6 +555,7 @@ export const projects = [
     },
     tags: ['Drupal', 'Performance', 'Varnish', 'Linux'],
     url: 'https://portafolio.co',
+    shot: 'portafolio',
   },
 
   // ---- Open source / GitHub
