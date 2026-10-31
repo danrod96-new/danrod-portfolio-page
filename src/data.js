@@ -282,6 +282,20 @@ export const projects = [
     cover: 'antibot',
   },
   {
+    title: 'Domain Access',
+    category: 'contrib',
+    year: 2025,
+    role: { en: 'Co-maintainer', es: 'Co-mantenedor' },
+    metric: { en: '13.3k sites', es: '13,3 mil sitios' },
+    description: {
+      en: 'Suite of modules for running a group of affiliated sites from one Drupal installation and a single shared database. Version 3 moves domain config overrides to core’s Config Collections and adds path-prefix domains.',
+      es: 'Conjunto de módulos para administrar un grupo de sitios afiliados desde una sola instalación de Drupal y una única base de datos compartida. La versión 3 lleva las configuraciones por dominio a las Config Collections del núcleo y agrega dominios por prefijo de ruta.',
+    },
+    tags: ['Drupal', 'PHP', 'Multi-domain'],
+    url: 'https://www.drupal.org/project/domain',
+    cover: 'domain',
+  },
+  {
     title: 'jQuery Deprecated Functions',
     category: 'contrib',
     year: 2025,
