@@ -24,7 +24,7 @@ A project's `tags` drive the skill → project cross-filter, so reuse the skill 
 - **Work** — filter, search, 3D-tilt cards and a detail modal
 - **Skills** — click a skill to filter the work grid
 - **Terminal** — a small shell (`help`, `whoami`, `modules`, `contact`…)
-- **Contact** — mailto and copy-to-clipboard
+- **Contact** — form sent through [Web3Forms](https://web3forms.com) (access key in `src/data.js`), so no email address is published
 
 Light/dark theme follows the OS and can be toggled; motion respects `prefers-reduced-motion`.
 

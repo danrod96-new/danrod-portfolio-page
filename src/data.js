@@ -22,13 +22,19 @@ export const profile = {
     en: 'Currently mastering ReactJS and learning Golang.',
     es: 'Actualmente perfeccionando ReactJS y aprendiendo Golang.',
   },
-  email: 'danrod@gmail.com',
   links: {
     github: 'https://github.com/danrod96-new',
     githubOld: 'https://github.com/danrod96',
     drupal: 'https://www.drupal.org/u/danrod',
     linkedin: 'https://www.linkedin.com/in/daniel-rodriguez-38951884/',
   },
+}
+
+// Contact form messages go through Web3Forms (https://web3forms.com), which emails them on.
+// The access key is meant to be public: it can only send to the inbox it was created for.
+export const contactForm = {
+  endpoint: 'https://api.web3forms.com/submit',
+  accessKey: '3969a1b9-52b1-4186-9fbd-2f9b1f46195e',
 }
 
 export const stats = [

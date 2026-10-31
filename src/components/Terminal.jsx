@@ -12,7 +12,7 @@ function buildCommands(t, p) {
     modules: () =>
       projects.filter((pr) => pr.category === 'contrib').map((pr) => `${p(pr.title).padEnd(32)} ${p(pr.role).padEnd(12)} ${p(pr.metric)}`),
     skills: () => skills.map((g) => `${p(g.group)}: ${g.items.join(', ')}`),
-    contact: () => [`email:    ${profile.email}`, `github:   ${profile.links.github}`, `drupal:   ${profile.links.drupal}`, `linkedin: ${profile.links.linkedin}`],
+    contact: () => [`${t.terminal.form.padEnd(10)}${t.terminal.formHint}`, `github:   ${profile.links.github}`, `drupal:   ${profile.links.drupal}`, `linkedin: ${profile.links.linkedin}`],
     'uname -a': () => [t.terminal.uname],
     ls: () => ['about  experience  work  skills  contact'],
     sudo: () => [t.terminal.sudo],
