@@ -13,19 +13,21 @@ const shots = Object.fromEntries(
 const domain = (url) => url && new URL(url).hostname.replace(/^www\./, '')
 
 // Screenshot inside a small browser frame; client sites without one get a placeholder with the domain.
+// App screenshots (no url) show their window label in the bar instead.
 function BrowserShot({ project, large = false }) {
-  const { t } = useLang()
+  const { t, p } = useLang()
   const src = shots[project.shot]
+  const label = p(project.window) ?? domain(project.url)
   return (
     <span className={`browser ${large ? 'browser--large' : ''}`}>
       <span className="browser__bar" aria-hidden="true">
         <i /><i /><i />
-        <span className="browser__url mono">{domain(project.url)}</span>
+        <span className="browser__url mono">{label}</span>
       </span>
       {src ? (
-        <img className="browser__img" src={src} alt={t.work.shotAlt(domain(project.url))} loading="lazy" />
+        <img className="browser__img" src={src} alt={t.work.shotAlt(label)} loading="lazy" />
       ) : (
-        <span className="browser__empty mono" aria-hidden="true">{domain(project.url)}</span>
+        <span className="browser__empty mono" aria-hidden="true">{label}</span>
       )}
     </span>
   )
@@ -68,10 +70,10 @@ function ProjectModal({ project, onClose }) {
         <p className="mono muted">
           {t.work.category[project.category]} · {project.year} · {p(project.role)}
         </p>
-        {project.category === 'client' && (
+        {(project.category === 'client' || project.shot) && (
           <figure className="modal__shot">
             <BrowserShot project={project} large />
-            {project.shot && <figcaption className="muted">{t.work.shotCaption}</figcaption>}
+            {project.shot && project.url && <figcaption className="muted">{t.work.shotCaption}</figcaption>}
           </figure>
         )}
         <h3 id="modal-title">{p(project.title)}</h3>
@@ -86,6 +88,11 @@ function ProjectModal({ project, onClose }) {
           {project.url && (
             <a className="btn btn--primary" href={project.url} target="_blank" rel="noreferrer">
               {project.category === 'contrib' ? t.work.viewDrupal : t.work.visit} ↗
+            </a>
+          )}
+          {project.atoms && (
+            <a className="btn btn--primary" href={project.atoms} target="_blank" rel="noreferrer">
+              {t.work.viewAtoms} ↗
             </a>
           )}
           {project.repo && (
@@ -169,7 +176,7 @@ export default function Projects({ tag: activeTag, onClearTag }) {
               onClick={() => setSelected(pr)}
             >
               <span className="project__glow" aria-hidden="true" />
-              {pr.category === 'client' && <BrowserShot project={pr} />}
+              {(pr.category === 'client' || pr.shot) && <BrowserShot project={pr} />}
               <span className="project__top">
                 <span className="project__cat mono">{t.work.category[pr.category]}</span>
                 <span className="project__year mono">{pr.year}</span>

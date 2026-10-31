@@ -603,6 +603,9 @@ export const projects = [
     },
     tags: ['C', 'Scilab', 'Math'],
     repo: 'https://github.com/danrod96-new/galois-fields',
+    atoms: 'https://atoms.scilab.org/toolboxes/galois_fields/',
+    shot: 'galois-fields',
+    window: { en: 'Scilab console', es: 'Consola de Scilab' },
   },
   {
     title: 'php-patch-check',
