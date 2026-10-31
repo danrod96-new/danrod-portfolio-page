@@ -254,6 +254,20 @@ export const experience = [
 export const projects = [
   // ---- Drupal.org contributions
   {
+    title: 'Backup and Migrate',
+    category: 'contrib',
+    year: 2025,
+    role: { en: 'Co-maintainer', es: 'Co-mantenedor' },
+    metric: { en: '121k sites', es: '121 mil sitios' },
+    description: {
+      en: 'Backs up and restores a Drupal site’s MySQL database, code and files, or migrates a site between environments. Supports compression, scheduled backups, Drush and optional encryption.',
+      es: 'Respalda y restaura la base de datos MySQL, el código y los archivos de un sitio Drupal, o migra un sitio entre entornos. Admite compresión, respaldos programados, Drush y cifrado opcional.',
+    },
+    tags: ['Drupal', 'PHP', 'MySQL', 'Migration', 'DevOps', 'Security'],
+    url: 'https://www.drupal.org/project/backup_migrate',
+    cover: 'backup-migrate',
+  },
+  {
     title: 'Antibot',
     category: 'contrib',
     year: 2024,
