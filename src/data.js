@@ -272,6 +272,7 @@ export const projects = [
     },
     tags: ['Drupal', 'JavaScript', 'jQuery'],
     url: 'https://www.drupal.org/project/jquery_deprecated_functions',
+    cover: 'jquery-deprecated',
   },
   {
     title: 'Media Thumbnails SVG',

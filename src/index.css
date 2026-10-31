@@ -866,6 +866,21 @@ h3 {
   color: var(--muted);
 }
 
+/* ---------- cover art (module logos) ---------- */
+.cover {
+  display: block;
+  width: calc(100% + 16px);
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  margin: -8px -8px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+}
+.modal__shot .cover {
+  width: 100%;
+  margin: 0;
+}
+
 /* ---------- browser frame (site screenshots) ---------- */
 .browser {
   display: block;

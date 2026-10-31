@@ -33,6 +33,12 @@ function BrowserShot({ project, large = false }) {
   )
 }
 
+// Artwork such as a module logo, shown without the browser frame.
+function Cover({ project }) {
+  const { t } = useLang()
+  return <img className="cover" src={shots[project.cover]} alt={t.work.coverAlt(project.title)} loading="lazy" />
+}
+
 function tilt(e) {
   const el = e.currentTarget
   const r = el.getBoundingClientRect()
@@ -70,6 +76,11 @@ function ProjectModal({ project, onClose }) {
         <p className="mono muted">
           {t.work.category[project.category]} · {project.year} · {p(project.role)}
         </p>
+        {project.cover && (
+          <figure className="modal__shot">
+            <Cover project={project} />
+          </figure>
+        )}
         {(project.category === 'client' || project.shot) && (
           <figure className="modal__shot">
             <BrowserShot project={project} large />
@@ -176,6 +187,7 @@ export default function Projects({ tag: activeTag, onClearTag }) {
               onClick={() => setSelected(pr)}
             >
               <span className="project__glow" aria-hidden="true" />
+              {pr.cover && <Cover project={pr} />}
               {(pr.category === 'client' || pr.shot) && <BrowserShot project={pr} />}
               <span className="project__top">
                 <span className="project__cat mono">{t.work.category[pr.category]}</span>
