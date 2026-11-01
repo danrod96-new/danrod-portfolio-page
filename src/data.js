@@ -449,19 +449,6 @@ export const projects = [
     url: 'https://www.drupal.org/project/gutenberg_ai_tools',
     cover: 'gutenberg-ai-tools',
   },
-  {
-    title: 'Group LMS API Integration',
-    category: 'contrib',
-    year: 2024,
-    role: { en: 'Author', es: 'Autor' },
-    metric: 'LMS',
-    description: {
-      en: 'Extends the Group module with integration to external LMS APIs, starting with D2L Brightspace.',
-      es: 'Extiende el módulo Group con integración a APIs de LMS externos, empezando por D2L Brightspace.',
-    },
-    tags: ['Drupal', 'PHP', 'REST', 'LMS'],
-    url: 'https://www.drupal.org/node/3449446',
-  },
 
   // ---- Client sites
   {
