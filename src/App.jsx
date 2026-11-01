@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
-import Experience from './components/Experience.jsx'
 import Projects from './components/Projects.jsx'
 import Skills from './components/Skills.jsx'
 import Blog from './components/Blog.jsx'
@@ -62,7 +61,6 @@ export default function App() {
           <Hero />
           <main>
             <About />
-            <Experience />
             <Projects tag={tag} onClearTag={() => setTag(null)} />
             <Skills onPick={pickSkill} />
             <Blog />

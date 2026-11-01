@@ -5,7 +5,8 @@ const en = {
   skip: 'Skip to content',
   nav: {
     about: 'About',
-    experience: 'Experience',
+    resume: 'Resume',
+    resumeLabel: 'Resume (PDF, opens in a new tab)',
     work: 'Work',
     skills: 'Skills',
     blog: 'Blog',
@@ -28,12 +29,6 @@ const en = {
     education: 'Education',
     community: 'Community',
     portrait: (name) => `Portrait of ${name}`,
-  },
-  experience: {
-    title: 'Experience',
-    sub: (years) => `${years} years, from El Tiempo’s server farm to Drupal 11 platforms in Canada.`,
-    filters: { all: 'Everything', drupal: 'Drupal & web', ops: 'Linux & ops' },
-    filterLabel: 'Filter experience',
   },
   work: {
     title: 'Selected work',
@@ -116,7 +111,8 @@ const es = {
   skip: 'Ir al contenido',
   nav: {
     about: 'Sobre mí',
-    experience: 'Experiencia',
+    resume: 'CV',
+    resumeLabel: 'Hoja de vida (PDF en inglés, se abre en una pestaña nueva)',
     work: 'Proyectos',
     skills: 'Habilidades',
     blog: 'Blog',
@@ -139,12 +135,6 @@ const es = {
     education: 'Educación',
     community: 'Comunidad',
     portrait: (name) => `Retrato de ${name}`,
-  },
-  experience: {
-    title: 'Experiencia',
-    sub: (years) => `${years} años, desde la granja de servidores de El Tiempo hasta plataformas en Drupal 11 en Canadá.`,
-    filters: { all: 'Todo', drupal: 'Drupal y web', ops: 'Linux y operaciones' },
-    filterLabel: 'Filtrar experiencia',
   },
   work: {
     title: 'Proyectos destacados',

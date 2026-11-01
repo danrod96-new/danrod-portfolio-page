@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { languages, useLang } from '../lang.js'
 
-const sections = ['about', 'experience', 'work', 'skills', 'blog', 'contact']
+const sections = ['about', 'work', 'skills', 'blog', 'contact']
+// public/Daniel-Rodriguez-Resume.pdf: the CV without the address, phone numbers and email.
+const resume = `${import.meta.env.BASE_URL}Daniel-Rodriguez-Resume.pdf`
 
 export default function Nav({ theme, onToggleTheme, page }) {
   const { t, lang, setLang } = useLang()
@@ -54,6 +56,11 @@ export default function Nav({ theme, onToggleTheme, page }) {
               </a>
             </li>
           ))}
+          <li>
+            <a href={resume} target="_blank" rel="noreferrer" aria-label={t.nav.resumeLabel} onClick={() => setOpen(false)}>
+              {t.nav.resume} ↗
+            </a>
+          </li>
           <li className="nav__controls">
             <div className="lang-switch mono" role="group" aria-label={t.nav.language}>
               {languages.map((l) => (
