@@ -380,6 +380,20 @@ export const projects = [
     cover: 'languages-dropdown',
   },
   {
+    title: 'Google Calendar Service',
+    category: 'contrib',
+    year: 2023,
+    role: { en: 'Co-maintainer', es: 'Co-mantenedor' },
+    metric: { en: '150 sites', es: '150 sitios' },
+    description: {
+      en: 'Two-way sync between Drupal and Google Calendar through a Google service account: imports events for a date range or all at once, and pushes events created in Drupal back to the calendar.',
+      es: 'Sincronización bidireccional entre Drupal y Google Calendar mediante una cuenta de servicio de Google: importa los eventos de un rango de fechas o todos a la vez, y envía al calendario los eventos creados en Drupal.',
+    },
+    tags: ['Drupal', 'PHP', 'REST'],
+    url: 'https://www.drupal.org/project/google_calendar_service',
+    cover: 'google-calendar-service',
+  },
+  {
     title: 'SShop',
     category: 'contrib',
     year: 2022,
