@@ -731,19 +731,6 @@ export const projects = [
     tags: ['Drupal', 'PHP', 'SSO', 'Migration'],
     repo: 'https://github.com/danrod96/Drupal6-to-Drupal7-migration',
   },
-  {
-    title: 'Eloquent JavaScript',
-    category: 'oss',
-    year: 2022,
-    role: { en: 'Author', es: 'Autor' },
-    metric: { en: 'Learning', es: 'Aprendizaje' },
-    description: {
-      en: 'Exercises and solutions from the Eloquent JavaScript book.',
-      es: 'Ejercicios y soluciones del libro Eloquent JavaScript.',
-    },
-    tags: ['JavaScript'],
-    repo: 'https://github.com/danrod96-new/Eloquent-Javascript',
-  },
 ]
 
 export const categories = ['all', 'contrib', 'client', 'oss']
