@@ -1,0 +1,57 @@
+{
+  "slug": "hello-world",
+  "date": "2026-10-31",
+  "tags": ["Drupal", "Migration", "DevOps"],
+  "title": {
+    "en": "Hello, world: why I’m starting a blog",
+    "es": "Hola, mundo: por qué empiezo un blog"
+  },
+  "summary": {
+    "en": "After 15+ years of Drupal work and a handful of contrib modules, I want somewhere to write down what I learn along the way.",
+    "es": "Después de más de 15 años trabajando con Drupal y varios módulos contribuidos, quiero un lugar donde anotar lo que aprendo en el camino."
+  },
+  "body": {
+    "en": [
+      "After more than 15 years of building, migrating and maintaining Drupal sites, I’ve picked up a lot of small lessons that never made it out of an issue queue or a commit message. This blog is where I’ll write them down.",
+      "",
+      "## What to expect",
+      "",
+      "- Notes from maintaining contrib modules such as **Backup and Migrate**, **Domain Access** and **Antibot**",
+      "- Drupal upgrades and migrations, from Drupal 6 all the way to Drupal 11",
+      "- Deployment and Linux tips from my years as a sysadmin",
+      "",
+      "## A small example",
+      "",
+      "Posts can include code, like the Drush commands I run after every deployment:",
+      "",
+      "```bash",
+      "drush updatedb -y",
+      "drush config:import -y",
+      "drush cache:rebuild",
+      "```",
+      "",
+      "Thanks for reading. If there’s a topic you’d like me to cover, send me a message through the [contact form](#contact)."
+    ],
+    "es": [
+      "Después de más de 15 años construyendo, migrando y manteniendo sitios Drupal, he aprendido muchas pequeñas lecciones que nunca salieron de una cola de issues o de un mensaje de commit. En este blog las voy a ir anotando.",
+      "",
+      "## Qué encontrarás",
+      "",
+      "- Notas sobre el mantenimiento de módulos contribuidos como **Backup and Migrate**, **Domain Access** y **Antibot**",
+      "- Actualizaciones y migraciones de Drupal, desde Drupal 6 hasta Drupal 11",
+      "- Consejos de despliegue y Linux de mis años como administrador de sistemas",
+      "",
+      "## Un pequeño ejemplo",
+      "",
+      "Los artículos pueden incluir código, como los comandos de Drush que ejecuto después de cada despliegue:",
+      "",
+      "```bash",
+      "drush updatedb -y",
+      "drush config:import -y",
+      "drush cache:rebuild",
+      "```",
+      "",
+      "Gracias por leer. Si hay un tema que te gustaría que tratara, escríbeme por el [formulario de contacto](#contact)."
+    ]
+  }
+}

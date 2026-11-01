@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { languages, useLang } from '../lang.js'
 
-const sections = ['about', 'experience', 'work', 'skills', 'contact']
+const sections = ['about', 'experience', 'work', 'skills', 'blog', 'contact']
 
-export default function Nav({ theme, onToggleTheme }) {
+export default function Nav({ theme, onToggleTheme, page }) {
   const { t, lang, setLang } = useLang()
   const [active, setActive] = useState('')
   const [scrolled, setScrolled] = useState(false)
@@ -31,7 +31,7 @@ export default function Nav({ theme, onToggleTheme }) {
       window.removeEventListener('scroll', onScroll)
       io.disconnect()
     }
-  }, [])
+  }, [page])
 
   const nextTheme = theme === 'dark' ? 'light' : 'dark'
 
@@ -49,7 +49,7 @@ export default function Nav({ theme, onToggleTheme }) {
         <ul className="nav__links">
           {sections.map((id) => (
             <li key={id}>
-              <a href={`#${id}`} className={active === id ? 'is-active' : ''} onClick={() => setOpen(false)}>
+              <a href={`#${id}`} className={active === id || (page === 'post' && id === 'blog') ? 'is-active' : ''} onClick={() => setOpen(false)}>
                 {t.nav[id]}
               </a>
             </li>

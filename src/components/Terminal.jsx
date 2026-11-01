@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { experience, profile, projects, skills } from '../data.js'
+import { posts } from '../blog.js'
 import Reveal from './Reveal.jsx'
 import { useLang } from '../lang.js'
 
@@ -12,9 +13,10 @@ function buildCommands(t, p) {
     modules: () =>
       projects.filter((pr) => pr.category === 'contrib').map((pr) => `${p(pr.title).padEnd(32)} ${p(pr.role).padEnd(12)} ${p(pr.metric)}`),
     skills: () => skills.map((g) => `${p(g.group)}: ${g.items.join(', ')}`),
+    blog: () => posts.map((post) => `${post.date}  ${p(post.title)}`),
     contact: () => [`${t.terminal.form.padEnd(10)}${t.terminal.formHint}`, `github:   ${profile.links.github}`, `drupal:   ${profile.links.drupal}`, `linkedin: ${profile.links.linkedin}`],
     'uname -a': () => [t.terminal.uname],
-    ls: () => ['about  experience  work  skills  contact'],
+    ls: () => ['about  experience  work  skills  blog  contact'],
     sudo: () => [t.terminal.sudo],
     'rm -rf /': () => [t.terminal.rm],
   }

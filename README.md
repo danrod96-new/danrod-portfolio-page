@@ -16,6 +16,26 @@ All content lives in [`src/data.js`](src/data.js): profile, stats, experience, p
 (`contrib` = Drupal.org, `client` = client sites, `oss` = open source) and skills.
 A project's `tags` drive the skill → project cross-filter, so reuse the skill names.
 
+### Blog posts
+
+Each post is a JSON file in [`src/content/blog/`](src/content/blog/); add a file and push to publish it.
+Posts are listed newest first and open at `https://danrod.ca/#/blog/<slug>`.
+
+```json
+{
+  "slug": "my-post",
+  "date": "2026-11-05",
+  "tags": ["Drupal"],
+  "title": { "en": "…", "es": "…" },
+  "summary": { "en": "…", "es": "…" },
+  "body": { "en": ["Markdown, one line per array item", "", "## A heading"], "es": ["…"] }
+}
+```
+
+- `title`, `summary` and `body` take `{ "en", "es" }`; a post with only `en` shows the English text in both languages.
+- `body` is Markdown, either one string or an array of lines.
+- `"draft": true` shows the post in `npm run dev` only, not on the live site.
+
 ## Sections
 
 - **Hero** — interactive node network (follows the cursor) and a typed role line
@@ -23,7 +43,8 @@ A project's `tags` drive the skill → project cross-filter, so reuse the skill 
 - **Experience** — expandable timeline filterable by Drupal/web vs Linux/ops
 - **Work** — filter, search, 3D-tilt cards and a detail modal
 - **Skills** — click a skill to filter the work grid
-- **Terminal** — a small shell (`help`, `whoami`, `modules`, `contact`…)
+- **Blog** — post cards; each post opens on its own page (`#/blog/<slug>`)
+- **Terminal** — a small shell (`help`, `whoami`, `modules`, `blog`, `contact`…)
 - **Contact** — form sent through [Web3Forms](https://web3forms.com) (access key in `src/data.js`), so no email address is published
 
 Light/dark theme follows the OS and can be toggled; motion respects `prefers-reduced-motion`.
