@@ -523,6 +523,20 @@ export const projects = [
     url: 'https://dontlosesight.ca/',
   },
   {
+    title: 'Canadian Agricultural Human Resource Council',
+    category: 'client',
+    shot: 'cahrc',
+    year: 2020,
+    role: { en: 'Developer', es: 'Desarrollador' },
+    metric: { en: 'Bilingual refactor', es: 'Rediseño bilingüe' },
+    description: {
+      en: 'Refactored the CAHRC website on Drupal 9: Bootstrap 5 sub-theme, reusable Paragraphs components (CTA boxes, content cards, image, button, text and media sections) for the informative pages, and English/French localization.',
+      es: 'Rediseñé el sitio del CAHRC en Drupal 9: subtema Bootstrap 5, componentes reutilizables con Paragraphs (cajas CTA, tarjetas de contenido, imagen, botón, secciones de texto y multimedia) para las páginas informativas, y localización en inglés y francés.',
+    },
+    tags: ['Drupal', 'Bootstrap', 'Multilingual', 'Bilingual'],
+    url: 'https://cahrc-ccrha.ca/',
+  },
+  {
     title: 'GiveGreen',
     category: 'client',
     shot: 'givegreen',
