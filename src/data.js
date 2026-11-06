@@ -551,6 +551,20 @@ export const projects = [
     url: 'https://www.givegreen.com/',
   },
   {
+    title: 'McCarthy Tétrault',
+    category: 'client',
+    shot: 'mccarthy',
+    year: 2021,
+    role: { en: 'Developer', es: 'Desarrollador' },
+    metric: { en: 'Google Maps', es: 'Google Maps' },
+    description: {
+      en: 'Interactive map for the law firm: a Node.js script pulls coordinates and customer data from a Google Sheet, and JavaScript/HTML draws them as markers with the Google Maps API.',
+      es: 'Mapa interactivo para la firma de abogados: un script en Node.js toma las coordenadas y los datos de clientes de una hoja de cálculo de Google, y JavaScript/HTML los dibuja como marcadores con la API de Google Maps.',
+    },
+    tags: ['JavaScript', 'Node.js', 'Google Maps', 'REST'],
+    url: 'https://www.mccarthy.ca/en',
+  },
+  {
     title: 'Kirkor Architects',
     category: 'client',
     shot: 'kirkor',
