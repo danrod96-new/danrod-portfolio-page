@@ -462,7 +462,7 @@ export const projects = [
       en: 'Multi-domain Drupal 11 platform (courthouseregular.com + findlawyerbycourthouse.com) where law firms post court appearance assignments for local attorneys. Migrated up from Drupal 6, with Domain Access, Organic Groups and subscription tiers. Set up GitHub Actions (CI/CD) to deploy the changes to an external server.',
       es: 'Plataforma multidominio en Drupal 11 (courthouseregular.com + findlawyerbycourthouse.com) donde los bufetes publican asignaciones de comparecencia ante tribunales para abogados locales. Migrada desde Drupal 6, con Domain Access, Organic Groups y niveles de suscripción. Configuré GitHub Actions (CI/CD) para desplegar los cambios en un servidor externo.',
     },
-    tags: ['Drupal', 'Migration', 'Multi-domain', 'PHP', 'GitHub Actions', 'AI', 'Claude'],
+    tags: ['Drupal', 'Migration', 'Multi-domain', 'PHP', 'GitHub Actions', 'AI', 'Claude Code'],
     url: 'https://www.courthouseregular.com',
     repo: 'https://github.com/danrod96-new/court-house-regular-drupal11',
   },
@@ -766,7 +766,8 @@ export const categories = ['all', 'contrib', 'client', 'oss']
 export const skills = [
   { group: { en: 'Drupal & CMS', es: 'Drupal y CMS' }, items: ['Drupal', 'Commerce', 'Twig', 'Migration', 'Multilingual', 'Search API', 'Webform', 'Gutenberg', 'WordPress', 'WxT'] },
   { group: 'Front-end', items: ['React', 'JavaScript', 'Vue.js', 'jQuery', 'HTML5', 'CSS', 'SASS', 'Bootstrap'] },
-  { group: { en: 'Back-end & APIs', es: 'Back-end y APIs' }, items: ['PHP', 'Node.js', 'REST', 'SOAP', 'MySQL', 'Payments', 'Stripe', 'SSO', 'Solr', 'Elasticsearch', 'AI'] },
+  { group: { en: 'Back-end & APIs', es: 'Back-end y APIs' }, items: ['PHP', 'Node.js', 'REST', 'SOAP', 'MySQL', 'Payments', 'Stripe', 'SSO', 'Solr', 'Elasticsearch'] },
+  { group: { en: 'AI tools', es: 'Herramientas de IA' }, items: ['AI', 'Claude Code', 'ChatGPT', 'OpenCode'] },
   { group: { en: 'Quality & Accessibility', es: 'Calidad y accesibilidad' }, items: ['Accessibility', 'WCAG', 'AODA', 'PHPUnit', 'Selenium', 'QA'] },
   { group: { en: 'DevOps & Linux', es: 'DevOps y Linux' }, items: ['Linux', 'DevOps', 'Bash', 'GitLab CI/CD', 'GitHub Actions', 'AWS', 'Pantheon', 'Acquia', 'Varnish', 'NGINX', 'Security'] },
   { group: { en: 'Also', es: 'Otros' }, items: ['C', 'Scilab', 'Math', 'Golang'] },
