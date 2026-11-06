@@ -766,7 +766,7 @@ export const categories = ['all', 'contrib', 'client', 'oss']
 export const skills = [
   { group: { en: 'Drupal & CMS', es: 'Drupal y CMS' }, items: ['Drupal', 'Commerce', 'Twig', 'Migration', 'Multilingual', 'Search API', 'Webform', 'Gutenberg', 'WordPress', 'WxT'] },
   { group: 'Front-end', items: ['React', 'JavaScript', 'Vue.js', 'jQuery', 'HTML5', 'CSS', 'SASS', 'Bootstrap'] },
-  { group: { en: 'Back-end & APIs', es: 'Back-end y APIs' }, items: ['PHP', 'REST', 'SOAP', 'MySQL', 'Payments', 'Stripe', 'SSO', 'Solr', 'Elasticsearch', 'AI'] },
+  { group: { en: 'Back-end & APIs', es: 'Back-end y APIs' }, items: ['PHP', 'Node.js', 'REST', 'SOAP', 'MySQL', 'Payments', 'Stripe', 'SSO', 'Solr', 'Elasticsearch', 'AI'] },
   { group: { en: 'Quality & Accessibility', es: 'Calidad y accesibilidad' }, items: ['Accessibility', 'WCAG', 'AODA', 'PHPUnit', 'Selenium', 'QA'] },
   { group: { en: 'DevOps & Linux', es: 'DevOps y Linux' }, items: ['Linux', 'DevOps', 'Bash', 'GitLab CI/CD', 'GitHub Actions', 'AWS', 'Pantheon', 'Acquia', 'Varnish', 'NGINX', 'Security'] },
   { group: { en: 'Also', es: 'Otros' }, items: ['C', 'Scilab', 'Math', 'Golang'] },
