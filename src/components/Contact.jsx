@@ -82,6 +82,9 @@ export default function Contact() {
               <button className="btn btn--primary" type="submit" disabled={status === 'sending'}>
                 {status === 'sending' ? t.contact.sending : t.contact.send}
               </button>
+              <p className="contact__privacy muted">
+                {t.contact.privacyNote} <a href="#/privacy">{t.contact.privacyLink}</a>
+              </p>
             </form>
           )}
           <ul className="contact__links">

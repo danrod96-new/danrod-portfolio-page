@@ -1103,6 +1103,10 @@ h3 {
   position: absolute;
   left: -9999px;
 }
+.contact__privacy {
+  margin: 0;
+  font-size: 0.85rem;
+}
 .contact__error {
   margin: 0;
   padding: 10px 14px;

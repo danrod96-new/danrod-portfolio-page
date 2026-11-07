@@ -102,10 +102,16 @@ const en = {
     sentBody: 'I’ll reply to the email address you gave as soon as I can.',
     another: 'Send another message',
     error: 'Sorry, your message couldn’t be sent. Please try again in a moment, or reach me on LinkedIn.',
+    privacyNote: 'Your name, email and message are sent through Web3Forms and used only to reply to you.',
+    privacyLink: 'Privacy policy',
     subject: (name) => `New message from ${name} via danrod.ca`,
     archive: 'GitHub (archive)',
   },
-  footer: { top: 'back to top ↑' },
+  footer: { top: 'back to top ↑', privacy: 'Privacy' },
+  privacy: {
+    home: 'Home',
+    updated: (date) => `Last updated ${date}`,
+  },
   tags: {},
 }
 
@@ -211,11 +217,17 @@ const es = {
     sentBody: 'Te responderé al correo que indicaste lo antes posible.',
     another: 'Enviar otro mensaje',
     error: 'Lo siento, no se pudo enviar tu mensaje. Inténtalo de nuevo en un momento o escríbeme por LinkedIn.',
+    privacyNote: 'Tu nombre, correo y mensaje se envían a través de Web3Forms y solo se usan para responderte.',
+    privacyLink: 'Política de privacidad',
     // The subject is for Daniel's inbox, so it stays in English.
     subject: (name) => `New message from ${name} via danrod.ca`,
     archive: 'GitHub (archivo)',
   },
-  footer: { top: 'volver arriba ↑' },
+  footer: { top: 'volver arriba ↑', privacy: 'Privacidad' },
+  privacy: {
+    home: 'Inicio',
+    updated: (date) => `Última actualización: ${date}`,
+  },
   // Display names for skill/project tags; the English name stays the filter key.
   tags: {
     'Accessibility': 'Accesibilidad',
