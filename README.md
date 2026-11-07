@@ -51,5 +51,6 @@ Posts are listed newest first and open at `https://danrod.ca/#/blog/<slug>`.
 
 Link previews on social sites and chat apps use `public/og-image.jpg` (1200×630), set in `index.html`.
 `public/robots.txt` points search engines to `public/sitemap.xml`, which lists the home page and the resume.
+`public/404.html` is the page GitHub Pages shows for addresses that don't exist; it is plain HTML (no React), in the visitor's theme and language.
 
 The site opens in dark mode; visitors can switch to light and their choice is remembered. Motion respects `prefers-reduced-motion`.
