@@ -50,5 +50,6 @@ Posts are listed newest first and open at `https://danrod.ca/#/blog/<slug>`.
 - **Resume** — menu link to `public/Daniel-Rodriguez-Resume.pdf`, a copy of the CV without the address, phone numbers and email
 
 Link previews on social sites and chat apps use `public/og-image.jpg` (1200×630), set in `index.html`.
+`public/robots.txt` points search engines to `public/sitemap.xml`, which lists the home page and the resume.
 
 The site opens in dark mode; visitors can switch to light and their choice is remembered. Motion respects `prefers-reduced-motion`.

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Blog posts live at #/blog/<slug>; search engines ignore everything after #, so they can't be listed here. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://danrod.ca/</loc>
+  </url>
+  <url>
+    <loc>https://danrod.ca/Daniel-Rodriguez-Resume.pdf</loc>
+  </url>
+</urlset>
