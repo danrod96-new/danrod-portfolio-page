@@ -2,18 +2,22 @@ import { useEffect } from 'react'
 import { findPost, renderMarkdown } from '../blog.js'
 import { PostMeta } from './Blog.jsx'
 import { useLang } from '../lang.js'
+import { setDescription } from '../meta.js'
 
 export default function BlogPost({ slug }) {
   const { t, p, tag } = useLang()
   const post = findPost(slug)
   const title = post ? p(post.title) : t.blog.notFound
+  const description = post ? p(post.summary) : t.meta.description
 
   useEffect(() => {
     document.title = `${title} · ${t.meta.title}`
+    setDescription(description)
     return () => {
       document.title = t.meta.title
+      setDescription(t.meta.description)
     }
-  }, [title, t])
+  }, [title, description, t])
 
   return (
     <main className="post section" id="main">

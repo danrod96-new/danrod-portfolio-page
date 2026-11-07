@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useLayoutEffect, useMemo, useState } from 'react'
 import { LangContext, languages, pick } from '../lang.js'
 import { strings } from '../strings.js'
+import { setDescription } from '../meta.js'
 
 function initialLang() {
   try {
@@ -15,9 +16,12 @@ function initialLang() {
 export default function LangProvider({ children }) {
   const [lang, setLang] = useState(initialLang)
 
-  useEffect(() => {
+  // A layout effect runs before every useEffect, so a blog post's own title and description
+  // (set in BlogPost's useEffect) win over these defaults when the language changes.
+  useLayoutEffect(() => {
     document.documentElement.lang = lang
     document.title = strings[lang].meta.title
+    setDescription(strings[lang].meta.description)
     try {
       localStorage.setItem('lang', lang)
     } catch {

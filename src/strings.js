@@ -1,7 +1,10 @@
 // Interface text (labels, buttons, headings). Content such as jobs and projects lives in data.js.
 
 const en = {
-  meta: { title: 'Daniel Rodriguez · Drupal & Web Developer' },
+  meta: {
+    title: 'Daniel Rodriguez · Drupal & Web Developer',
+    description: 'Daniel Rodriguez, Full Stack Drupal and Web Developer: 15+ years of Drupal sites, contrib modules used on 217k+ sites, DevOps and Linux.',
+  },
   skip: 'Skip to content',
   nav: {
     about: 'About',
@@ -107,7 +110,10 @@ const en = {
 }
 
 const es = {
-  meta: { title: 'Daniel Rodriguez · Desarrollador Drupal y Web' },
+  meta: {
+    title: 'Daniel Rodriguez · Desarrollador Drupal y Web',
+    description: 'Daniel Rodriguez, desarrollador Drupal y web full stack: más de 15 años de sitios Drupal, módulos usados en más de 217 mil sitios, DevOps y Linux.',
+  },
   skip: 'Ir al contenido',
   nav: {
     about: 'Sobre mí',
