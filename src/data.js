@@ -39,8 +39,8 @@ export const contactForm = {
 
 export const stats = [
   { value: 15, suffix: '+', label: { en: 'Years in web & Linux', es: 'Años en web y Linux' } },
-  { value: 11, suffix: '', label: { en: 'Drupal.org projects', es: 'Proyectos en Drupal.org' } },
-  { value: 81000, suffix: '+', label: { en: 'Sites using my modules', es: 'Sitios usan mis módulos' }, format: 'k' },
+  { value: 14, suffix: '', label: { en: 'Drupal.org projects', es: 'Proyectos en Drupal.org' } },
+  { value: 217000, suffix: '+', label: { en: 'Sites using my modules', es: 'Sitios usan mis módulos' }, format: 'k' },
   { value: 6, suffix: '', label: { en: 'Drupal majors (6 → 11)', es: 'Versiones de Drupal (6 → 11)' } },
 ]
 

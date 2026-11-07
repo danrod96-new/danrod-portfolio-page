@@ -49,4 +49,6 @@ Posts are listed newest first and open at `https://danrod.ca/#/blog/<slug>`.
 - **Contact** — form sent through [Web3Forms](https://web3forms.com) (access key in `src/data.js`), so no email address is published
 - **Resume** — menu link to `public/Daniel-Rodriguez-Resume.pdf`, a copy of the CV without the address, phone numbers and email
 
+Link previews on social sites and chat apps use `public/og-image.jpg` (1200×630), set in `index.html`.
+
 The site opens in dark mode; visitors can switch to light and their choice is remembered. Motion respects `prefers-reduced-motion`.
