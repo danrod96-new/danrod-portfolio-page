@@ -25,7 +25,7 @@ function BrowserShot({ project, large = false }) {
         <span className="browser__url mono">{label}</span>
       </span>
       {src ? (
-        <img className="browser__img" src={src} alt={t.work.shotAlt(label)} loading="lazy" />
+        <img className="browser__img" src={src} alt={p(project.alt) ?? t.work.shotAlt(label)} loading="lazy" />
       ) : (
         <span className="browser__empty mono" aria-hidden="true">{label}</span>
       )}
@@ -35,8 +35,8 @@ function BrowserShot({ project, large = false }) {
 
 // Artwork such as a module logo, shown without the browser frame.
 function Cover({ project }) {
-  const { t } = useLang()
-  return <img className="cover" src={shots[project.cover]} alt={t.work.coverAlt(project.title)} loading="lazy" />
+  const { t, p } = useLang()
+  return <img className="cover" src={shots[project.cover]} alt={p(project.alt) ?? t.work.coverAlt(project.title)} loading="lazy" />
 }
 
 function tilt(e) {

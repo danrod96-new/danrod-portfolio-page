@@ -251,6 +251,8 @@ export const experience = [
 
 // category: contrib | client | oss
 // shot: file name (no extension) in src/assets/sites/ — a screenshot of the live site
+// cover: same, for a logo shown without the browser frame
+// alt: what the shot or cover image shows, for screen readers
 export const projects = [
   // ---- Drupal.org contributions
   {
@@ -266,6 +268,10 @@ export const projects = [
     tags: ['Drupal', 'PHP', 'MySQL', 'Migration', 'DevOps', 'Security'],
     url: 'https://www.drupal.org/project/backup_migrate',
     cover: 'backup-migrate',
+    alt: {
+      en: 'Backup and Migrate logo: a yellow dump truck carrying a large blue Drupal drop',
+      es: 'Logo de Backup and Migrate: un camión volquete amarillo que carga una gran gota azul de Drupal',
+    },
   },
   {
     title: 'Antibot',
@@ -280,6 +286,10 @@ export const projects = [
     tags: ['Drupal', 'PHP', 'JavaScript', 'Security'],
     url: 'https://www.drupal.org/project/antibot',
     cover: 'antibot',
+    alt: {
+      en: 'Antibot logo: a white robot crossed out by a red prohibition sign on a blue background',
+      es: 'Logo de Antibot: un robot blanco tachado con una señal roja de prohibido sobre fondo azul',
+    },
   },
   {
     title: 'Domain Access',
@@ -294,6 +304,10 @@ export const projects = [
     tags: ['Drupal', 'PHP', 'Multi-domain'],
     url: 'https://www.drupal.org/project/domain',
     cover: 'domain',
+    alt: {
+      en: 'Domain Access logo: a globe inside a blue Drupal drop',
+      es: 'Logo de Domain Access: un globo terráqueo dentro de una gota azul de Drupal',
+    },
   },
   {
     title: 'jQuery Deprecated Functions',
@@ -308,6 +322,10 @@ export const projects = [
     tags: ['Drupal', 'JavaScript', 'jQuery'],
     url: 'https://www.drupal.org/project/jquery_deprecated_functions',
     cover: 'jquery-deprecated',
+    alt: {
+      en: 'jQuery Deprecated logo: the jQuery wordmark with the word “Deprecated” on a paper texture',
+      es: 'Logo de jQuery Deprecated: el logotipo de jQuery con la palabra “Deprecated” sobre textura de papel',
+    },
   },
   {
     title: 'Media Thumbnails SVG',
@@ -322,6 +340,10 @@ export const projects = [
     tags: ['Drupal', 'PHP', 'Media'],
     url: 'https://www.drupal.org/project/media_thumbnails_svg',
     cover: 'media-thumbnails-svg',
+    alt: {
+      en: 'Media Thumbnails SVG logo: a red and blue file icon labelled “SVG Thumbnail”',
+      es: 'Logo de Media Thumbnails SVG: un icono de archivo rojo y azul con el texto “SVG Thumbnail”',
+    },
   },
   {
     title: 'Media Entity Link',
@@ -336,6 +358,10 @@ export const projects = [
     tags: ['Drupal', 'PHP', 'Media'],
     url: 'https://www.drupal.org/project/media_entity_link',
     cover: 'media-entity-link',
+    alt: {
+      en: 'Media Entity Link logo: a chain-link icon next to a media icon, with the Pivale and Axelerant logos and the Drupal drop',
+      es: 'Logo de Media Entity Link: un icono de enlace junto a un icono de medios, con los logos de Pivale y Axelerant y la gota de Drupal',
+    },
   },
   {
     title: 'Fluidproject UI Options',
@@ -350,6 +376,10 @@ export const projects = [
     tags: ['Drupal', 'Accessibility', 'JavaScript', 'WCAG'],
     url: 'https://www.drupal.org/project/fluidui',
     cover: 'fluidproject-ui-options',
+    alt: {
+      en: 'Fluidproject UI Options logo: a white wheelchair accessibility symbol on a yellow background',
+      es: 'Logo de Fluidproject UI Options: el símbolo blanco de accesibilidad en silla de ruedas sobre fondo amarillo',
+    },
   },
   {
     title: 'Date Timepicker',
@@ -364,6 +394,10 @@ export const projects = [
     tags: ['Drupal', 'JavaScript', 'jQuery', 'Forms'],
     url: 'https://www.drupal.org/project/timepicker',
     cover: 'date-timepicker',
+    alt: {
+      en: 'Date Timepicker logo: a blue Drupal drop outline next to a blue dot',
+      es: 'Logo de Date Timepicker: el contorno de una gota azul de Drupal junto a un punto azul',
+    },
   },
   {
     title: 'Languages Dropdown (Bootstrap)',
@@ -378,6 +412,10 @@ export const projects = [
     tags: ['Drupal', 'Bootstrap', 'Multilingual'],
     url: 'https://www.drupal.org/project/languages_dropdown',
     cover: 'languages-dropdown',
+    alt: {
+      en: 'Languages Dropdown logo: the Drupal drop next to a blue translation icon',
+      es: 'Logo de Languages Dropdown: la gota de Drupal junto a un icono azul de traducción',
+    },
   },
   {
     title: 'Google Calendar Service',
@@ -392,6 +430,10 @@ export const projects = [
     tags: ['Drupal', 'PHP', 'REST'],
     url: 'https://www.drupal.org/project/google_calendar_service',
     cover: 'google-calendar-service',
+    alt: {
+      en: 'Google Calendar Service logo: the Drupal drop next to a blue calendar icon',
+      es: 'Logo de Google Calendar Service: la gota de Drupal junto a un icono azul de calendario',
+    },
   },
   {
     title: 'SShop',
@@ -406,6 +448,10 @@ export const projects = [
     tags: ['Drupal', 'Theme', 'SASS', 'Commerce'],
     url: 'https://www.drupal.org/project/sshop',
     cover: 'sshop',
+    alt: {
+      en: 'SShop logo: the Drupal drop next to a blue dollar-sign icon',
+      es: 'Logo de SShop: la gota de Drupal junto a un icono azul con el signo de dólar',
+    },
   },
   {
     title: 'Radios to Slider',
@@ -420,6 +466,10 @@ export const projects = [
     tags: ['Drupal', 'JavaScript', 'Forms'],
     url: 'https://www.drupal.org/project/radiostoslider',
     cover: 'radios-to-slider',
+    alt: {
+      en: 'Radios to Slider logo: the Drupal drop next to a blue slider icon',
+      es: 'Logo de Radios to Slider: la gota de Drupal junto a un icono azul de deslizador',
+    },
   },
   {
     title: 'jQCloud',
@@ -434,6 +484,10 @@ export const projects = [
     tags: ['Drupal', 'JavaScript', 'Taxonomy'],
     url: 'https://www.drupal.org/project/jqcloud',
     cover: 'jqcloud',
+    alt: {
+      en: 'jQCloud logo: the Drupal drop next to a blue cloud icon marked “JQ”',
+      es: 'Logo de jQCloud: la gota de Drupal junto a un icono azul de nube con las letras “JQ”',
+    },
   },
   {
     title: 'Gutenberg AI Tools',
@@ -448,6 +502,10 @@ export const projects = [
     tags: ['Drupal', 'React', 'AI', 'Gutenberg'],
     url: 'https://www.drupal.org/project/gutenberg_ai_tools',
     cover: 'gutenberg-ai-tools',
+    alt: {
+      en: 'Gutenberg AI Tools logo: an ornate black “G” tile joined to a circuit-board chip marked “AI”',
+      es: 'Logo de Gutenberg AI Tools: una “G” negra ornamentada unida a un chip de circuito con las letras “AI”',
+    },
   },
 
   // ---- Client sites
@@ -455,6 +513,10 @@ export const projects = [
     title: 'Court House Regular',
     category: 'client',
     shot: 'courthouseregular',
+    alt: {
+      en: 'Court House Regular home page: a courthouse logo, a grey menu bar and a box inviting visitors to find appearance attorneys and local counsel',
+      es: 'Página de inicio de Court House Regular: un logo de un juzgado, una barra de menú gris y un recuadro que invita a buscar abogados de comparecencia y asesores locales',
+    },
     year: 2025,
     role: { en: 'Lead developer', es: 'Desarrollador principal' },
     metric: 'D6 → D11',
@@ -470,6 +532,10 @@ export const projects = [
     title: 'Association of Justice Counsel',
     category: 'client',
     shot: 'ajc',
+    alt: {
+      en: 'Association of Justice Counsel home page: the bilingual AJC-AJJ logo, a menu and the headline “AJC Advocates for You” beside a blue list of sections',
+      es: 'Página de inicio de la Association of Justice Counsel: el logo bilingüe AJC-AJJ, un menú y el titular “AJC Advocates for You” junto a una lista azul de secciones',
+    },
     year: 2025,
     role: { en: 'Full stack developer', es: 'Desarrollador full stack' },
     metric: { en: 'Launch', es: 'Lanzamiento' },
@@ -484,6 +550,10 @@ export const projects = [
     title: 'Canadian Association of Optometrists',
     category: 'client',
     shot: 'opto',
+    alt: {
+      en: 'Canadian Association of Optometrists home page: the bilingual logo, a menu and a slideshow banner with eye-care tips over a photo',
+      es: 'Página de inicio de la Canadian Association of Optometrists: el logo bilingüe, un menú y un carrusel con consejos de salud visual sobre una foto',
+    },
     year: 2019,
     role: { en: 'Lead developer', es: 'Desarrollador principal' },
     metric: { en: 'Built from scratch', es: 'Construido desde cero' },
@@ -498,6 +568,10 @@ export const projects = [
     title: 'Vision at Work',
     category: 'client',
     shot: 'visionatwork',
+    alt: {
+      en: 'Vision at Work home page: the green logo, a menu and a slideshow of a worker in a hard hat inside a mining tunnel',
+      es: 'Página de inicio de Vision at Work: el logo verde, un menú y un carrusel con un trabajador con casco dentro de un túnel minero',
+    },
     year: 2023,
     role: { en: 'Developer', es: 'Desarrollador' },
     metric: { en: 'CAO campaign', es: 'Campaña de la CAO' },
@@ -512,6 +586,10 @@ export const projects = [
     title: 'Don’t Lose Sight',
     category: 'client',
     shot: 'dontlosesight',
+    alt: {
+      en: 'Don’t Lose Sight home page: the campaign logo and the headline “Vision Care Benefits: The Case for Modern Coverage to Today’s Vision Care”',
+      es: 'Página de inicio de Don’t Lose Sight: el logo de la campaña y el titular “Vision Care Benefits: The Case for Modern Coverage to Today’s Vision Care”',
+    },
     year: 2023,
     role: { en: 'Developer', es: 'Desarrollador' },
     metric: { en: 'Information hub', es: 'Centro de información' },
@@ -526,6 +604,10 @@ export const projects = [
     title: 'Canadian Agricultural Human Resource Council',
     category: 'client',
     shot: 'cahrc',
+    alt: {
+      en: 'Canadian Agricultural Human Resource Council home page: the CAHRC-CCRHA logo, a menu and the headline “Growing the AgriWorkforce” next to two farmers in a wheat field',
+      es: 'Página de inicio del Canadian Agricultural Human Resource Council: el logo CAHRC-CCRHA, un menú y el titular “Growing the AgriWorkforce” junto a dos agricultores en un campo de trigo',
+    },
     year: 2020,
     role: { en: 'Developer', es: 'Desarrollador' },
     metric: { en: 'Bilingual refactor', es: 'Rediseño bilingüe' },
@@ -540,6 +622,10 @@ export const projects = [
     title: 'GiveGreen',
     category: 'client',
     shot: 'givegreen',
+    alt: {
+      en: 'GiveGreen home page: the green logo, a menu and the headline “There’s change in numbers” beside a family with a child on a bicycle',
+      es: 'Página de inicio de GiveGreen: el logo verde, un menú y el titular “There’s change in numbers” junto a una familia con una niña en bicicleta',
+    },
     year: 2022,
     role: { en: 'Developer', es: 'Desarrollador' },
     metric: { en: 'Payments', es: 'Pagos' },
@@ -554,6 +640,10 @@ export const projects = [
     title: 'McCarthy Tétrault',
     category: 'client',
     shot: 'mccarthy',
+    alt: {
+      en: 'McCarthy Tétrault home page: the firm’s logo, a menu, the headline “Delivering strategic and innovative legal and business solutions” and a row of news cards',
+      es: 'Página de inicio de McCarthy Tétrault: el logo de la firma, un menú, el titular “Delivering strategic and innovative legal and business solutions” y una fila de noticias',
+    },
     year: 2021,
     role: { en: 'Developer', es: 'Desarrollador' },
     metric: { en: 'Google Maps', es: 'Google Maps' },
@@ -568,6 +658,10 @@ export const projects = [
     title: 'Kirkor Architects',
     category: 'client',
     shot: 'kirkor',
+    alt: {
+      en: 'Kirkor Architects home page: the orange Kirkor logo above a full-width rendering of terraced residential buildings by the water',
+      es: 'Página de inicio de Kirkor Architects: el logo naranja de Kirkor sobre una ilustración a todo el ancho de edificios residenciales escalonados junto al agua',
+    },
     year: 2025,
     role: { en: 'Developer', es: 'Desarrollador' },
     metric: 'WordPress',
@@ -582,6 +676,10 @@ export const projects = [
     title: 'Choose Canada Organic',
     category: 'client',
     shot: 'choosecanadaorganic',
+    alt: {
+      en: 'Choose Canada Organic home page: the headline “Soil is the Foundation of Organic” over hands holding soil with a seedling, and three photo links below',
+      es: 'Página de inicio de Choose Canada Organic: el titular “Soil is the Foundation of Organic” sobre unas manos con tierra y un brote, y tres enlaces con fotos debajo',
+    },
     year: 2025,
     role: { en: 'Developer', es: 'Desarrollador' },
     metric: 'WordPress',
@@ -596,6 +694,10 @@ export const projects = [
     title: 'Coaching Association of Canada',
     category: 'client',
     shot: 'coach',
+    alt: {
+      en: 'Coaching Association of Canada home page: the coach.ca logo, a menu and red and grey tiles such as “Become a coach” with photos of coaches and athletes',
+      es: 'Página de inicio de la Coaching Association of Canada: el logo de coach.ca, un menú y recuadros rojos y grises como “Become a coach” con fotos de entrenadores y atletas',
+    },
     year: 2025,
     role: { en: 'Developer', es: 'Desarrollador' },
     metric: { en: 'Search', es: 'Búsqueda' },
@@ -610,6 +712,10 @@ export const projects = [
     title: { en: 'Beechwood Cemetery Donations', es: 'Donaciones de Beechwood Cemetery' },
     category: 'client',
     shot: 'beechwood',
+    alt: {
+      en: 'Beechwood home page: the Beechwood logo, a menu and the banner “Welcome to Beechwood Funeral, Cemetery and Cremation Services” over a hall with flags',
+      es: 'Página de inicio de Beechwood: el logo de Beechwood, un menú y el banner “Welcome to Beechwood Funeral, Cemetery and Cremation Services” sobre una sala con banderas',
+    },
     year: 2020,
     role: { en: 'Developer', es: 'Desarrollador' },
     metric: 'Stripe',
@@ -624,6 +730,10 @@ export const projects = [
     title: 'CNIB',
     category: 'client',
     shot: 'cnib',
+    alt: {
+      en: 'CNIB home page: the CNIB logo, a menu with yellow buttons and the banner “Bright futures start here!” showing a CNIB staff member with a young woman',
+      es: 'Página de inicio de CNIB: el logo de CNIB, un menú con botones amarillos y el banner “Bright futures start here!” con una persona del CNIB y una joven',
+    },
     year: 2018,
     role: { en: 'Team developer', es: 'Desarrollador del equipo' },
     metric: 'WCAG AA',
@@ -638,6 +748,10 @@ export const projects = [
     title: { en: 'uOttawa Faculty of Medicine', es: 'Facultad de Medicina de uOttawa' },
     category: 'client',
     shot: 'uottawa',
+    alt: {
+      en: 'uOttawa Faculty of Medicine home page: a burgundy panel reading “Faculty of Medicine” next to a smiling health-care worker in scrubs',
+      es: 'Página de inicio de la Facultad de Medicina de uOttawa: un panel color vino con el texto “Faculty of Medicine” junto a una profesional de la salud sonriente con uniforme',
+    },
     year: 2016,
     role: { en: 'Contract developer', es: 'Desarrollador contratista' },
     metric: { en: 'Bilingual', es: 'Bilingüe' },
@@ -661,6 +775,10 @@ export const projects = [
     tags: ['Drupal', 'JavaScript', 'HTML5'],
     url: 'https://www.bluradio.com/',
     shot: 'bluradio',
+    alt: {
+      en: 'BluRadio home page: the blue header with a live-radio button, news headlines with photos and the live player bar at the bottom',
+      es: 'Página de inicio de BluRadio: el encabezado azul con un botón de radio en vivo, titulares con fotos y la barra del reproductor en vivo abajo',
+    },
   },
   {
     title: 'Portafolio & ALO Mujeres',
@@ -675,6 +793,10 @@ export const projects = [
     tags: ['Drupal', 'Performance', 'Varnish', 'Linux'],
     url: 'https://portafolio.co',
     shot: 'portafolio',
+    alt: {
+      en: 'Portafolio home page: the green Portafolio masthead, a ticker of exchange rates and business news headlines with photos',
+      es: 'Página de inicio de Portafolio: el encabezado verde de Portafolio, una franja con tasas de cambio y titulares de noticias económicas con fotos',
+    },
   },
 
   // ---- Open source / GitHub
@@ -692,6 +814,10 @@ export const projects = [
     repo: 'https://github.com/danrod96-new/galois-fields',
     atoms: 'https://atoms.scilab.org/toolboxes/galois_fields/',
     shot: 'galois-fields',
+    alt: {
+      en: 'Scilab console running galois-fields: commands that divide elements of GF(7), catch a division-by-zero error and subtract polynomials, with their results',
+      es: 'Consola de Scilab ejecutando galois-fields: comandos que dividen elementos de GF(7), capturan un error de división por cero y restan polinomios, con sus resultados',
+    },
     window: { en: 'Scilab console', es: 'Consola de Scilab' },
   },
   {

@@ -28,7 +28,7 @@ const en = {
     body: 'I like projects that push me to learn something new. I enjoy explaining technical ideas to people who aren’t technical, and I always get a kick out of closing an issue an end user reported.',
     education: 'Education',
     community: 'Community',
-    portrait: (name) => `Portrait of ${name}`,
+    portrait: (name) => `${name}, smiling, in a patterned short-sleeve shirt on a balcony with city buildings and the sea in the background`,
   },
   work: {
     title: 'Selected work',
@@ -134,7 +134,7 @@ const es = {
     body: 'Me gustan los proyectos que me obligan a aprender algo nuevo. Disfruto explicando ideas técnicas a personas no técnicas, y siempre siento una gran satisfacción cuando se resuelve un problema reportado por el usuario final.',
     education: 'Educación',
     community: 'Comunidad',
-    portrait: (name) => `Retrato de ${name}`,
+    portrait: (name) => `${name}, sonriente, con una camisa estampada de manga corta en un balcón con edificios de la ciudad y el mar al fondo`,
   },
   work: {
     title: 'Proyectos destacados',

@@ -15,6 +15,7 @@ npm run build    # static output in dist/
 All content lives in [`src/data.js`](src/data.js): profile, stats, experience, projects
 (`contrib` = Drupal.org, `client` = client sites, `oss` = open source) and skills.
 A project's `tags` drive the skill → project cross-filter, so reuse the skill names.
+Give every project with a `shot` or `cover` image an `alt: { en, es }` that describes what the image shows.
 
 ### Blog posts
 
@@ -34,6 +35,7 @@ Posts are listed newest first and open at `https://danrod.ca/#/blog/<slug>`.
 
 - `title`, `summary` and `body` take `{ "en", "es" }`; a post with only `en` shows the English text in both languages.
 - `body` is Markdown, either one string or an array of lines.
+- Images go in `public/blog/` and use `![What the image shows](/blog/picture.webp)`; the text in brackets is the alt text, so always fill it in.
 - `"draft": true` shows the post in `npm run dev` only, not on the live site.
 
 ## Sections
