@@ -3,7 +3,7 @@
 //   dist/blog/<slug>/index.html, dist/privacy/index.html
 // Each is the built index.html with the page's own title, description, link-preview tags and canonical URL,
 // plus its English text already in <div id="root"> so it can be read without JavaScript. The app then
-// loads as usual and replaces that text. It also writes dist/sitemap.xml with every page.
+// loads as usual and replaces that text. It also writes dist/sitemap.xml with every page and dist/feed.xml.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { marked } from 'marked'
 import { privacy } from '../src/content/privacy.js'
@@ -86,7 +86,8 @@ for (const post of posts) {
       url: `${site}${path}`,
       image: `${site}/og-image.jpg`,
       inLanguage: 'en',
-      author: { '@type': 'Person', name: 'Daniel Rodriguez', url: `${site}/` },
+      // Same @id as the Person in index.html, so search engines know it's the same person.
+      author: { '@type': 'Person', '@id': `${site}/#person`, name: 'Daniel Rodriguez', url: `${site}/` },
     },
   })
 }
@@ -119,4 +120,33 @@ writeFileSync(
     `</urlset>\n`,
 )
 
-console.log(`prerender: ${posts.length} post(s), privacy policy and sitemap.xml written to dist/`)
+// RSS feed of every published post, newest first, with the full English text. Links in the post body are made
+// absolute, since feed readers show it away from danrod.ca. index.html points to it with <link rel="alternate">.
+const absolute = (html) => html.replace(/(\s(?:href|src)=")\//g, `$1${site}/`)
+const cdata = (html) => `<![CDATA[${html.replace(/]]>/g, ']]]]><![CDATA[>')}]]>`
+const rfc822 = (date) => new Date(`${date}T12:00:00Z`).toUTCString()
+const newest = [...posts].sort((a, b) => b.date.localeCompare(a.date))
+writeFileSync(
+  new URL('feed.xml', dist),
+  `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">\n<channel>\n` +
+    `  <title>${escape(t.meta.title)} · Blog</title>\n  <link>${site}/</link>\n` +
+    `  <description>${escape(t.meta.description)}</description>\n  <language>en</language>\n` +
+    `  <atom:link href="${site}/feed.xml" rel="self" type="application/rss+xml" />\n` +
+    (newest.length ? `  <lastBuildDate>${rfc822(newest[0].updated ?? newest[0].date)}</lastBuildDate>\n` : '') +
+    newest
+      .map((post) => {
+        const url = `${site}/blog/${post.slug}/`
+        return (
+          `  <item>\n    <title>${escape(en(post.title))}</title>\n    <link>${url}</link>\n    <guid isPermaLink="true">${url}</guid>\n` +
+          `    <pubDate>${rfc822(post.date)}</pubDate>\n` +
+          (post.tags ?? []).map((tag) => `    <category>${escape(tag)}</category>\n`).join('') +
+          `    <description>${escape(en(post.summary))}</description>\n` +
+          `    <content:encoded>${cdata(absolute(marked.parse(text(en(post.body)))))}</content:encoded>\n  </item>\n`
+        )
+      })
+      .join('') +
+    `</channel>\n</rss>\n`,
+)
+
+console.log(`prerender: ${posts.length} post(s), privacy policy, sitemap.xml and feed.xml written to dist/`)

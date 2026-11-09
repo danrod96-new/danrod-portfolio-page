@@ -23,7 +23,8 @@ Each post is a JSON file in [`src/content/blog/`](src/content/blog/); add a file
 Posts are listed newest first and open at `https://danrod.ca/blog/<slug>/`.
 `npm run build` runs [`scripts/prerender.js`](scripts/prerender.js) after Vite, which writes an HTML file for each post
 (and for the privacy policy) with its own title, description and link preview, and the English text already in the page
-so search engines can index it. It also writes `dist/sitemap.xml` with every published post; nothing to edit by hand.
+so search engines can index it. It also writes `dist/sitemap.xml` and the RSS feed `dist/feed.xml` (full English text,
+linked from the Blog section) with every published post; nothing to edit by hand.
 
 ```json
 {
@@ -57,6 +58,8 @@ so search engines can index it. It also writes `dist/sitemap.xml` with every pub
 
 Link previews on social sites and chat apps use `public/og-image.jpg` (1200×630), set in `index.html`.
 `public/robots.txt` points search engines to the sitemap the build generates (home page, resume, privacy policy and posts).
+`index.html` also has Person structured data (name, job title and profiles in `sameAs`); keep it in step with `profile.links` in `src/data.js`.
+Fonts (Inter and JetBrains Mono) are served from `public/fonts/` rather than Google Fonts; `fonts.css` there is shared with `404.html`.
 `public/404.html` is the page GitHub Pages shows for addresses that don't exist; it is plain HTML (no React), in the visitor's theme and language.
 
 The site opens in dark mode; visitors can switch to light and their choice is remembered. Motion respects `prefers-reduced-motion`.

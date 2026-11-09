@@ -1,7 +1,7 @@
 // Privacy policy shown at /privacy/ (src/components/Privacy.jsx). The body is Markdown, one line per item.
 // Update `updated` and both languages whenever the site starts or stops using a service.
 export const privacy = {
-  updated: '2026-11-07',
+  updated: '2026-11-09',
   title: { en: 'Privacy policy', es: 'Política de privacidad' },
   description: {
     en: 'What danrod.ca collects, why, who else receives it and how to ask for a copy or deletion.',
@@ -20,7 +20,6 @@ export const privacy = {
       '## Information other services receive',
       '',
       '- **Hosting:** the site is hosted on [GitHub Pages](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). GitHub may log your IP address when you visit, for security and to keep the service running. I don’t have access to those logs.',
-      '- **Fonts:** the Inter and JetBrains Mono fonts load from [Google Fonts](https://developers.google.com/fonts/faq/privacy), so your browser sends your IP address and browser details to Google when the page loads.',
       '- **Links:** links to GitHub, Drupal.org, LinkedIn and client websites take you to sites with their own privacy policies.',
       '',
       '## Saved in your browser',
@@ -49,7 +48,6 @@ export const privacy = {
       '## Información que reciben otros servicios',
       '',
       '- **Alojamiento:** el sitio está alojado en [GitHub Pages](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). GitHub puede registrar tu dirección IP cuando lo visitas, por seguridad y para mantener el servicio. Yo no tengo acceso a esos registros.',
-      '- **Fuentes:** las fuentes Inter y JetBrains Mono se cargan desde [Google Fonts](https://developers.google.com/fonts/faq/privacy), así que tu navegador envía tu dirección IP y datos del navegador a Google al cargar la página.',
       '- **Enlaces:** los enlaces a GitHub, Drupal.org, LinkedIn y los sitios de clientes te llevan a sitios con sus propias políticas de privacidad.',
       '',
       '## Guardado en tu navegador',

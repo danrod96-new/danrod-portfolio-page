@@ -21,6 +21,8 @@ export default function Blog() {
         <Reveal className="section__head">
           <h2>{t.blog.title}</h2>
           <p className="section__sub">{t.blog.sub}</p>
+          {/* scripts/prerender.js writes feed.xml at build time, so this link only works on a built site. */}
+          <a className="blog__feed mono" href="/feed.xml">{t.blog.feed}</a>
         </Reveal>
         <div className="grid">
           {posts.map((post) => (

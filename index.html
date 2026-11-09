@@ -23,9 +23,33 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Daniel Rodriguez, Full Stack Drupal &amp; Web Developer: name, skills (Drupal 6 to 11, React, PHP, DevOps, Linux) and a portrait on a dark background" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <!-- Fonts are served from this site (public/fonts/). Preloading the latin files avoids a flash of the fallback font. -->
+    <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <link rel="alternate" type="application/rss+xml" title="danrod · Blog" href="https://danrod.ca/feed.xml" />
+    <!-- Who the site is about, for search engines. Keep sameAs in step with profile.links in src/data.js. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://danrod.ca/#person",
+        "name": "Daniel Rodriguez",
+        "jobTitle": "Full Stack Drupal and Web Developer",
+        "description": "Full Stack Drupal and Web Developer with 15+ years of Drupal sites and contrib modules used on 217k+ sites.",
+        "url": "https://danrod.ca/",
+        "image": "https://danrod.ca/og-image.jpg",
+        "knowsAbout": ["Drupal", "PHP", "React", "JavaScript", "DevOps", "Linux", "Scilab"],
+        "knowsLanguage": ["en", "es"],
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidad Industrial de Santander" },
+        "sameAs": [
+          "https://github.com/danrod96-new",
+          "https://github.com/danrod96",
+          "https://www.drupal.org/u/danrod",
+          "https://www.linkedin.com/in/daniel-rodriguez-38951884/"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

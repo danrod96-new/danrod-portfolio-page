@@ -70,6 +70,7 @@ const en = {
     minutes: (n) => `${n} min read`,
     empty: 'No posts yet. Check back soon.',
     notFound: 'Post not found',
+    feed: 'Follow by RSS',
   },
   terminal: {
     title: 'Prefer the command line?',
@@ -189,6 +190,7 @@ const es = {
     minutes: (n) => `${n} min de lectura`,
     empty: 'Aún no hay artículos. Vuelve pronto.',
     notFound: 'Artículo no encontrado',
+    feed: 'Seguir por RSS',
   },
   terminal: {
     title: '¿Prefieres la línea de comandos?',

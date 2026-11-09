@@ -550,6 +550,12 @@ h3 {
   max-width: 620px;
   margin: 12px 0 0;
 }
+.blog__feed {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
 
 /* ---------- about ---------- */
 .about {
