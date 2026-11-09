@@ -527,10 +527,10 @@ export const projects = [
     },
     year: 2025,
     role: { en: 'Lead developer', es: 'Desarrollador principal' },
-    metric: 'D6 → D11',
+    metric: 'D7 → D11',
     description: {
-      en: 'Multi-domain Drupal 11 platform (courthouseregular.com + findlawyerbycourthouse.com) where law firms post court appearance assignments for local attorneys. Migrated up from Drupal 6, with Domain Access, Organic Groups and subscription tiers. Set up GitHub Actions (CI/CD) to deploy the changes to an external server.',
-      es: 'Plataforma multidominio en Drupal 11 (courthouseregular.com + findlawyerbycourthouse.com) donde los bufetes publican asignaciones de comparecencia ante tribunales para abogados locales. Migrada desde Drupal 6, con Domain Access, Organic Groups y niveles de suscripción. Configuré GitHub Actions (CI/CD) para desplegar los cambios en un servidor externo.',
+      en: 'Multi-domain Drupal 11 platform (courthouseregular.com + findlawyerbycourthouse.com) where law firms post court appearance assignments for local attorneys. Migrated from Drupal 7 using the core and contrib migration modules. Features Domain Access, Organic Groups and subscription tiers. Set up GitHub Actions (CI/CD) to deploy the changes to an external server.',
+      es: 'Plataforma multidominio en Drupal 11 (courthouseregular.com + findlawyerbycourthouse.com) donde los bufetes publican asignaciones de comparecencia ante tribunales para abogados locales. Migrada desde Drupal 7 con los módulos de migración del núcleo y contribuidos. Incluye Domain Access, Organic Groups y niveles de suscripción. Configuré GitHub Actions (CI/CD) para desplegar los cambios en un servidor externo.',
     },
     tags: ['Drupal', 'Migration', 'Multi-domain', 'PHP', 'GitHub Actions', 'AI', 'Claude Code'],
     url: 'https://www.courthouseregular.com',
