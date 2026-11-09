@@ -3,9 +3,10 @@ import { formatDate, renderMarkdown } from '../blog.js'
 import { privacy } from '../content/privacy.js'
 import { useLang } from '../lang.js'
 import { setDescription } from '../meta.js'
+import { localizeLinks } from '../paths.js'
 
 export default function Privacy() {
-  const { t, p, lang } = useLang()
+  const { t, p, lang, path } = useLang()
   const title = p(privacy.title)
   const description = p(privacy.description)
 
@@ -21,12 +22,12 @@ export default function Privacy() {
   return (
     <main className="post section" id="main">
       <div className="container post__inner">
-        <a className="post__back mono" href="/">← {t.privacy.home}</a>
+        <a className="post__back mono" href={path('/')}>← {t.privacy.home}</a>
         <article>
           <h1 className="post__title">{title}</h1>
           <p className="post-meta mono">{t.privacy.updated(formatDate(privacy.updated, lang))}</p>
           {/* Our own file in the repo, so the Markdown is trusted. */}
-          <div className="prose" dangerouslySetInnerHTML={{ __html: renderMarkdown(p(privacy.body)) }} />
+          <div className="prose" dangerouslySetInnerHTML={{ __html: localizeLinks(renderMarkdown(p(privacy.body)), lang) }} />
         </article>
       </div>
     </main>

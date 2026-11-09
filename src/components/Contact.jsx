@@ -6,7 +6,7 @@ import { useLang } from '../lang.js'
 const empty = { name: '', email: '', message: '' }
 
 export default function Contact() {
-  const { t } = useLang()
+  const { t, path } = useLang()
   const [fields, setFields] = useState(empty)
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
@@ -83,7 +83,7 @@ export default function Contact() {
                 {status === 'sending' ? t.contact.sending : t.contact.send}
               </button>
               <p className="contact__privacy muted">
-                {t.contact.privacyNote} <a href="/privacy/">{t.contact.privacyLink}</a>
+                {t.contact.privacyNote} <a href={path('/privacy/')}>{t.contact.privacyLink}</a>
               </p>
             </form>
           )}

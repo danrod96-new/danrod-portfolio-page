@@ -3,9 +3,10 @@ import { findPost } from '../blog.js'
 import { PostMeta } from './Blog.jsx'
 import { useLang } from '../lang.js'
 import { setDescription } from '../meta.js'
+import { localizeLinks } from '../paths.js'
 
 export default function BlogPost({ slug }) {
-  const { t, p, tag } = useLang()
+  const { t, p, tag, lang, path } = useLang()
   const post = findPost(slug)
   const title = post ? p(post.title) : t.blog.notFound
   const description = post ? p(post.summary) : t.meta.description
@@ -22,7 +23,7 @@ export default function BlogPost({ slug }) {
   return (
     <main className="post section" id="main">
       <div className="container post__inner">
-        <a className="post__back mono" href="/#blog">← {t.blog.all}</a>
+        <a className="post__back mono" href={path('/#blog')}>← {t.blog.all}</a>
         {post ? (
           <article>
             <h1 className="post__title">{title}</h1>
@@ -33,7 +34,7 @@ export default function BlogPost({ slug }) {
               ))}
             </div>
             {/* Posts are our own files in the repo, so their HTML (built from Markdown) is trusted. */}
-            <div className="prose" dangerouslySetInnerHTML={{ __html: p(post.html) }} />
+            <div className="prose" dangerouslySetInnerHTML={{ __html: localizeLinks(p(post.html), lang) }} />
           </article>
         ) : (
           <h1 className="post__title">{t.blog.notFound}</h1>

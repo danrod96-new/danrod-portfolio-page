@@ -7,7 +7,7 @@ const sections = ['about', 'work', 'skills', 'blog', 'contact']
 const resume = `${import.meta.env.BASE_URL}Daniel-Rodriguez-Resume.pdf`
 
 export default function Nav({ theme, onToggleTheme, page }) {
-  const { t, lang, setLang } = useLang()
+  const { t, lang, setLang, path } = useLang()
   const [active, setActive] = useState('')
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -38,7 +38,7 @@ export default function Nav({ theme, onToggleTheme, page }) {
 
   const nextTheme = theme === 'dark' ? 'light' : 'dark'
   // Section links point back to the home page from a post or the privacy page.
-  const home = page === 'home' ? '' : '/'
+  const home = page === 'home' ? '' : path('/')
 
   return (
     <nav className={`nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`} aria-label="Main">

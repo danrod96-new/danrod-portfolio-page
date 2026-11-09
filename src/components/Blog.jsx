@@ -13,7 +13,7 @@ export function PostMeta({ post }) {
 }
 
 export default function Blog() {
-  const { t, p, tag } = useLang()
+  const { t, p, tag, path } = useLang()
 
   return (
     <section className="section" id="blog">
@@ -26,7 +26,7 @@ export default function Blog() {
         </Reveal>
         <div className="grid">
           {posts.map((post) => (
-            <a key={post.slug} className="post-card card" href={`/blog/${post.slug}/`}>
+            <a key={post.slug} className="post-card card" href={path(`/blog/${post.slug}/`)}>
               <PostMeta post={post} />
               <span className="post-card__title">{p(post.title)}</span>
               <span className="post-card__summary">{p(post.summary)}</span>

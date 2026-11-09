@@ -12,6 +12,7 @@ import Contact from './components/Contact.jsx'
 import { profile } from './data.js'
 import { useLang } from './lang.js'
 import { useHash } from './hooks/useHash.js'
+import { stripLang } from './paths.js'
 
 // Dark on the first visit, whatever the system setting; after that, the visitor's own choice.
 function initialTheme() {
@@ -25,13 +26,13 @@ function initialTheme() {
 }
 
 export default function App() {
-  const { t } = useLang()
+  const { t, path } = useLang()
   const [theme, setTheme] = useState(initialTheme)
   const [tag, setTag] = useState(null)
   const hash = useHash()
-  // Posts live at /blog/<slug>/ and the policy at /privacy/. Each has its own HTML file in the build
-  // (scripts/prerender.js), so moving between pages is a normal page load.
-  const { pathname } = window.location
+  // Posts live at /blog/<slug>/ and the policy at /privacy/, in Spanish under /es/ (src/paths.js). Each has its own
+  // HTML file in the build (scripts/prerender.js), so moving between pages is a normal page load.
+  const pathname = stripLang(window.location.pathname)
   const slug = pathname.match(/^\/blog\/([^/]+)\/?$/)?.[1]
   const page = slug ? 'post' : /^\/privacy\/?$/.test(pathname) ? 'privacy' : 'home'
 
@@ -79,7 +80,7 @@ export default function App() {
         <div className="container footer__inner">
           <p className="muted">© {new Date().getFullYear()} {profile.name}</p>
           <p className="muted mono">
-            <a href="/privacy/">{t.footer.privacy}</a>
+            <a href={path('/privacy/')}>{t.footer.privacy}</a>
             <span aria-hidden="true"> · </span>
             <a href="#top">{t.footer.top}</a>
           </p>
