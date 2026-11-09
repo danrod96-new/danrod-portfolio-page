@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { languages, useLang } from '../lang.js'
+import Flag from './Flag.jsx'
 
 const sections = ['about', 'work', 'skills', 'blog', 'contact']
 // public/Daniel-Rodriguez-Resume.pdf: the CV without the address, phone numbers and email.
@@ -73,6 +74,7 @@ export default function Nav({ theme, onToggleTheme, page }) {
                   aria-pressed={lang === l}
                   onClick={() => setLang(l)}
                 >
+                  <Flag lang={l} />
                   {l.toUpperCase()}
                 </button>
               ))}
