@@ -2,11 +2,12 @@ import { formatDate, posts } from '../blog.js'
 import Reveal from './Reveal.jsx'
 import { useLang } from '../lang.js'
 
-// Post meta line: date and reading time.
-export function PostMeta({ post }) {
+// Post meta line: author (on the post's own page), date and reading time.
+export function PostMeta({ post, showAuthor = false }) {
   const { t, p, lang } = useLang()
   return (
     <p className="post-meta mono muted">
+      {showAuthor && <>{t.blog.by(post.author)} · </>}
       <time dateTime={post.date}>{formatDate(post.date, lang)}</time> · {t.blog.minutes(p(post.minutes))}
     </p>
   )

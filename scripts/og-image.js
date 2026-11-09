@@ -42,7 +42,8 @@ function network(seed) {
 // Plain objects in the shape Satori expects (what JSX would produce).
 const el = (type, style, children, props = {}) => ({ type, props: { style: { display: 'flex', ...style }, children, ...props } })
 
-export function postImage({ slug, title, tags, meta, label }) {
+// `portrait` shows the site owner's photo next to the author's name; leave it off for guest authors.
+export function postImage({ slug, title, tags, author, portrait: withPortrait, meta, label }) {
   const size = title.length <= 40 ? 72 : title.length <= 70 ? 62 : title.length <= 100 ? 52 : 44
   const card = el(
     'div',
@@ -77,11 +78,15 @@ export function postImage({ slug, title, tags, meta, label }) {
         ]),
         el('div', { alignItems: 'center', justifyContent: 'space-between' }, [
           el('div', { alignItems: 'center', gap: 20 }, [
-            el('div', { padding: 4, borderRadius: 999, backgroundImage: `linear-gradient(135deg, ${colors.accent}, ${colors.accent2})` }, [
-              el('img', { width: 68, height: 68, borderRadius: 999, objectFit: 'cover', border: `3px solid ${colors.bg}` }, undefined, { src: portrait, width: 68, height: 68 }),
-            ]),
+            ...(withPortrait
+              ? [
+                  el('div', { padding: 4, borderRadius: 999, backgroundImage: `linear-gradient(135deg, ${colors.accent}, ${colors.accent2})` }, [
+                    el('img', { width: 68, height: 68, borderRadius: 999, objectFit: 'cover', border: `3px solid ${colors.bg}` }, undefined, { src: portrait, width: 68, height: 68 }),
+                  ]),
+                ]
+              : []),
             el('div', { flexDirection: 'column', gap: 4 }, [
-              el('span', { fontSize: 28, fontWeight: 600 }, 'Daniel Rodriguez'),
+              el('span', { fontSize: 28, fontWeight: 600 }, author),
               el('span', { fontFamily: 'Mono', fontSize: 21, color: colors.muted }, meta),
             ]),
           ]),

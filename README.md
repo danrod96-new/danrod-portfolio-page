@@ -55,6 +55,9 @@ language (`/blog/<slug>/og.png`, `/es/blog/<slug>/og.png`) with its title, tags,
   so no highlighter is sent to visitors; the colours are the `--code-*` tokens in `src/index.css`.
 - Images go in `public/blog/` and use `![What the image shows](/blog/picture.webp)`; the text in brackets is the alt text, so always fill it in.
 - `"draft": true` shows the post in `npm run dev` only, not on the live site.
+- Optional `"author": "Jane Doe"` credits someone else; without it the author is `profile.name` from `src/data.js`
+  (Daniel Rodriguez). The author appears under the post title, in the page's metadata and the RSS feed, and on the
+  preview image (with the portrait only for Daniel).
 - Optional `"updated": "2026-12-01"` marks a later edit for search engines.
 - Links to home-page sections need a leading slash, e.g. `[contact form](/#contact)`. Write links to the English
   addresses: on Spanish pages they point to `/es/` automatically.

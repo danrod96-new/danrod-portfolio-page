@@ -27,7 +27,7 @@ export default function BlogPost({ slug }) {
         {post ? (
           <article>
             <h1 className="post__title">{title}</h1>
-            <PostMeta post={post} />
+            <PostMeta post={post} showAuthor />
             <div className="tags">
               {post.tags?.map((tg) => (
                 <span className="tag" key={tg}>{tag(tg)}</span>

@@ -12,6 +12,7 @@ import { postImage } from './og-image.js'
 import { privacy } from '../src/content/privacy.js'
 import { strings } from '../src/strings.js'
 import { localizeLinks, pathFor } from '../src/paths.js'
+import { profile } from '../src/data.js'
 
 const site = 'https://danrod.ca'
 const dist = new URL('../dist/', import.meta.url)
@@ -40,7 +41,7 @@ function replace(html, pattern, value) {
 }
 
 // `path` is the page's address without the language (/blog/x/); it's written once per language.
-function writePage({ lang, path, title, description, type, body = '', image, jsonLd }) {
+function writePage({ lang, path, title, description, type, body = '', image, author, jsonLd }) {
   const url = `${site}${pathFor(lang, path)}`
   const other = languages.find((l) => l !== lang)
   const img = image ?? { url: `${site}/og-image.jpg`, type: 'image/jpeg', alt: siteImageAlt[lang] }
@@ -49,6 +50,7 @@ function writePage({ lang, path, title, description, type, body = '', image, jso
   html = replace(html, /(<title>)[^<]*/, escape(title))
   html = replace(html, /(<meta name="description" content=")[^"]*/, escape(description))
   html = replace(html, /(<link rel="canonical" href=")[^"]*/, url)
+  if (author) html = replace(html, /(\s*)(?=<link rel="canonical")/, `<meta name="author" content="${escape(author)}" />\n    `)
   html = replace(html, /(<meta property="og:title" content=")[^"]*/, escape(title))
   html = replace(html, /(<meta property="og:description" content=")[^"]*/, escape(description))
   html = replace(html, /(<meta property="og:type" content=")[^"]*/, type)
@@ -86,6 +88,8 @@ const posts = readdirSync(blogDir)
   .filter((file) => file.endsWith('.json'))
   .map((file) => JSON.parse(readFileSync(new URL(file, blogDir), 'utf8')))
   .filter((post) => !post.draft)
+  // Same default as src/blog.js: the site owner, unless the post names its own "author".
+  .map((post) => ({ ...post, author: post.author ?? profile.name }))
 
 for (const lang of languages) {
   const t = strings[lang]
@@ -106,9 +110,17 @@ for (const lang of languages) {
     const tags = (post.tags ?? []).map((tag) => t.tags[tag] ?? tag)
     writeFileSync(
       new URL(`.${imagePath}`, dist),
-      await postImage({ slug: post.slug, title, tags, meta: `${date} · ${t.blog.minutes(readingMinutes(body))}`, label: 'blog' }),
+      await postImage({
+        slug: post.slug,
+        title,
+        tags,
+        author: post.author,
+        portrait: post.author === profile.name,
+        meta: `${date} · ${t.blog.minutes(readingMinutes(body))}`,
+        label: 'blog',
+      }),
     )
-    const image = { url: `${site}${imagePath}`, type: 'image/png', alt: `${title} — ${tags.join(', ')} · Daniel Rodriguez, danrod.ca` }
+    const image = { url: `${site}${imagePath}`, type: 'image/png', alt: `${title} — ${tags.join(', ')} · ${post.author}, danrod.ca` }
 
     writePage({
       lang,
@@ -117,11 +129,12 @@ for (const lang of languages) {
       description,
       type: 'article',
       image,
+      author: post.author,
       body: article({
         back: pathFor(lang, '/#blog'),
         backLabel: t.blog.all,
         title,
-        meta: `<time datetime="${post.date}">${date}</time>`,
+        meta: `${escape(t.blog.by(post.author))} · <time datetime="${post.date}">${date}</time>`,
         html: localizeLinks(renderMarkdown(body), lang),
       }),
       jsonLd: {
@@ -134,8 +147,11 @@ for (const lang of languages) {
         url: `${site}${pathFor(lang, path)}`,
         image: image.url,
         inLanguage: lang,
-        // Same @id as the Person in index.html, so search engines know it's the same person.
-        author: { '@type': 'Person', '@id': `${site}/#person`, name: 'Daniel Rodriguez', url: `${site}/` },
+        // The site owner gets the same @id as the Person in index.html, so search engines know it's the same person.
+        author:
+          post.author === profile.name
+            ? { '@type': 'Person', '@id': `${site}/#person`, name: profile.name, url: `${site}/` }
+            : { '@type': 'Person', name: post.author },
       },
     })
   }
@@ -187,7 +203,7 @@ const newest = [...posts].sort((a, b) => b.date.localeCompare(a.date))
 writeFileSync(
   new URL('feed.xml', dist),
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
-    `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">\n<channel>\n` +
+    `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">\n<channel>\n` +
     `  <title>${escape(t.meta.title)} · Blog</title>\n  <link>${site}/</link>\n` +
     `  <description>${escape(t.meta.description)}</description>\n  <language>en</language>\n` +
     `  <atom:link href="${site}/feed.xml" rel="self" type="application/rss+xml" />\n` +
@@ -197,7 +213,7 @@ writeFileSync(
         const url = `${site}/blog/${post.slug}/`
         return (
           `  <item>\n    <title>${escape(inLang(post.title, 'en'))}</title>\n    <link>${url}</link>\n    <guid isPermaLink="true">${url}</guid>\n` +
-          `    <pubDate>${rfc822(post.date)}</pubDate>\n` +
+          `    <pubDate>${rfc822(post.date)}</pubDate>\n    <dc:creator>${escape(post.author)}</dc:creator>\n` +
           (post.tags ?? []).map((tag) => `    <category>${escape(tag)}</category>\n`).join('') +
           `    <description>${escape(inLang(post.summary, 'en'))}</description>\n` +
           `    <content:encoded>${cdata(absolute(renderMarkdown(inLang(post.body, 'en'))))}</content:encoded>\n  </item>\n`
