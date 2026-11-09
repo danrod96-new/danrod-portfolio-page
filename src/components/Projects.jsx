@@ -14,8 +14,7 @@ const domain = (url) => url && new URL(url).hostname.replace(/^www\./, '')
 
 // Screenshot inside a small browser frame; client sites without one get a placeholder with the domain.
 // App screenshots (no url) show their window label in the bar instead.
-// On the cards the image is decorative (alt=""): the card is a button and would otherwise read the whole description.
-function BrowserShot({ project, large = false, decorative = false }) {
+function BrowserShot({ project, large = false }) {
   const { t, p } = useLang()
   const src = shots[project.shot]
   const label = p(project.window) ?? domain(project.url)
@@ -26,7 +25,7 @@ function BrowserShot({ project, large = false, decorative = false }) {
         <span className="browser__url mono">{label}</span>
       </span>
       {src ? (
-        <img className="browser__img" src={src} alt={decorative ? '' : p(project.alt) ?? t.work.shotAlt(label)} loading="lazy" />
+        <img className="browser__img" src={src} alt={p(project.alt) ?? t.work.shotAlt(label)} loading="lazy" />
       ) : (
         <span className="browser__empty mono" aria-hidden="true">{label}</span>
       )}
@@ -35,10 +34,9 @@ function BrowserShot({ project, large = false, decorative = false }) {
 }
 
 // Artwork such as a module logo, shown without the browser frame.
-function Cover({ project, decorative = false }) {
+function Cover({ project }) {
   const { t, p } = useLang()
-  const alt = decorative ? '' : p(project.alt) ?? t.work.coverAlt(project.title)
-  return <img className="cover" src={shots[project.cover]} alt={alt} loading="lazy" />
+  return <img className="cover" src={shots[project.cover]} alt={p(project.alt) ?? t.work.coverAlt(project.title)} loading="lazy" />
 }
 
 function tilt(e) {
@@ -223,8 +221,8 @@ export default function Projects({ tag: activeTag, onClearTag }) {
               onClick={(e) => open(e, pr)}
             >
               <span className="project__glow" aria-hidden="true" />
-              {pr.cover && <Cover project={pr} decorative />}
-              {(pr.category === 'client' || pr.shot) && <BrowserShot project={pr} decorative />}
+              {pr.cover && <Cover project={pr} />}
+              {(pr.category === 'client' || pr.shot) && <BrowserShot project={pr} />}
               <span className="project__top">
                 <span className="project__cat mono">{t.work.category[pr.category]}</span>
                 <span className="project__year mono">{pr.year}</span>
