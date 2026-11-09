@@ -11,6 +11,8 @@
   --accent-2: #818cf8;
   --accent-3: #34d399;
   --accent-rgb: 56, 189, 248;
+  /* text on an accent background: dark on the bright dark-theme accents, white on the deeper light-theme ones */
+  --on-accent: #0a0e1a;
   --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
   --radius: 16px;
   --font: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -27,10 +29,11 @@
   --border-strong: rgba(15, 23, 42, 0.22);
   --text: #0f172a;
   --muted: #5b6478;
-  --accent: #0284c7;
+  --accent: #0369a1;
   --accent-2: #4f46e5;
-  --accent-3: #059669;
-  --accent-rgb: 2, 132, 199;
+  --accent-3: #047857;
+  --accent-rgb: 3, 105, 161;
+  --on-accent: #fff;
   --shadow: 0 20px 45px -25px rgba(15, 23, 42, 0.35);
   color-scheme: light;
 }
@@ -121,15 +124,16 @@ h3 {
 .skip-link {
   position: absolute;
   left: 16px;
-  top: -40px;
+  top: 12px;
+  transform: translateY(-200%);
   z-index: 100;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   padding: 8px 14px;
   border-radius: 8px;
 }
 .skip-link:focus {
-  top: 12px;
+  transform: none;
 }
 
 /* ---------- reveal ---------- */
@@ -160,7 +164,7 @@ h3 {
 }
 .btn--primary {
   background: linear-gradient(100deg, var(--accent), var(--accent-2));
-  color: #fff;
+  color: var(--on-accent);
   box-shadow: 0 10px 30px -10px rgba(var(--accent-rgb), 0.7);
 }
 .btn--ghost {
@@ -191,10 +195,9 @@ h3 {
 .chip.is-active {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 .chip__count {
-  opacity: 0.7;
   font-size: 0.78em;
   margin-left: 4px;
 }
@@ -215,7 +218,7 @@ h3 {
 }
 .tag.is-match {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .card {
@@ -317,7 +320,7 @@ h3 {
 }
 .lang-switch button.is-active {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 .theme-toggle {
   width: 36px;
@@ -466,6 +469,30 @@ h3 {
 }
 .hero__social a:hover {
   color: var(--accent);
+}
+.hero__pause {
+  position: absolute;
+  right: 24px;
+  bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.hero__pause:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.hero.is-paused *,
+.hero.is-paused *::before,
+.hero.is-paused *::after {
+  animation-play-state: paused !important;
 }
 .scroll-hint {
   position: absolute;
@@ -667,8 +694,9 @@ h3 {
   font: inherit;
   font-size: 0.9rem;
 }
-.search input:focus {
-  outline: none;
+.search input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
   border-color: var(--accent);
   box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.15);
 }
@@ -940,13 +968,12 @@ h3 {
   font-size: 0.88rem;
   transition: all 0.2s;
 }
-.skill:not(:disabled):hover {
+.skill:not(.skill--plain):hover {
   border-color: var(--accent);
   background: rgba(var(--accent-rgb), 0.1);
   transform: translateY(-2px);
 }
 .skill--plain {
-  cursor: default;
   opacity: 0.75;
 }
 .skill__n {
@@ -967,6 +994,10 @@ h3 {
   color: #cbd5e1;
   box-shadow: var(--shadow);
   cursor: text;
+}
+.terminal:has(.terminal__input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 .terminal__bar {
   display: flex;
@@ -1084,9 +1115,10 @@ h3 {
   resize: vertical;
   min-height: 140px;
 }
-.contact__form input:focus,
-.contact__form textarea:focus {
-  outline: none;
+.contact__form input:focus-visible,
+.contact__form textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
   border-color: var(--accent);
   box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.15);
 }
@@ -1106,6 +1138,12 @@ h3 {
 .contact__privacy {
   margin: 0;
   font-size: 0.85rem;
+}
+/* Links inside running text are underlined, not told apart by colour alone. */
+.contact__privacy a,
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .contact__error {
   margin: 0;
@@ -1361,5 +1399,8 @@ h3 {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+  .project {
+    transform: none !important;
   }
 }

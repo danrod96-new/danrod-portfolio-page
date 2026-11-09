@@ -58,7 +58,7 @@ export default function Nav({ theme, onToggleTheme, page }) {
           ))}
           <li>
             <a href={resume} target="_blank" rel="noreferrer" aria-label={t.nav.resumeLabel} onClick={() => setOpen(false)}>
-              {t.nav.resume} ↗
+              {t.nav.resume} <span aria-hidden="true">↗</span>
             </a>
           </li>
           <li className="nav__controls">

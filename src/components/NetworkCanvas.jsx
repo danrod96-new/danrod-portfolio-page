@@ -1,13 +1,20 @@
 import { useEffect, useRef } from 'react'
 
 // Animated node graph behind the hero. Nodes drift and link up; the cursor attracts nearby nodes.
-export default function NetworkCanvas() {
+// While paused it draws one still frame.
+export default function NetworkCanvas({ paused }) {
   const canvasRef = useRef(null)
+  const pausedRef = useRef(paused)
+  const playRef = useRef(null)
+
+  useEffect(() => {
+    pausedRef.current = paused
+    if (!paused) playRef.current?.()
+  }, [paused])
 
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const mouse = { x: -9999, y: -9999 }
     let nodes = []
     let raf = 0
@@ -71,7 +78,16 @@ export default function NetworkCanvas() {
         ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2)
         ctx.fill()
       }
-      if (!reduced) raf = requestAnimationFrame(frame)
+      if (!pausedRef.current) raf = requestAnimationFrame(frame)
+    }
+
+    playRef.current = () => {
+      cancelAnimationFrame(raf)
+      frame()
+    }
+    const onResize = () => {
+      resize()
+      if (pausedRef.current) frame()
     }
 
     const onMove = (e) => {
@@ -85,12 +101,12 @@ export default function NetworkCanvas() {
 
     resize()
     frame()
-    window.addEventListener('resize', resize)
+    window.addEventListener('resize', onResize)
     window.addEventListener('pointermove', onMove)
     document.addEventListener('pointerleave', onLeave)
     return () => {
       cancelAnimationFrame(raf)
-      window.removeEventListener('resize', resize)
+      window.removeEventListener('resize', onResize)
       window.removeEventListener('pointermove', onMove)
       document.removeEventListener('pointerleave', onLeave)
     }

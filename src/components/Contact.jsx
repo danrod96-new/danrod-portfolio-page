@@ -92,7 +92,8 @@ export default function Contact() {
               <li key={l.href}>
                 <a href={l.href} target="_blank" rel="noreferrer">
                   <span>{l.label}</span>
-                  <span className="muted mono">{l.sub} ↗</span>
+                  <span className="muted mono">{l.sub} <span aria-hidden="true">↗</span></span>
+                  <span className="sr-only">{t.newTab}</span>
                 </a>
               </li>
             ))}

@@ -6,6 +6,7 @@ const en = {
     description: 'Daniel Rodriguez, Full Stack Drupal and Web Developer: 15+ years of Drupal sites, contrib modules used on 217k+ sites, DevOps and Linux.',
   },
   skip: 'Skip to content',
+  newTab: '(opens in a new tab)',
   nav: {
     about: 'About',
     resume: 'Resume',
@@ -25,6 +26,8 @@ const en = {
     work: 'View my work',
     contact: 'Get in touch',
     scroll: 'Scroll to about',
+    pause: 'Pause animation',
+    play: 'Play animation',
   },
   about: {
     title: 'About me',
@@ -44,6 +47,7 @@ const en = {
     tagged: 'Showing projects tagged',
     clear: 'clear',
     empty: 'Nothing matches that filter yet.',
+    results: (n) => `${n} project${n === 1 ? '' : 's'} shown`,
     close: 'Close',
     shotAlt: (domain) => `Screenshot of ${domain}`,
     shotCaption: 'The live site as of October 2026 — it may have changed since my work on it.',
@@ -121,6 +125,7 @@ const es = {
     description: 'Daniel Rodriguez, desarrollador Drupal y web full stack: más de 15 años de sitios Drupal, módulos usados en más de 217 mil sitios, DevOps y Linux.',
   },
   skip: 'Ir al contenido',
+  newTab: '(se abre en una pestaña nueva)',
   nav: {
     about: 'Sobre mí',
     resume: 'CV',
@@ -140,6 +145,8 @@ const es = {
     work: 'Ver mis proyectos',
     contact: 'Contáctame',
     scroll: 'Ir a Sobre mí',
+    pause: 'Pausar animación',
+    play: 'Reanudar animación',
   },
   about: {
     title: 'Sobre mí',
@@ -159,6 +166,7 @@ const es = {
     tagged: 'Proyectos con la etiqueta',
     clear: 'quitar',
     empty: 'Ningún proyecto coincide con ese filtro.',
+    results: (n) => `${n} proyecto${n === 1 ? '' : 's'} en pantalla`,
     close: 'Cerrar',
     shotAlt: (domain) => `Captura de pantalla de ${domain}`,
     shotCaption: 'El sitio en línea a octubre de 2026; puede haber cambiado desde que trabajé en él.',

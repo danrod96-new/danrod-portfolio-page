@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { categories, projects } from '../data.js'
 import Reveal from './Reveal.jsx'
 import { useLang } from '../lang.js'
@@ -14,7 +14,8 @@ const domain = (url) => url && new URL(url).hostname.replace(/^www\./, '')
 
 // Screenshot inside a small browser frame; client sites without one get a placeholder with the domain.
 // App screenshots (no url) show their window label in the bar instead.
-function BrowserShot({ project, large = false }) {
+// On the cards the image is decorative (alt=""): the card is a button and would otherwise read the whole description.
+function BrowserShot({ project, large = false, decorative = false }) {
   const { t, p } = useLang()
   const src = shots[project.shot]
   const label = p(project.window) ?? domain(project.url)
@@ -25,7 +26,7 @@ function BrowserShot({ project, large = false }) {
         <span className="browser__url mono">{label}</span>
       </span>
       {src ? (
-        <img className="browser__img" src={src} alt={p(project.alt) ?? t.work.shotAlt(label)} loading="lazy" />
+        <img className="browser__img" src={src} alt={decorative ? '' : p(project.alt) ?? t.work.shotAlt(label)} loading="lazy" />
       ) : (
         <span className="browser__empty mono" aria-hidden="true">{label}</span>
       )}
@@ -34,9 +35,10 @@ function BrowserShot({ project, large = false }) {
 }
 
 // Artwork such as a module logo, shown without the browser frame.
-function Cover({ project }) {
+function Cover({ project, decorative = false }) {
   const { t, p } = useLang()
-  return <img className="cover" src={shots[project.cover]} alt={p(project.alt) ?? t.work.coverAlt(project.title)} loading="lazy" />
+  const alt = decorative ? '' : p(project.alt) ?? t.work.coverAlt(project.title)
+  return <img className="cover" src={shots[project.cover]} alt={alt} loading="lazy" />
 }
 
 function tilt(e) {
@@ -57,8 +59,25 @@ function untilt(e) {
 
 function ProjectModal({ project, onClose }) {
   const { t, p, tag } = useLang()
+  const panelRef = useRef(null)
+
   useEffect(() => {
-    const onKey = (e) => e.key === 'Escape' && onClose()
+    const onKey = (e) => {
+      if (e.key === 'Escape') return onClose()
+      if (e.key !== 'Tab') return
+      // Keep Tab and Shift+Tab cycling inside the popup instead of reaching the page behind it.
+      const items = panelRef.current.querySelectorAll('a[href], button:not(:disabled)')
+      const first = items[0]
+      const last = items[items.length - 1]
+      const inside = panelRef.current.contains(document.activeElement)
+      if (e.shiftKey && (document.activeElement === first || !inside)) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && (document.activeElement === last || !inside)) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
     return () => {
@@ -69,7 +88,7 @@ function ProjectModal({ project, onClose }) {
 
   return (
     <div className="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onClick={onClose}>
-      <div className="modal__panel card" onClick={(e) => e.stopPropagation()}>
+      <div className="modal__panel card" ref={panelRef} onClick={(e) => e.stopPropagation()}>
         <button className="modal__close" onClick={onClose} aria-label={t.work.close} autoFocus>
           ×
         </button>
@@ -98,17 +117,20 @@ function ProjectModal({ project, onClose }) {
         <div className="modal__links">
           {project.url && (
             <a className="btn btn--primary" href={project.url} target="_blank" rel="noreferrer">
-              {project.category === 'contrib' ? t.work.viewDrupal : t.work.visit} ↗
+              {project.category === 'contrib' ? t.work.viewDrupal : t.work.visit} <span aria-hidden="true">↗</span>
+              <span className="sr-only">{t.newTab}</span>
             </a>
           )}
           {project.atoms && (
             <a className="btn btn--primary" href={project.atoms} target="_blank" rel="noreferrer">
-              {t.work.viewAtoms} ↗
+              {t.work.viewAtoms} <span aria-hidden="true">↗</span>
+              <span className="sr-only">{t.newTab}</span>
             </a>
           )}
           {project.repo && (
             <a className="btn btn--ghost" href={project.repo} target="_blank" rel="noreferrer">
-              {t.work.source} ↗
+              {t.work.source} <span aria-hidden="true">↗</span>
+              <span className="sr-only">{t.newTab}</span>
             </a>
           )}
         </div>
@@ -122,6 +144,18 @@ export default function Projects({ tag: activeTag, onClearTag }) {
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState(null)
+  // The card that opened the popup gets focus back when it closes.
+  const openerRef = useRef(null)
+
+  function open(e, project) {
+    openerRef.current = e.currentTarget
+    setSelected(project)
+  }
+
+  function close() {
+    setSelected(null)
+    openerRef.current?.focus()
+  }
 
   // A skill picked from the Skills section searches across every category.
   useEffect(() => {
@@ -151,12 +185,11 @@ export default function Projects({ tag: activeTag, onClearTag }) {
         </Reveal>
 
         <div className="toolbar">
-          <div className="chips" role="tablist" aria-label={t.work.filterLabel}>
+          <div className="chips" role="group" aria-label={t.work.filterLabel}>
             {categories.map((c) => (
               <button
                 key={c}
-                role="tab"
-                aria-selected={category === c}
+                aria-pressed={category === c}
                 className={`chip ${category === c ? 'is-active' : ''}`}
                 onClick={() => setCategory(c)}
               >
@@ -177,6 +210,9 @@ export default function Projects({ tag: activeTag, onClearTag }) {
           </p>
         )}
 
+        {/* Announces how many projects match after each filter or search. */}
+        <p className="sr-only" role="status">{t.work.results(list.length)}</p>
+
         <div className="grid">
           {list.map((pr) => (
             <button
@@ -184,11 +220,11 @@ export default function Projects({ tag: activeTag, onClearTag }) {
               className={`project card project--${pr.category}`}
               onMouseMove={tilt}
               onMouseLeave={untilt}
-              onClick={() => setSelected(pr)}
+              onClick={(e) => open(e, pr)}
             >
               <span className="project__glow" aria-hidden="true" />
-              {pr.cover && <Cover project={pr} />}
-              {(pr.category === 'client' || pr.shot) && <BrowserShot project={pr} />}
+              {pr.cover && <Cover project={pr} decorative />}
+              {(pr.category === 'client' || pr.shot) && <BrowserShot project={pr} decorative />}
               <span className="project__top">
                 <span className="project__cat mono">{t.work.category[pr.category]}</span>
                 <span className="project__year mono">{pr.year}</span>
@@ -206,7 +242,7 @@ export default function Projects({ tag: activeTag, onClearTag }) {
           {list.length === 0 && <p className="empty">{t.work.empty}</p>}
         </div>
       </div>
-      {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
+      {selected && <ProjectModal project={selected} onClose={close} />}
     </section>
   )
 }

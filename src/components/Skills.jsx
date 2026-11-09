@@ -25,16 +25,18 @@ export default function Skills({ onPick }) {
               <div className="skills__items">
                 {g.items.map((s) => {
                   const n = usage[s] || 0
+                  // Skills with no project in the grid are plain text, not disabled buttons.
+                  if (!n) return <span key={s} className="skill skill--plain">{tag(s)}</span>
                   return (
                     <button
                       key={s}
-                      className={`skill ${n ? '' : 'skill--plain'}`}
-                      disabled={!n}
+                      className="skill"
                       onClick={() => onPick(s)}
-                      title={n ? t.skills.count(n) : undefined}
+                      title={t.skills.count(n)}
+                      aria-label={`${tag(s)}, ${t.skills.count(n)}`}
                     >
                       {tag(s)}
-                      {n > 0 && <span className="skill__n">{n}</span>}
+                      <span className="skill__n">{n}</span>
                     </button>
                   )
                 })}

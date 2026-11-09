@@ -11,6 +11,8 @@ function Counter({ value, suffix, format }) {
 
   useEffect(() => {
     if (!visible) return
+    // No count-up for visitors who ask for less motion.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return setN(value)
     let raf
     const start = performance.now()
     const tick = (now) => {
