@@ -84,7 +84,7 @@ export const experience = [
   {
     role: { en: 'Senior Drupal Developer', es: 'Desarrollador Senior de Drupal' },
     company: 'Cyan Solutions',
-    period: { en: 'Mar 2019 – Aug 2021', es: 'Mar 2019 – Ago 2021' },
+    period: { en: 'Mar 2019 – Sep 2023', es: 'Mar 2019 – Sep 2023' },
     start: 2019,
     kind: 'drupal',
     highlights: {
