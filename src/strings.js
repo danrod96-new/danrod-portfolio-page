@@ -20,7 +20,8 @@ const en = {
     language: 'Language',
   },
   hero: {
-    available: 'Available for Drupal & full stack projects',
+    available: 'Available for work · Remote',
+    openTo: 'Open to',
     hi: 'Hi, I’m',
     lead: '15+ years building, migrating and maintaining Drupal sites — from Drupal 6 to Drupal 11 — for newspapers, universities, associations and e-commerce platforms. I also write the modules other Drupal sites depend on.',
     work: 'View my work',
@@ -140,7 +141,8 @@ const es = {
     language: 'Idioma',
   },
   hero: {
-    available: 'Disponible para proyectos Drupal y full stack',
+    available: 'Disponible para trabajar · Remoto',
+    openTo: 'Abierto a',
     hi: 'Hola, soy',
     lead: 'Más de 15 años construyendo, migrando y manteniendo sitios Drupal —desde Drupal 6 hasta Drupal 11— para periódicos, universidades, asociaciones y plataformas de comercio electrónico. También escribo los módulos de los que dependen otros sitios Drupal.',
     work: 'Ver mis proyectos',

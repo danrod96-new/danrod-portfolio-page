@@ -22,6 +22,14 @@ export const profile = {
     en: 'Currently mastering ReactJS and learning Golang.',
     es: 'Actualmente perfeccionando ReactJS y aprendiendo Golang.',
   },
+  // Shown at the top of the home page. Set `open` to false to hide the "available" line and the kinds of work.
+  availability: {
+    open: true,
+    kinds: {
+      en: ['Contract & freelance', 'Full-time roles', 'Drupal maintenance & support', 'Migrations & upgrades'],
+      es: ['Contratos y freelance', 'Empleo de tiempo completo', 'Mantenimiento y soporte de Drupal', 'Migraciones y actualizaciones'],
+    },
+  },
   links: {
     github: 'https://github.com/danrod96-new',
     githubOld: 'https://github.com/danrod96',

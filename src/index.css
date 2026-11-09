@@ -462,6 +462,46 @@ h3 {
   font-size: 1.1rem;
   margin: 0 0 34px;
 }
+.hero__open {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: -12px 0 30px;
+}
+.hero__open-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.hero__open ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* On phones the kinds of work read as one wrapped line ("A · B · C") instead of four stacked tags,
+   so the contact button stays on the first screen. */
+@media (max-width: 600px) {
+  .hero__open {
+    gap: 4px;
+  }
+  .hero__open ul {
+    gap: 2px 0;
+  }
+  .hero__open .tag {
+    background: none;
+    border: 0;
+    padding: 0;
+    font-size: 0.78rem;
+  }
+  .hero__open .tag + .tag::before {
+    content: '·';
+    margin: 0 7px;
+    color: var(--muted);
+  }
+}
 .hero__cta {
   display: flex;
   flex-wrap: wrap;

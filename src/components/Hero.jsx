@@ -36,14 +36,17 @@ export default function Hero() {
   // Moving content needs a way to stop it (WCAG 2.2.2); it starts stopped for visitors who ask for less motion.
   const [paused, setPaused] = useState(prefersReducedMotion)
   const role = useTypewriter(roles, paused)
+  const { open, kinds } = profile.availability
 
   return (
     <header className={`hero ${paused ? 'is-paused' : ''}`} id="top">
       <NetworkCanvas paused={paused} />
       <div className="hero__inner container">
-        <p className="eyebrow mono">
-          <span className="pulse" /> {t.hero.available}
-        </p>
+        {open && (
+          <p className="eyebrow mono">
+            <span className="pulse" /> {t.hero.available}
+          </p>
+        )}
         <h1 className="hero__title">
           {t.hero.hi} <span className="gradient-text">{profile.name}</span>
         </h1>
@@ -55,12 +58,22 @@ export default function Hero() {
           </span>
         </p>
         <p className="hero__lead">{t.hero.lead}</p>
+        {open && (
+          <div className="hero__open">
+            <span className="hero__open-label mono" id="open-to">{t.hero.openTo}</span>
+            <ul aria-labelledby="open-to">
+              {p(kinds).map((kind) => (
+                <li className="tag" key={kind}>{kind}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div className="hero__cta">
-          <a className="btn btn--primary" href="#work">
-            {t.hero.work}
-          </a>
-          <a className="btn btn--ghost" href="#contact">
+          <a className="btn btn--primary" href="#contact">
             {t.hero.contact}
+          </a>
+          <a className="btn btn--ghost" href="#work">
+            {t.hero.work}
           </a>
         </div>
         <ul className="hero__social">
