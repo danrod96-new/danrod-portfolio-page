@@ -1,5 +1,38 @@
 // Privacy policy shown at /privacy/ (src/components/Privacy.jsx). The body is Markdown, one line per item.
-// Update `updated` and both languages whenever the site starts or stops using a service.
+// Update `updated` and both languages whenever the site starts or stops using a service. The statistics parts only
+// appear while GoatCounter is turned on in src/analytics.js.
+import { goatcounter } from '../analytics.js'
+
+const intro = {
+  en: goatcounter
+    ? 'This is the personal website of Daniel Rodriguez, who is responsible for the information described here. The short version: the site has no ads and no cookies, it counts visits anonymously to see which pages get read, and the only personal information I receive is what you choose to send me through the contact form.'
+    : 'This is the personal website of Daniel Rodriguez, who is responsible for the information described here. The short version: the site has no analytics, no ads and no tracking cookies, and the only personal information I receive is what you choose to send me through the contact form.',
+  es: goatcounter
+    ? 'Este es el sitio web personal de Daniel Rodriguez, responsable de la información que se describe aquí. En resumen: el sitio no tiene publicidad ni cookies, cuenta las visitas de forma anónima para saber qué páginas se leen, y la única información personal que recibo es la que decidas enviarme por el formulario de contacto.'
+    : 'Este es el sitio web personal de Daniel Rodriguez, responsable de la información que se describe aquí. En resumen: el sitio no usa analítica, publicidad ni cookies de seguimiento, y la única información personal que recibo es la que decidas enviarme por el formulario de contacto.',
+}
+
+const stats = goatcounter
+  ? {
+      en: [
+        '## Visitor statistics',
+        '',
+        'To know which pages and posts get read, the site counts visits with [GoatCounter](https://www.goatcounter.com/help/privacy), an open-source statistics service that doesn’t use cookies or track you across sites. For each page view it receives the **page address**, the **referring site**, your **browser and operating system**, your **screen size** and your **country**, which it works out from your IP address. It doesn’t store your IP address, and it can’t tell me who you are. I only see totals, such as how many people read a post.',
+        '',
+        'If you block the GoatCounter script, your visit isn’t counted and the site works the same.',
+        '',
+      ],
+      es: [
+        '## Estadísticas de visitas',
+        '',
+        'Para saber qué páginas y artículos se leen, el sitio cuenta las visitas con [GoatCounter](https://www.goatcounter.com/help/privacy), un servicio de estadísticas de código abierto que no usa cookies ni te sigue entre sitios. Por cada página vista recibe la **dirección de la página**, el **sitio de procedencia**, tu **navegador y sistema operativo**, el **tamaño de tu pantalla** y tu **país**, que deduce de tu dirección IP. No guarda tu dirección IP y no me permite saber quién eres. Yo solo veo totales, como cuántas personas leyeron un artículo.',
+        '',
+        'Si bloqueas el script de GoatCounter, tu visita no se cuenta y el sitio funciona igual.',
+        '',
+      ],
+    }
+  : { en: [], es: [] }
+
 export const privacy = {
   updated: '2026-11-09',
   title: { en: 'Privacy policy', es: 'Política de privacidad' },
@@ -9,7 +42,7 @@ export const privacy = {
   },
   body: {
     en: [
-      'This is the personal website of Daniel Rodriguez, who is responsible for the information described here. The short version: the site has no analytics, no ads and no tracking cookies, and the only personal information I receive is what you choose to send me through the contact form.',
+      intro.en,
       '',
       '## The contact form',
       '',
@@ -17,6 +50,7 @@ export const privacy = {
       '',
       'The form is delivered by [Web3Forms](https://web3forms.com/privacy), which receives what you type (and, like any web service, your IP address) and forwards it to my inbox. Your message stays in my email for as long as it’s useful for our conversation; ask me and I’ll delete it.',
       '',
+      ...stats.en,
       '## Information other services receive',
       '',
       '- **Hosting:** the site is hosted on [GitHub Pages](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). GitHub may log your IP address when you visit, for security and to keep the service running. I don’t have access to those logs.',
@@ -37,7 +71,7 @@ export const privacy = {
       'If the site starts using a new service that receives personal information, I’ll update this page and the date at the top.',
     ],
     es: [
-      'Este es el sitio web personal de Daniel Rodriguez, responsable de la información que se describe aquí. En resumen: el sitio no usa analítica, publicidad ni cookies de seguimiento, y la única información personal que recibo es la que decidas enviarme por el formulario de contacto.',
+      intro.es,
       '',
       '## El formulario de contacto',
       '',
@@ -45,6 +79,7 @@ export const privacy = {
       '',
       'El formulario se entrega a través de [Web3Forms](https://web3forms.com/privacy), que recibe lo que escribes (y, como cualquier servicio web, tu dirección IP) y lo reenvía a mi correo. Tu mensaje se queda en mi correo mientras sea útil para nuestra conversación; si me lo pides, lo borro.',
       '',
+      ...stats.es,
       '## Información que reciben otros servicios',
       '',
       '- **Alojamiento:** el sitio está alojado en [GitHub Pages](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). GitHub puede registrar tu dirección IP cuando lo visitas, por seguridad y para mantener el servicio. Yo no tengo acceso a esos registros.',

@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { loadStats } from './analytics.js'
 import LangProvider from './components/LangProvider.jsx'
 
 // Posts and the privacy policy used to live at #/blog/<slug> and #/privacy; send old links to the new pages
@@ -20,3 +21,6 @@ createRoot(document.getElementById('root')).render(
     </LangProvider>
   </StrictMode>,
 )
+
+// Once the page has loaded, so a Spanish reader is counted at the /es/ address the language provider moves them to.
+window.addEventListener('load', loadStats, { once: true })
