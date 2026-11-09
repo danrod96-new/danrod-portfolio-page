@@ -1,4 +1,4 @@
-import { formatDate, posts, readingMinutes } from '../blog.js'
+import { formatDate, posts } from '../blog.js'
 import Reveal from './Reveal.jsx'
 import { useLang } from '../lang.js'
 
@@ -7,7 +7,7 @@ export function PostMeta({ post }) {
   const { t, p, lang } = useLang()
   return (
     <p className="post-meta mono muted">
-      <time dateTime={post.date}>{formatDate(post.date, lang)}</time> · {t.blog.minutes(readingMinutes(p(post.body)))}
+      <time dateTime={post.date}>{formatDate(post.date, lang)}</time> · {t.blog.minutes(p(post.minutes))}
     </p>
   )
 }

@@ -17,6 +17,13 @@
   --radius: 16px;
   --font: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* code highlighting in blog posts (.hljs-*), each at least 4.5:1 on --bg-alt */
+  --code-keyword: #c4b5fd;
+  --code-string: #6ee7b7;
+  --code-number: #fbbf24;
+  --code-title: #7dd3fc;
+  --code-builtin: #f9a8d4;
+  --code-comment: var(--muted);
   color-scheme: dark;
 }
 
@@ -35,6 +42,11 @@
   --accent-rgb: 3, 105, 161;
   --on-accent: #fff;
   --shadow: 0 20px 45px -25px rgba(15, 23, 42, 0.35);
+  --code-keyword: #6d28d9;
+  --code-string: #047857;
+  --code-number: #92400e;
+  --code-title: #0369a1;
+  --code-builtin: #be185d;
   color-scheme: light;
 }
 
@@ -1325,6 +1337,44 @@ h3 {
   border: 0;
   padding: 0;
   font-size: 0.88rem;
+}
+/* Highlighted code: highlight.js classes, added at build time by scripts/markdown.js */
+.hljs-comment,
+.hljs-quote {
+  color: var(--code-comment);
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-meta {
+  color: var(--code-keyword);
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-symbol,
+.hljs-template-variable,
+.hljs-addition {
+  color: var(--code-string);
+}
+.hljs-number,
+.hljs-variable,
+.hljs-attr,
+.hljs-attribute {
+  color: var(--code-number);
+}
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-class,
+.hljs-selector-id {
+  color: var(--code-title);
+}
+.hljs-built_in,
+.hljs-type,
+.hljs-deletion {
+  color: var(--code-builtin);
 }
 
 @media (max-width: 900px) {

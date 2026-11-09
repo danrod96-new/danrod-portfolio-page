@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { findPost, renderMarkdown } from '../blog.js'
+import { findPost } from '../blog.js'
 import { PostMeta } from './Blog.jsx'
 import { useLang } from '../lang.js'
 import { setDescription } from '../meta.js'
@@ -32,8 +32,8 @@ export default function BlogPost({ slug }) {
                 <span className="tag" key={tg}>{tag(tg)}</span>
               ))}
             </div>
-            {/* Posts are our own files in the repo, so their Markdown is trusted. */}
-            <div className="prose" dangerouslySetInnerHTML={{ __html: renderMarkdown(p(post.body)) }} />
+            {/* Posts are our own files in the repo, so their HTML (built from Markdown) is trusted. */}
+            <div className="prose" dangerouslySetInnerHTML={{ __html: p(post.html) }} />
           </article>
         ) : (
           <h1 className="post__title">{t.blog.notFound}</h1>

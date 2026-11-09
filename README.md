@@ -39,6 +39,9 @@ linked from the Blog section) with every published post; nothing to edit by hand
 
 - `title`, `summary` and `body` take `{ "en", "es" }`; a post with only `en` shows the English text in both languages.
 - `body` is Markdown, either one string or an array of lines.
+- Code blocks are highlighted when you name the language, e.g. ` ```bash `, ` ```php ` or ` ```scilab ` (any language
+  [highlight.js](https://highlightjs.org/) supports). This happens while building ([`scripts/markdown.js`](scripts/markdown.js)),
+  so no highlighter is sent to visitors; the colours are the `--code-*` tokens in `src/index.css`.
 - Images go in `public/blog/` and use `![What the image shows](/blog/picture.webp)`; the text in brackets is the alt text, so always fill it in.
 - `"draft": true` shows the post in `npm run dev` only, not on the live site.
 - Optional `"updated": "2026-12-01"` marks a later edit for search engines.
@@ -60,6 +63,8 @@ Link previews on social sites and chat apps use `public/og-image.jpg` (1200×630
 `public/robots.txt` points search engines to the sitemap the build generates (home page, resume, privacy policy and posts).
 `index.html` also has Person structured data (name, job title and profiles in `sameAs`); keep it in step with `profile.links` in `src/data.js`.
 Fonts (Inter and JetBrains Mono) are served from `public/fonts/` rather than Google Fonts; `fonts.css` there is shared with `404.html`.
+`public/favicon.svg` is the browser-tab icon. `apple-touch-icon.png` (180×180, iOS home screen) and `icon-192.png` / `icon-512.png`
+(Android, listed in `site.webmanifest`) are PNG copies of it with a square background; regenerate them if the favicon changes.
 `public/404.html` is the page GitHub Pages shows for addresses that don't exist; it is plain HTML (no React), in the visitor's theme and language.
 
 The site opens in dark mode; visitors can switch to light and their choice is remembered. Motion respects `prefers-reduced-motion`.

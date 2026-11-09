@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- PNG versions of favicon.svg for iOS home screens and Android (site.webmanifest), with a square background
+         since those systems round the corners themselves. -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0a0e1a" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- English defaults. scripts/prerender.js copies this file for each post and the privacy page with their own title,
          description and URLs; in the browser the app swaps them for the visitor's language (src/strings.js, src/meta.js). -->

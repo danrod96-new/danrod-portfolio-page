@@ -5,7 +5,7 @@
 // plus its English text already in <div id="root"> so it can be read without JavaScript. The app then
 // loads as usual and replaces that text. It also writes dist/sitemap.xml with every page and dist/feed.xml.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { marked } from 'marked'
+import { renderMarkdown } from './markdown.js'
 import { privacy } from '../src/content/privacy.js'
 import { strings } from '../src/strings.js'
 
@@ -16,7 +16,6 @@ const t = strings.en
 const template = readFileSync(new URL('index.html', dist), 'utf8')
 
 const escape = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-const text = (body) => (Array.isArray(body) ? body.join('\n') : body ?? '')
 const en = (value) => (value && typeof value === 'object' ? value.en : value)
 const longDate = (date) => new Date(`${date}T12:00:00`).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })
 
@@ -74,7 +73,7 @@ for (const post of posts) {
       backLabel: t.blog.all,
       title,
       meta: `<time datetime="${post.date}">${longDate(post.date)}</time>`,
-      html: marked.parse(text(en(post.body))),
+      html: renderMarkdown(en(post.body)),
     }),
     jsonLd: {
       '@context': 'https://schema.org',
@@ -102,7 +101,7 @@ writePage({
     backLabel: t.privacy.home,
     title: en(privacy.title),
     meta: t.privacy.updated(longDate(privacy.updated)),
-    html: marked.parse(text(en(privacy.body))),
+    html: renderMarkdown(en(privacy.body)),
   }),
 })
 
@@ -142,7 +141,7 @@ writeFileSync(
           `    <pubDate>${rfc822(post.date)}</pubDate>\n` +
           (post.tags ?? []).map((tag) => `    <category>${escape(tag)}</category>\n`).join('') +
           `    <description>${escape(en(post.summary))}</description>\n` +
-          `    <content:encoded>${cdata(absolute(marked.parse(text(en(post.body)))))}</content:encoded>\n  </item>\n`
+          `    <content:encoded>${cdata(absolute(renderMarkdown(en(post.body))))}</content:encoded>\n  </item>\n`
         )
       })
       .join('') +
