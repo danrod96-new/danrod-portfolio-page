@@ -1,4 +1,4 @@
-// Privacy policy shown at #/privacy (src/components/Privacy.jsx). The body is Markdown, one line per item.
+// Privacy policy shown at /privacy/ (src/components/Privacy.jsx). The body is Markdown, one line per item.
 // Update `updated` and both languages whenever the site starts or stops using a service.
 export const privacy = {
   updated: '2026-11-07',
@@ -29,7 +29,7 @@ export const privacy = {
       '',
       '## Your rights',
       '',
-      'You can ask me what information I have about you, ask me to correct it, or ask me to delete it. Depending on where you live, privacy laws such as Canada’s PIPEDA or Colombia’s Law 1581 of 2012 also protect these rights. To make a request, use the [contact form](#contact) and I’ll reply as soon as I can.',
+      'You can ask me what information I have about you, ask me to correct it, or ask me to delete it. Depending on where you live, privacy laws such as Canada’s PIPEDA or Colombia’s Law 1581 of 2012 also protect these rights. To make a request, use the [contact form](/#contact) and I’ll reply as soon as I can.',
       '',
       'This site isn’t directed at children, and I don’t knowingly collect information from them.',
       '',
@@ -58,7 +58,7 @@ export const privacy = {
       '',
       '## Tus derechos',
       '',
-      'Puedes pedirme qué información tengo sobre ti, pedirme que la corrija o que la elimine. Según dónde vivas, leyes de privacidad como la PIPEDA de Canadá o la Ley 1581 de 2012 de Colombia también protegen estos derechos. Para hacer una solicitud, usa el [formulario de contacto](#contact) y te responderé lo antes posible.',
+      'Puedes pedirme qué información tengo sobre ti, pedirme que la corrija o que la elimine. Según dónde vivas, leyes de privacidad como la PIPEDA de Canadá o la Ley 1581 de 2012 de Colombia también protegen estos derechos. Para hacer una solicitud, usa el [formulario de contacto](/#contact) y te responderé lo antes posible.',
       '',
       'Este sitio no está dirigido a menores de edad y no recopilo a sabiendas información de ellos.',
       '',

@@ -20,7 +20,10 @@ Give every project with a `shot` or `cover` image an `alt: { en, es }` that desc
 ### Blog posts
 
 Each post is a JSON file in [`src/content/blog/`](src/content/blog/); add a file and push to publish it.
-Posts are listed newest first and open at `https://danrod.ca/#/blog/<slug>`.
+Posts are listed newest first and open at `https://danrod.ca/blog/<slug>/`.
+`npm run build` runs [`scripts/prerender.js`](scripts/prerender.js) after Vite, which writes an HTML file for each post
+(and for the privacy policy) with its own title, description and link preview, and the English text already in the page
+so search engines can index it. It also writes `dist/sitemap.xml` with every published post; nothing to edit by hand.
 
 ```json
 {
@@ -37,6 +40,8 @@ Posts are listed newest first and open at `https://danrod.ca/#/blog/<slug>`.
 - `body` is Markdown, either one string or an array of lines.
 - Images go in `public/blog/` and use `![What the image shows](/blog/picture.webp)`; the text in brackets is the alt text, so always fill it in.
 - `"draft": true` shows the post in `npm run dev` only, not on the live site.
+- Optional `"updated": "2026-12-01"` marks a later edit for search engines.
+- Links to home-page sections need a leading slash, e.g. `[contact form](/#contact)`.
 
 ## Sections
 
@@ -44,14 +49,14 @@ Posts are listed newest first and open at `https://danrod.ca/#/blog/<slug>`.
 - **About** — summary, education, events, animated stat counters
 - **Work** — filter, search, 3D-tilt cards and a detail modal
 - **Skills** — click a skill to filter the work grid
-- **Blog** — post cards; each post opens on its own page (`#/blog/<slug>`)
+- **Blog** — post cards; each post opens on its own page (`/blog/<slug>/`)
 - **Terminal** — a small shell (`help`, `whoami`, `modules`, `blog`, `contact`…)
 - **Contact** — form sent through [Web3Forms](https://web3forms.com) (access key in `src/data.js`), so no email address is published
-- **Privacy** — policy page at `#/privacy`, linked from the footer and the contact form; edit [`src/content/privacy.js`](src/content/privacy.js) whenever the site adds or drops a service
+- **Privacy** — policy page at `/privacy/`, linked from the footer and the contact form; edit [`src/content/privacy.js`](src/content/privacy.js) whenever the site adds or drops a service
 - **Resume** — menu link to `public/Daniel-Rodriguez-Resume.pdf`, a copy of the CV without the address, phone numbers and email
 
 Link previews on social sites and chat apps use `public/og-image.jpg` (1200×630), set in `index.html`.
-`public/robots.txt` points search engines to `public/sitemap.xml`, which lists the home page and the resume.
+`public/robots.txt` points search engines to the sitemap the build generates (home page, resume, privacy policy and posts).
 `public/404.html` is the page GitHub Pages shows for addresses that don't exist; it is plain HTML (no React), in the visitor's theme and language.
 
 The site opens in dark mode; visitors can switch to light and their choice is remembered. Motion respects `prefers-reduced-motion`.

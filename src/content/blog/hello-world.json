@@ -30,7 +30,7 @@
       "drush cache:rebuild",
       "```",
       "",
-      "Thanks for reading. If there’s a topic you’d like me to cover, send me a message through the [contact form](#contact)."
+      "Thanks for reading. If there’s a topic you’d like me to cover, send me a message through the [contact form](/#contact)."
     ],
     "es": [
       "Después de más de 15 años construyendo, migrando y manteniendo sitios Drupal, he aprendido muchas pequeñas lecciones que nunca salieron de una cola de issues o de un mensaje de commit. En este blog las voy a ir anotando.",
@@ -51,7 +51,7 @@
       "drush cache:rebuild",
       "```",
       "",
-      "Gracias por leer. Si hay un tema que te gustaría que tratara, escríbeme por el [formulario de contacto](#contact)."
+      "Gracias por leer. Si hay un tema que te gustaría que tratara, escríbeme por el [formulario de contacto](/#contact)."
     ]
   }
 }

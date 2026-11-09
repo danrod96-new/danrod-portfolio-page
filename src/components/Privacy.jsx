@@ -21,7 +21,7 @@ export default function Privacy() {
   return (
     <main className="post section" id="main">
       <div className="container post__inner">
-        <a className="post__back mono" href="#top">← {t.privacy.home}</a>
+        <a className="post__back mono" href="/">← {t.privacy.home}</a>
         <article>
           <h1 className="post__title">{title}</h1>
           <p className="post-meta mono">{t.privacy.updated(formatDate(privacy.updated, lang))}</p>

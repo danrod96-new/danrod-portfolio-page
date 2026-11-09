@@ -22,7 +22,7 @@ export default function BlogPost({ slug }) {
   return (
     <main className="post section" id="main">
       <div className="container post__inner">
-        <a className="post__back mono" href="#blog">← {t.blog.all}</a>
+        <a className="post__back mono" href="/#blog">← {t.blog.all}</a>
         {post ? (
           <article>
             <h1 className="post__title">{title}</h1>

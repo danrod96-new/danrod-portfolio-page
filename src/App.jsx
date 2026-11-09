@@ -29,13 +29,15 @@ export default function App() {
   const [theme, setTheme] = useState(initialTheme)
   const [tag, setTag] = useState(null)
   const hash = useHash()
-  const slug = hash.match(/^#\/blog\/(.+)$/)?.[1]
-  const page = slug ? 'post' : hash === '#/privacy' ? 'privacy' : 'home'
+  // Posts live at /blog/<slug>/ and the policy at /privacy/. Each has its own HTML file in the build
+  // (scripts/prerender.js), so moving between pages is a normal page load.
+  const { pathname } = window.location
+  const slug = pathname.match(/^\/blog\/([^/]+)\/?$/)?.[1]
+  const page = slug ? 'post' : /^\/privacy\/?$/.test(pathname) ? 'privacy' : 'home'
 
-  // A post or the privacy page replaces the home page; leaving it for a section anchor scrolls there once the page is back.
+  // Arriving at /#contact (or any section) from another page: scroll there once the sections have rendered.
   useEffect(() => {
-    if (page !== 'home') window.scrollTo(0, 0)
-    else document.getElementById(hash.slice(1))?.scrollIntoView()
+    if (page === 'home') document.getElementById(hash.slice(1))?.scrollIntoView()
   }, [page, hash])
 
   useEffect(() => {
@@ -77,7 +79,7 @@ export default function App() {
         <div className="container footer__inner">
           <p className="muted">© {new Date().getFullYear()} {profile.name}</p>
           <p className="muted mono">
-            <a href="#/privacy">{t.footer.privacy}</a>
+            <a href="/privacy/">{t.footer.privacy}</a>
             <span aria-hidden="true"> · </span>
             <a href="#top">{t.footer.top}</a>
           </p>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-// The current location hash. Blog posts live at #/blog/<slug>; every other hash is a section anchor.
+// The current location hash: a section anchor on the home page, such as #contact.
 export function useHash() {
   const [hash, setHash] = useState(() => window.location.hash)
 

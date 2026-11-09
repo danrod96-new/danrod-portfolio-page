@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- English defaults; the app swaps the title and description for the visitor's language and for blog posts (src/strings.js, src/meta.js). -->
+    <!-- English defaults. scripts/prerender.js copies this file for each post and the privacy page with their own title,
+         description and URLs; in the browser the app swaps them for the visitor's language (src/strings.js, src/meta.js). -->
     <title>Daniel Rodriguez · Drupal &amp; Web Developer</title>
     <meta name="description" content="Daniel Rodriguez, Full Stack Drupal and Web Developer: 15+ years of Drupal sites, contrib modules used on 217k+ sites, DevOps and Linux." />
+    <link rel="canonical" href="https://danrod.ca/" />
     <meta property="og:title" content="Daniel Rodriguez · Drupal &amp; Web Developer" />
     <meta property="og:description" content="15+ years building Drupal sites, contrib modules used on 217k+ sites, and open source tools." />
     <meta property="og:type" content="website" />

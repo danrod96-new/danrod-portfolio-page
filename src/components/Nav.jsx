@@ -36,12 +36,14 @@ export default function Nav({ theme, onToggleTheme, page }) {
   }, [page])
 
   const nextTheme = theme === 'dark' ? 'light' : 'dark'
+  // Section links point back to the home page from a post or the privacy page.
+  const home = page === 'home' ? '' : '/'
 
   return (
     <nav className={`nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`} aria-label="Main">
       <div className="nav__progress" style={{ transform: `scaleX(${progress})` }} />
       <div className="container nav__inner">
-        <a href="#top" className="nav__logo mono" onClick={() => setOpen(false)}>
+        <a href={home || '#top'} className="nav__logo mono" onClick={() => setOpen(false)}>
           <span className="muted">~/</span>
           <span className="gradient-text">danrod</span>
         </a>
@@ -51,7 +53,7 @@ export default function Nav({ theme, onToggleTheme, page }) {
         <ul className="nav__links">
           {sections.map((id) => (
             <li key={id}>
-              <a href={`#${id}`} className={(page === 'home' && active === id) || (page === 'post' && id === 'blog') ? 'is-active' : ''} onClick={() => setOpen(false)}>
+              <a href={`${home}#${id}`} className={(page === 'home' && active === id) || (page === 'post' && id === 'blog') ? 'is-active' : ''} onClick={() => setOpen(false)}>
                 {t.nav[id]}
               </a>
             </li>

@@ -83,7 +83,7 @@ export default function Contact() {
                 {status === 'sending' ? t.contact.sending : t.contact.send}
               </button>
               <p className="contact__privacy muted">
-                {t.contact.privacyNote} <a href="#/privacy">{t.contact.privacyLink}</a>
+                {t.contact.privacyNote} <a href="/privacy/">{t.contact.privacyLink}</a>
               </p>
             </form>
           )}
