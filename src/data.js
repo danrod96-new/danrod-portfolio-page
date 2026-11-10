@@ -868,19 +868,6 @@ export const projects = [
     repo: 'https://github.com/danrod96-new/bootstrap5-languages',
   },
   {
-    title: 'Selenium Tests',
-    category: 'oss',
-    year: 2026,
-    role: { en: 'Author', es: 'Autor' },
-    metric: 'QA',
-    description: {
-      en: 'Selenium scripts for automated QA and cross-browser checks on Drupal sites.',
-      es: 'Scripts de Selenium para QA automatizado y pruebas en distintos navegadores en sitios Drupal.',
-    },
-    tags: ['JavaScript', 'Selenium', 'QA'],
-    repo: 'https://github.com/danrod96-new/selenium-tests',
-  },
-  {
     title: 'Drupal 6 → 7 SSO',
     category: 'oss',
     year: 2017,
