@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 
 // The current location hash: a section anchor on the home page, such as #contact.
 export function useHash() {
-  const [hash, setHash] = useState(() => window.location.hash)
+  // No window in the build-time render (src/entry-server.jsx).
+  const [hash, setHash] = useState(() => (typeof window === 'undefined' ? '' : window.location.hash))
 
   useEffect(() => {
     const onChange = () => setHash(window.location.hash)

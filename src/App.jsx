@@ -13,26 +13,17 @@ import { profile } from './data.js'
 import { useLang } from './lang.js'
 import { useHash } from './hooks/useHash.js'
 import { stripLang } from './paths.js'
+import { initialTheme } from './preferences.js'
 
-// Dark on the first visit, whatever the system setting; after that, the visitor's own choice.
-function initialTheme() {
-  try {
-    const saved = localStorage.getItem('theme')
-    if (saved) return saved
-  } catch {
-    // storage unavailable
-  }
-  return 'dark'
-}
-
-export default function App() {
+// `pathname` is given only by the build-time render (src/entry-server.jsx), where there's no address bar.
+export default function App({ pathname: fullPath = window.location.pathname }) {
   const { t, path } = useLang()
   const [theme, setTheme] = useState(initialTheme)
   const [tag, setTag] = useState(null)
   const hash = useHash()
   // Posts live at /blog/<slug>/ and the policy at /privacy/, in Spanish under /es/ (src/paths.js). Each has its own
   // HTML file in the build (scripts/prerender.js), so moving between pages is a normal page load.
-  const pathname = stripLang(window.location.pathname)
+  const pathname = stripLang(fullPath)
   const slug = pathname.match(/^\/blog\/([^/]+)\/?$/)?.[1]
   const page = slug ? 'post' : /^\/privacy\/?$/.test(pathname) ? 'privacy' : 'home'
 

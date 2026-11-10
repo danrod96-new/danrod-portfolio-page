@@ -24,11 +24,13 @@ function Counter({ value, suffix, format }) {
     return () => cancelAnimationFrame(raf)
   }, [visible, value])
 
-  const shown = format === 'k' ? `${Math.round(n / 1000)}k` : n
+  const show = (x) => `${format === 'k' ? `${Math.round(x / 1000)}k` : x}${suffix ?? ''}`
+  // The count-up is only for the eye: screen readers, and search engines reading the build-time HTML (which starts
+  // at 0), get the final number.
   return (
     <span ref={ref} className="stat__value">
-      {shown}
-      {suffix}
+      <span aria-hidden="true">{show(n)}</span>
+      <span className="sr-only">{show(value)}</span>
     </span>
   )
 }

@@ -1,24 +1,13 @@
 import { useLayoutEffect, useMemo, useState } from 'react'
-import { LangContext, languages, pick } from '../lang.js'
+import { LangContext, pick } from '../lang.js'
 import { strings } from '../strings.js'
 import { setDescription } from '../meta.js'
-import { langFromPath, pathFor, stripLang } from '../paths.js'
+import { pathFor, stripLang } from '../paths.js'
+import { initialLang } from '../preferences.js'
 
-// An /es/ address is always Spanish. Other addresses use the visitor's saved choice, then the browser language,
-// and move to /es/ when that is Spanish.
-function initialLang() {
-  if (langFromPath(window.location.pathname) === 'es') return 'es'
-  try {
-    const saved = localStorage.getItem('lang')
-    if (languages.includes(saved)) return saved
-  } catch {
-    // storage unavailable
-  }
-  return navigator.language?.toLowerCase().startsWith('es') ? 'es' : 'en'
-}
-
-export default function LangProvider({ children }) {
-  const [lang, setLang] = useState(initialLang)
+// `initial` fixes the language when there's no visitor to ask: the build-time render in src/entry-server.jsx.
+export default function LangProvider({ initial, children }) {
+  const [lang, setLang] = useState(() => initial ?? initialLang())
 
   // A layout effect runs before every useEffect, so a blog post's own title and description
   // (set in BlogPost's useEffect) win over these defaults when the language changes.

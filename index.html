@@ -32,6 +32,8 @@
     <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/fonts/fonts.css" />
+    <!-- The home page ships its sections as HTML (src/entry-server.jsx); without JavaScript nothing would fade them in. -->
+    <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
     <link rel="alternate" type="application/rss+xml" title="danrod · Blog" href="https://danrod.ca/feed.xml" />
     <!-- Who the site is about, for search engines. Keep sameAs in step with profile.links in src/data.js. -->
     <script type="application/ld+json">

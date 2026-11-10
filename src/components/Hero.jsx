@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import NetworkCanvas from './NetworkCanvas.jsx'
 import { profile } from '../data.js'
 import { useLang } from '../lang.js'
+import { prefersReducedMotion } from '../preferences.js'
 
 // Types each role in turn. While paused it shows the current role in full and stops.
 function useTypewriter(words, paused, speed = 70, pause = 1600) {
@@ -27,8 +28,6 @@ function useTypewriter(words, paused, speed = 70, pause = 1600) {
 
   return paused ? word : text
 }
-
-const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 export default function Hero() {
   const { t, p } = useLang()

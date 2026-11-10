@@ -3,7 +3,8 @@
 //   dist/index.html, dist/blog/<slug>/index.html, dist/privacy/index.html          (English)
 //   dist/es/index.html, dist/es/blog/<slug>/index.html, dist/es/privacy/index.html (Spanish, see src/paths.js)
 // Each is the built index.html with the page's own language, title, description, link-preview tags, canonical URL
-// and hreflang links to the other language. Posts and the privacy policy also get their text in <div id="root">
+// and hreflang links to the other language. The home page gets the app's own HTML (src/entry-server.jsx, built into
+// dist-ssr/), which the app takes over in the browser. Posts and the privacy policy get their text in <div id="root">
 // so it can be read without JavaScript; the app then loads as usual and replaces it. Each post gets its own
 // preview image (scripts/og-image.js). It also writes dist/sitemap.xml with every page and dist/feed.xml.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
@@ -13,6 +14,7 @@ import { privacy } from '../src/content/privacy.js'
 import { strings } from '../src/strings.js'
 import { localizeLinks, pathFor } from '../src/paths.js'
 import { profile } from '../src/data.js'
+import { renderHome } from '../dist-ssr/entry-server.js'
 
 const site = 'https://danrod.ca'
 const dist = new URL('../dist/', import.meta.url)
@@ -41,7 +43,7 @@ function replace(html, pattern, value) {
 }
 
 // `path` is the page's address without the language (/blog/x/); it's written once per language.
-function writePage({ lang, path, title, description, type, body = '', image, author, jsonLd }) {
+function writePage({ lang, path, title, description, type, body = '', ssr = false, image, author, jsonLd }) {
   const url = `${site}${pathFor(lang, path)}`
   const other = languages.find((l) => l !== lang)
   const img = image ?? { url: `${site}/og-image.jpg`, type: 'image/jpeg', alt: siteImageAlt[lang] }
@@ -70,7 +72,8 @@ function writePage({ lang, path, title, description, type, body = '', image, aut
     const json = JSON.stringify(jsonLd).replace(/</g, '\\u003c')
     html = replace(html, /(\s*)(?=<\/head>)/, `<script type="application/ld+json">${json}</script>\n  `)
   }
-  html = replace(html, /(<div id="root">)(?=<\/div>)/, body)
+  html = replace(html, /(<div id="root")(?=><\/div>)/, ssr ? ' data-ssr' : '')
+  html = replace(html, /(<div id="root"[^>]*>)(?=<\/div>)/, body)
 
   const dir = new URL(`.${pathFor(lang, path)}`, dist)
   mkdirSync(dir, { recursive: true })
@@ -94,8 +97,8 @@ const posts = readdirSync(blogDir)
 for (const lang of languages) {
   const t = strings[lang]
 
-  // Home page: only the head changes; the app renders the sections.
-  writePage({ lang, path: '/', title: t.meta.title, description: t.meta.description, type: 'website' })
+  // Home page: the sections as the app renders them, marked data-ssr so src/main.jsx takes over this HTML.
+  writePage({ lang, path: '/', title: t.meta.title, description: t.meta.description, type: 'website', body: renderHome(lang), ssr: true })
 
   for (const post of posts) {
     const title = inLang(post.title, lang)

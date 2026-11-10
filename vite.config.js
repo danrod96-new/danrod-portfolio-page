@@ -21,8 +21,11 @@ const blogPosts = {
 }
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [blogPosts, react()],
   // Served from the root of https://danrod.ca (custom domain set in public/CNAME)
   base: '/',
-})
+  // The server build (src/entry-server.jsx, into dist-ssr/) is only run by scripts/prerender.js, so it needs no copy
+  // of public/.
+  build: { copyPublicDir: !isSsrBuild },
+}))
