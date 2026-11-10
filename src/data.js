@@ -551,7 +551,7 @@ export const projects = [
       en: 'Helped launch the new site; refactored the representation intake form with client conditional rules and fixed email formatting and the deployment workflow.',
       es: 'Ayudé a lanzar el nuevo sitio: refactoricé el formulario de admisión de representación con las reglas condicionales del cliente y corregí el formato de los correos y el flujo de despliegue.',
     },
-    tags: ['Drupal', 'Webform', 'Front-end'],
+    tags: ['Drupal', 'Webform', 'Front-end', 'GitLab CI/CD'],
     url: 'https://www.ajc-ajj.ca/',
   },
   {
@@ -569,7 +569,7 @@ export const projects = [
       en: 'Built opto.ca on Drupal 8 with a Bootstrap 5 sub-theme and custom modules for the Eye Health Library and Find a Doc; later added a Wicket API student registration workflow.',
       es: 'Construí opto.ca en Drupal 8 con un subtema Bootstrap 5 y módulos personalizados para Eye Health Library y Find a Doc; después agregué un flujo de registro de estudiantes con la API de Wicket.',
     },
-    tags: ['Drupal', 'Bootstrap', 'REST', 'PHP'],
+    tags: ['Drupal', 'Bootstrap', 'REST', 'PHP', 'GitLab CI/CD'],
     url: 'https://opto.ca/',
   },
   {
@@ -587,7 +587,7 @@ export const projects = [
       en: 'Drupal 10 site for a Canadian Association of Optometrists campaign: Bootstrap 5 sub-theme, informative pages, a catalog of glasses for people with vision impairment and the Find a Doc tool (Wicket AI integration).',
       es: 'Sitio en Drupal 10 para una campaña de la Canadian Association of Optometrists: subtema Bootstrap 5, páginas informativas, un catálogo de gafas para personas con discapacidad visual y la herramienta Find a Doc (integración con Wicket AI).',
     },
-    tags: ['Drupal', 'Bootstrap', 'REST', 'AI'],
+    tags: ['Drupal', 'Bootstrap', 'REST', 'AI', 'GitLab CI/CD'],
     url: 'https://visionatwork.ca/',
   },
   {
@@ -605,7 +605,7 @@ export const projects = [
       en: 'Drupal site for the CAO “Don’t lose sight” campaign: Bootstrap 5 sub-theme, reusable Paragraphs components (CTA boxes, content cards, image, button, text and media sections) and Elasticsearch indexing for the Information Hub.',
       es: 'Sitio en Drupal para la campaña “Don’t lose sight” de la CAO: subtema Bootstrap 5, componentes reutilizables con Paragraphs (cajas CTA, tarjetas de contenido, imagen, botón, secciones de texto y multimedia) e indexación con Elasticsearch para el Information Hub.',
     },
-    tags: ['Drupal', 'Bootstrap', 'Elasticsearch', 'Search API', 'Multilingual'],
+    tags: ['Drupal', 'Bootstrap', 'Elasticsearch', 'Search API', 'Multilingual', 'GitLab CI/CD'],
     url: 'https://dontlosesight.ca/',
   },
   {
