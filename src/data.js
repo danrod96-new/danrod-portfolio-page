@@ -537,6 +537,24 @@ export const projects = [
     repo: 'https://github.com/danrod96-new/court-house-regular-drupal11',
   },
   {
+    title: 'Camerise Studio',
+    category: 'client',
+    shot: 'camerise',
+    alt: {
+      en: 'Camerise Studio home page: the colourful Camerise logo, a menu and a purple banner reading “Create & Discover Educational Resources for FSL/FLA” above a resource search form',
+      es: 'Página de inicio de Camerise Studio: el logo colorido de Camerise, un menú y un banner morado con el texto “Create & Discover Educational Resources for FSL/FLA” sobre un formulario de búsqueda de recursos',
+    },
+    year: 2024,
+    role: { en: 'Developer', es: 'Desarrollador' },
+    metric: 'WP → D10',
+    description: {
+      en: 'Bilingual platform where French as a second language (FSL/FLA) educators create and share teaching resources. Helped migrate it from WordPress to Drupal 10 with the core migration tools and the Migrate Plus and Migration Tools modules, writing YAML migrations that import the taxonomy terms and content nodes from CSV files exported from WordPress.',
+      es: 'Plataforma bilingüe donde docentes de francés como segunda lengua (FSL/FLA) crean y comparten recursos educativos. Ayudé a migrarla de WordPress a Drupal 10 con las herramientas de migración del núcleo y los módulos Migrate Plus y Migration Tools, escribiendo migraciones en YAML que importan los términos de taxonomía y los nodos de contenido desde archivos CSV exportados de WordPress.',
+    },
+    tags: ['Drupal', 'WordPress', 'Migration', 'Migrate Plus', 'PHP', 'YAML'],
+    url: 'https://studio.camerisefsl.ca/',
+  },
+  {
     title: 'Association of Justice Counsel',
     category: 'client',
     shot: 'ajc',
