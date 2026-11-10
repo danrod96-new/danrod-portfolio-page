@@ -13,8 +13,32 @@ export function PostMeta({ post, showAuthor = false }) {
   )
 }
 
-export default function Blog() {
+// Every post as a card, newest first: the home page's Blog section and the /blog/ page (BlogIndex.jsx).
+export function PostCards() {
   const { t, p, tag, path } = useLang()
+
+  return (
+    <div className="grid">
+      {posts.map((post) => (
+        <a key={post.slug} className="post-card card" href={path(`/blog/${post.slug}/`)}>
+          <PostMeta post={post} />
+          <span className="post-card__title">{p(post.title)}</span>
+          <span className="post-card__summary">{p(post.summary)}</span>
+          <span className="tags">
+            {post.tags?.map((tg) => (
+              <span className="tag" key={tg}>{tag(tg)}</span>
+            ))}
+          </span>
+          <span className="post-card__more mono">{t.blog.read} →</span>
+        </a>
+      ))}
+      {posts.length === 0 && <p className="empty">{t.blog.empty}</p>}
+    </div>
+  )
+}
+
+export default function Blog() {
+  const { t, path } = useLang()
 
   return (
     <section className="section" id="blog">
@@ -25,22 +49,8 @@ export default function Blog() {
           {/* scripts/prerender.js writes feed.xml at build time, so this link only works on a built site. */}
           <a className="blog__feed mono" href="/feed.xml">{t.blog.feed}</a>
         </Reveal>
-        <div className="grid">
-          {posts.map((post) => (
-            <a key={post.slug} className="post-card card" href={path(`/blog/${post.slug}/`)}>
-              <PostMeta post={post} />
-              <span className="post-card__title">{p(post.title)}</span>
-              <span className="post-card__summary">{p(post.summary)}</span>
-              <span className="tags">
-                {post.tags?.map((tg) => (
-                  <span className="tag" key={tg}>{tag(tg)}</span>
-                ))}
-              </span>
-              <span className="post-card__more mono">{t.blog.read} →</span>
-            </a>
-          ))}
-          {posts.length === 0 && <p className="empty">{t.blog.empty}</p>}
-        </div>
+        <PostCards />
+        <a className="blog__all mono" href={path('/blog/')}>{t.blog.all} →</a>
       </div>
     </section>
   )

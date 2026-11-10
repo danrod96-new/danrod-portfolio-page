@@ -617,6 +617,15 @@ h3 {
   font-size: 0.85rem;
   color: var(--accent);
 }
+.blog__all {
+  display: inline-block;
+  margin-top: 28px;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+.blog-index .grid {
+  margin-top: 36px;
+}
 
 /* ---------- about ---------- */
 .about {

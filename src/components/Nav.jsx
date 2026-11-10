@@ -54,7 +54,7 @@ export default function Nav({ theme, onToggleTheme, page }) {
         <ul className="nav__links">
           {sections.map((id) => (
             <li key={id}>
-              <a href={`${home}#${id}`} className={(page === 'home' && active === id) || (page === 'post' && id === 'blog') ? 'is-active' : ''} onClick={() => setOpen(false)}>
+              <a href={`${home}#${id}`} className={(page === 'home' && active === id) || ((page === 'post' || page === 'blog') && id === 'blog') ? 'is-active' : ''} onClick={() => setOpen(false)}>
                 {t.nav[id]}
               </a>
             </li>

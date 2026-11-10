@@ -6,6 +6,7 @@ import Projects from './components/Projects.jsx'
 import Skills from './components/Skills.jsx'
 import Blog from './components/Blog.jsx'
 import BlogPost from './components/BlogPost.jsx'
+import BlogIndex from './components/BlogIndex.jsx'
 import Privacy from './components/Privacy.jsx'
 import Terminal from './components/Terminal.jsx'
 import Contact from './components/Contact.jsx'
@@ -25,7 +26,7 @@ export default function App({ pathname: fullPath = window.location.pathname }) {
   // HTML file in the build (scripts/prerender.js), so moving between pages is a normal page load.
   const pathname = stripLang(fullPath)
   const slug = pathname.match(/^\/blog\/([^/]+)\/?$/)?.[1]
-  const page = slug ? 'post' : /^\/privacy\/?$/.test(pathname) ? 'privacy' : 'home'
+  const page = slug ? 'post' : /^\/blog\/?$/.test(pathname) ? 'blog' : /^\/privacy\/?$/.test(pathname) ? 'privacy' : 'home'
 
   // Arriving at /#contact (or any section) from another page: scroll there once the sections have rendered.
   useEffect(() => {
@@ -52,6 +53,8 @@ export default function App({ pathname: fullPath = window.location.pathname }) {
       <Nav theme={theme} onToggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} page={page} />
       {page === 'post' ? (
         <BlogPost slug={decodeURIComponent(slug)} />
+      ) : page === 'blog' ? (
+        <BlogIndex />
       ) : page === 'privacy' ? (
         <Privacy />
       ) : (

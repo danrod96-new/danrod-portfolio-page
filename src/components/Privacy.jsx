@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { formatDate, renderMarkdown } from '../blog.js'
 import { privacy } from '../content/privacy.js'
+import { profile } from '../data.js'
 import { useLang } from '../lang.js'
 import { setDescription } from '../meta.js'
 import { localizeLinks } from '../paths.js'
@@ -11,7 +12,7 @@ export default function Privacy() {
   const description = p(privacy.description)
 
   useEffect(() => {
-    document.title = `${title} · ${t.meta.title}`
+    document.title = `${title} · ${profile.name}`
     setDescription(description)
     return () => {
       document.title = t.meta.title

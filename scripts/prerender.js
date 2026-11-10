@@ -1,10 +1,10 @@
 // Runs after `vite build` (see the build script in package.json). The app is a single page, but search
 // engines need a real HTML file per address, so this writes one for each page in each language:
-//   dist/index.html, dist/blog/<slug>/index.html, dist/privacy/index.html          (English)
-//   dist/es/index.html, dist/es/blog/<slug>/index.html, dist/es/privacy/index.html (Spanish, see src/paths.js)
+//   dist/index.html, dist/blog/index.html, dist/blog/<slug>/index.html, dist/privacy/index.html (English)
+//   dist/es/index.html, dist/es/blog/index.html, dist/es/blog/<slug>/index.html, ...           (Spanish, see src/paths.js)
 // Each is the built index.html with the page's own language, title, description, link-preview tags, canonical URL
-// and hreflang links to the other language. The home page gets the app's own HTML (src/entry-server.jsx, built into
-// dist-ssr/), which the app takes over in the browser. Posts and the privacy policy get their text in <div id="root">
+// and hreflang links to the other language. The home page and /blog/ get the app's own HTML (src/entry-server.jsx,
+// built into dist-ssr/), which the app takes over in the browser. Posts and the privacy policy get their text in <div id="root">
 // so it can be read without JavaScript; the app then loads as usual and replaces it. Each post gets its own
 // preview image (scripts/og-image.js). It also writes dist/sitemap.xml with every page and dist/feed.xml.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
@@ -14,7 +14,7 @@ import { privacy } from '../src/content/privacy.js'
 import { strings } from '../src/strings.js'
 import { localizeLinks, pathFor } from '../src/paths.js'
 import { profile } from '../src/data.js'
-import { renderHome } from '../dist-ssr/entry-server.js'
+import { renderPage } from '../dist-ssr/entry-server.js'
 
 const site = 'https://danrod.ca'
 const dist = new URL('../dist/', import.meta.url)
@@ -68,8 +68,9 @@ function writePage({ lang, path, title, description, type, body = '', ssr = fals
     `<link rel="alternate" hreflang="x-default" href="${site}${pathFor('en', path)}" />`,
   ]
   html = replace(html, /(\s*)(?=<\/head>)/, `${alternates.join('\n    ')}\n  `)
-  if (jsonLd) {
-    const json = JSON.stringify(jsonLd).replace(/</g, '\\u003c')
+  // One structured-data block per item, e.g. a post and its breadcrumb trail.
+  for (const item of [jsonLd ?? []].flat()) {
+    const json = JSON.stringify(item).replace(/</g, '\\u003c')
     html = replace(html, /(\s*)(?=<\/head>)/, `<script type="application/ld+json">${json}</script>\n  `)
   }
   html = replace(html, /(<div id="root")(?=><\/div>)/, ssr ? ' data-ssr' : '')
@@ -87,6 +88,18 @@ const article = ({ back, backLabel, title, meta, html }) =>
   `<article><h1 class="post__title">${escape(title)}</h1><p class="post-meta mono muted">${meta}</p>` +
   `<div class="prose">${html}</div></article></div></main>`
 
+// Breadcrumb trail for search results: Home › each [name, path] given, in the page's language.
+const breadcrumbs = (lang, trail) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [[strings[lang].blog.home, '/'], ...trail].map(([name, path], i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name,
+    item: `${site}${pathFor(lang, path)}`,
+  })),
+})
+
 const posts = readdirSync(blogDir)
   .filter((file) => file.endsWith('.json'))
   .map((file) => JSON.parse(readFileSync(new URL(file, blogDir), 'utf8')))
@@ -97,8 +110,29 @@ const posts = readdirSync(blogDir)
 for (const lang of languages) {
   const t = strings[lang]
 
-  // Home page: the sections as the app renders them, marked data-ssr so src/main.jsx takes over this HTML.
-  writePage({ lang, path: '/', title: t.meta.title, description: t.meta.description, type: 'website', body: renderHome(lang), ssr: true })
+  // Home page and /blog/: rendered by the app itself, marked data-ssr so src/main.jsx takes over this HTML.
+  writePage({ lang, path: '/', title: t.meta.title, description: t.meta.description, type: 'website', body: renderPage(lang, '/'), ssr: true })
+  writePage({
+    lang,
+    path: '/blog/',
+    title: `${t.blog.title} · ${profile.name}`,
+    description: t.blog.description,
+    type: 'website',
+    body: renderPage(lang, '/blog/'),
+    ssr: true,
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        name: `${t.blog.title} · ${profile.name}`,
+        description: t.blog.description,
+        url: `${site}${pathFor(lang, '/blog/')}`,
+        inLanguage: lang,
+        author: { '@type': 'Person', '@id': `${site}/#person`, name: profile.name, url: `${site}/` },
+      },
+      breadcrumbs(lang, [[t.blog.title, '/blog/']]),
+    ],
+  })
 
   for (const post of posts) {
     const title = inLang(post.title, lang)
@@ -128,41 +162,44 @@ for (const lang of languages) {
     writePage({
       lang,
       path,
-      title: `${title} · ${t.meta.title}`,
+      title: `${title} · ${profile.name}`,
       description,
       type: 'article',
       image,
       author: post.author,
       body: article({
-        back: pathFor(lang, '/#blog'),
+        back: pathFor(lang, '/blog/'),
         backLabel: t.blog.all,
         title,
         meta: `${escape(t.blog.by(post.author))} · <time datetime="${post.date}">${date}</time>`,
         html: localizeLinks(renderMarkdown(body), lang),
       }),
-      jsonLd: {
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: title,
-        description,
-        datePublished: post.date,
-        ...(post.updated && { dateModified: post.updated }),
-        url: `${site}${pathFor(lang, path)}`,
-        image: image.url,
-        inLanguage: lang,
-        // The site owner gets the same @id as the Person in index.html, so search engines know it's the same person.
-        author:
-          post.author === profile.name
-            ? { '@type': 'Person', '@id': `${site}/#person`, name: profile.name, url: `${site}/` }
-            : { '@type': 'Person', name: post.author },
-      },
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: title,
+          description,
+          datePublished: post.date,
+          ...(post.updated && { dateModified: post.updated }),
+          url: `${site}${pathFor(lang, path)}`,
+          image: image.url,
+          inLanguage: lang,
+          // The site owner gets the same @id as the Person in index.html, so search engines know it's the same person.
+          author:
+            post.author === profile.name
+              ? { '@type': 'Person', '@id': `${site}/#person`, name: profile.name, url: `${site}/` }
+              : { '@type': 'Person', name: post.author },
+        },
+        breadcrumbs(lang, [[t.blog.title, '/blog/'], [title, path]]),
+      ],
     })
   }
 
   writePage({
     lang,
     path: '/privacy/',
-    title: `${inLang(privacy.title, lang)} · ${t.meta.title}`,
+    title: `${inLang(privacy.title, lang)} · ${profile.name}`,
     description: inLang(privacy.description, lang),
     type: 'website',
     body: article({
@@ -178,6 +215,7 @@ for (const lang of languages) {
 // Sitemap: every page in both languages, each listing its other-language version, plus the resume.
 const pages = [
   { path: '/' },
+  { path: '/blog/', lastmod: posts.map((post) => post.updated ?? post.date).sort().at(-1) },
   { path: '/privacy/', lastmod: privacy.updated },
   ...posts.map((post) => ({ path: `/blog/${post.slug}/`, lastmod: post.updated ?? post.date })),
 ]
@@ -227,5 +265,5 @@ writeFileSync(
 )
 
 console.log(
-  `prerender: home, privacy policy and ${posts.length} post(s) with preview images in ${languages.join(' and ')}; sitemap.xml and feed.xml written to dist/`,
+  `prerender: home, blog, privacy policy and ${posts.length} post(s) with preview images in ${languages.join(' and ')}; sitemap.xml and feed.xml written to dist/`,
 )

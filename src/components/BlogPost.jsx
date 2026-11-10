@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { findPost } from '../blog.js'
 import { PostMeta } from './Blog.jsx'
+import { profile } from '../data.js'
 import { useLang } from '../lang.js'
 import { setDescription } from '../meta.js'
 import { localizeLinks } from '../paths.js'
@@ -12,7 +13,7 @@ export default function BlogPost({ slug }) {
   const description = post ? p(post.summary) : t.meta.description
 
   useEffect(() => {
-    document.title = `${title} · ${t.meta.title}`
+    document.title = `${title} · ${profile.name}`
     setDescription(description)
     return () => {
       document.title = t.meta.title
@@ -23,7 +24,7 @@ export default function BlogPost({ slug }) {
   return (
     <main className="post section" id="main">
       <div className="container post__inner">
-        <a className="post__back mono" href={path('/#blog')}>← {t.blog.all}</a>
+        <a className="post__back mono" href={path('/blog/')}>← {t.blog.all}</a>
         {post ? (
           <article>
             <h1 className="post__title">{title}</h1>
