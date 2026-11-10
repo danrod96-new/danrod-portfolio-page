@@ -6,6 +6,10 @@
     "en": "Court House Regular: migrating a multi-domain site from Drupal 7 to Drupal 11",
     "es": "Court House Regular: migración de un sitio multidominio de Drupal 7 a Drupal 11"
   },
+  "seoTitle": {
+    "en": "Drupal 7 to 11 migration: Court House Regular",
+    "es": "Migración de Drupal 7 a 11: Court House Regular"
+  },
   "summary": {
     "en": "How I moved a two-domain directory for appearance attorneys from Drupal 7 to Drupal 11 with Drupal’s standard core and contrib migration modules, and what it took to finish the job.",
     "es": "Cómo pasé de Drupal 7 a Drupal 11 un directorio de abogados de comparecencia con dos dominios, usando los módulos de migración estándar de Drupal, del núcleo y contribuidos, y qué hizo falta para terminar el trabajo."

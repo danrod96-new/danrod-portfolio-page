@@ -43,7 +43,7 @@ function replace(html, pattern, value) {
 }
 
 // `path` is the page's address without the language (/blog/x/); it's written once per language.
-function writePage({ lang, path, title, description, type, body = '', ssr = false, image, author, jsonLd }) {
+function writePage({ lang, path, title, ogTitle = title, description, type, body = '', ssr = false, image, author, jsonLd }) {
   const url = `${site}${pathFor(lang, path)}`
   const other = languages.find((l) => l !== lang)
   const img = image ?? { url: `${site}/og-image.jpg`, type: 'image/jpeg', alt: siteImageAlt[lang] }
@@ -53,7 +53,7 @@ function writePage({ lang, path, title, description, type, body = '', ssr = fals
   html = replace(html, /(<meta name="description" content=")[^"]*/, escape(description))
   html = replace(html, /(<link rel="canonical" href=")[^"]*/, url)
   if (author) html = replace(html, /(\s*)(?=<link rel="canonical")/, `<meta name="author" content="${escape(author)}" />\n    `)
-  html = replace(html, /(<meta property="og:title" content=")[^"]*/, escape(title))
+  html = replace(html, /(<meta property="og:title" content=")[^"]*/, escape(ogTitle))
   html = replace(html, /(<meta property="og:description" content=")[^"]*/, escape(description))
   html = replace(html, /(<meta property="og:type" content=")[^"]*/, type)
   html = replace(html, /(<meta property="og:url" content=")[^"]*/, url)
@@ -162,7 +162,9 @@ for (const lang of languages) {
     writePage({
       lang,
       path,
-      title: `${title} · ${profile.name}`,
+      // Search results get the optional shorter "seoTitle"; link previews have room for the full title.
+      title: `${inLang(post.seoTitle, lang) ?? title} · ${profile.name}`,
+      ogTitle: `${title} · ${profile.name}`,
       description,
       type: 'article',
       image,

@@ -6,6 +6,10 @@
     "en": "Galois Fields: finite field arithmetic for Scilab",
     "es": "Galois Fields: aritmética en campos finitos para Scilab"
   },
+  "seoTitle": {
+    "en": "Galois Fields: finite fields for Scilab",
+    "es": "Galois Fields: campos finitos para Scilab"
+  },
   "summary": {
     "en": "What my Galois Fields toolbox does, what changed in the 2.x rewrite, and how to install it from ATOMS or build it from source.",
     "es": "Qué hace mi toolbox Galois Fields, qué cambió con la reescritura 2.x y cómo instalarlo desde ATOMS o compilarlo desde el código fuente."

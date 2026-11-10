@@ -59,6 +59,9 @@ language (`/blog/<slug>/og.png`, `/es/blog/<slug>/og.png`) with its title, tags,
   (Daniel Rodriguez). The author appears under the post title, in the page's metadata and the RSS feed, and on the
   preview image (with the portrait only for Daniel).
 - Optional `"updated": "2026-12-01"` marks a later edit for search engines.
+- Optional `"seoTitle": { "en": "…", "es": "…" }` is a shorter title for the browser tab and search results, which
+  cut titles off at about 60 characters (" · Daniel Rodriguez" is added, so aim for 40 or fewer). The full `title`
+  stays the heading on the page and in link previews, the feed and structured data.
 - Links to home-page sections need a leading slash, e.g. `[contact form](/#contact)`. Write links to the English
   addresses: on Spanish pages they point to `/es/` automatically.
 

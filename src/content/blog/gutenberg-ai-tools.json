@@ -6,6 +6,10 @@
     "en": "Gutenberg AI Tools: an AI block for Drupal’s Gutenberg editor",
     "es": "Gutenberg AI Tools: un bloque de IA para el editor Gutenberg de Drupal"
   },
+  "seoTitle": {
+    "en": "Gutenberg AI Tools: an AI block for Drupal",
+    "es": "Gutenberg AI Tools: bloque de IA para Drupal"
+  },
   "summary": {
     "en": "My Drupal module that adds an AI block to the Gutenberg editor: ask your AI provider a question and the answer lands in your content. What it does, how it works and how to set it up.",
     "es": "Mi módulo de Drupal que agrega un bloque de IA al editor Gutenberg: haz una pregunta a tu proveedor de IA y la respuesta aparece en tu contenido. Qué hace, cómo funciona y cómo configurarlo."
