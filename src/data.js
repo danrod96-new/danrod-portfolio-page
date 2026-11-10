@@ -261,6 +261,7 @@ export const experience = [
 // shot: file name (no extension) in src/assets/sites/ — a screenshot of the live site
 // cover: same, for a logo shown without the browser frame
 // alt: what the shot or cover image shows, for screen readers
+// post: slug of a blog post about the project; the card and its popup link to it
 export const projects = [
   // ---- Drupal.org contributions
   {
@@ -509,6 +510,7 @@ export const projects = [
     },
     tags: ['Drupal', 'React', 'AI', 'Gutenberg'],
     url: 'https://www.drupal.org/project/gutenberg_ai_tools',
+    post: 'gutenberg-ai-tools',
     cover: 'gutenberg-ai-tools',
     alt: {
       en: 'Gutenberg AI Tools logo: an ornate black “G” tile joined to a circuit-board chip marked “AI”',
@@ -535,6 +537,7 @@ export const projects = [
     tags: ['Drupal', 'Migration', 'Multi-domain', 'PHP', 'GitHub Actions', 'AI', 'Claude Code'],
     url: 'https://www.courthouseregular.com',
     repo: 'https://github.com/danrod96-new/court-house-regular-drupal11',
+    post: 'courthouseregular-drupal-7-to-11',
   },
   {
     title: 'Camerise Studio',
@@ -839,6 +842,7 @@ export const projects = [
     tags: ['C', 'Scilab', 'Math'],
     repo: 'https://github.com/danrod96-new/galois-fields',
     atoms: 'https://atoms.scilab.org/toolboxes/galois_fields/',
+    post: 'galois-fields-toolbox',
     shot: 'galois-fields',
     alt: {
       en: 'Scilab console running galois-fields: commands that divide elements of GF(7), catch a division-by-zero error and subtract polynomials, with their results',

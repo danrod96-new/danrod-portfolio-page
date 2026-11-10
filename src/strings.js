@@ -57,6 +57,7 @@ const en = {
     coverAlt: (title) => `${title} logo`,
     visit: 'Visit site',
     source: 'Source code',
+    readPost: 'Read the case study',
   },
   skills: {
     title: 'Skills & stack',
@@ -181,6 +182,7 @@ const es = {
     coverAlt: (title) => `Logo de ${title}`,
     visit: 'Visitar el sitio',
     source: 'Código fuente',
+    readPost: 'Leer el caso de estudio',
   },
   skills: {
     title: 'Habilidades y tecnologías',

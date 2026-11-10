@@ -56,7 +56,7 @@ function untilt(e) {
 }
 
 function ProjectModal({ project, onClose }) {
-  const { t, p, tag } = useLang()
+  const { t, p, tag, path } = useLang()
   const panelRef = useRef(null)
 
   useEffect(() => {
@@ -113,6 +113,11 @@ function ProjectModal({ project, onClose }) {
           ))}
         </div>
         <div className="modal__links">
+          {project.post && (
+            <a className="btn btn--primary" href={path(`/blog/${project.post}/`)}>
+              {t.work.readPost} <span aria-hidden="true">→</span>
+            </a>
+          )}
           {project.url && (
             <a className="btn btn--primary" href={project.url} target="_blank" rel="noreferrer">
               {project.category === 'contrib' ? t.work.viewDrupal : t.work.visit} <span aria-hidden="true">↗</span>
@@ -138,7 +143,7 @@ function ProjectModal({ project, onClose }) {
 }
 
 export default function Projects({ tag: activeTag, onClearTag }) {
-  const { t, p, tag } = useLang()
+  const { t, p, tag, path } = useLang()
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState(null)
@@ -213,29 +218,33 @@ export default function Projects({ tag: activeTag, onClearTag }) {
 
         <div className="grid">
           {list.map((pr) => (
-            <button
-              key={pr.url || pr.repo}
-              className={`project card project--${pr.category}`}
-              onMouseMove={tilt}
-              onMouseLeave={untilt}
-              onClick={(e) => open(e, pr)}
-            >
-              <span className="project__glow" aria-hidden="true" />
-              {pr.cover && <Cover project={pr} />}
-              {(pr.category === 'client' || pr.shot) && <BrowserShot project={pr} />}
-              <span className="project__top">
-                <span className="project__cat mono">{t.work.category[pr.category]}</span>
-                <span className="project__year mono">{pr.year}</span>
-              </span>
-              <span className="project__title">{p(pr.title)}</span>
-              <span className="project__metric">{p(pr.metric)}</span>
-              <span className="project__desc">{p(pr.description)}</span>
-              <span className="tags">
-                {pr.tags.slice(0, 4).map((tg) => (
-                  <span className={`tag ${tg === activeTag ? 'is-match' : ''}`} key={tg}>{tag(tg)}</span>
-                ))}
-              </span>
-            </button>
+            <div className="project-cell" key={pr.url || pr.repo} onMouseMove={tilt} onMouseLeave={untilt}>
+              <button
+                className={`project card project--${pr.category} ${pr.post ? 'project--has-post' : ''}`}
+                onClick={(e) => open(e, pr)}
+              >
+                <span className="project__glow" aria-hidden="true" />
+                {pr.cover && <Cover project={pr} />}
+                {(pr.category === 'client' || pr.shot) && <BrowserShot project={pr} />}
+                <span className="project__top">
+                  <span className="project__cat mono">{t.work.category[pr.category]}</span>
+                  <span className="project__year mono">{pr.year}</span>
+                </span>
+                <span className="project__title">{p(pr.title)}</span>
+                <span className="project__metric">{p(pr.metric)}</span>
+                <span className="project__desc">{p(pr.description)}</span>
+                <span className="tags">
+                  {pr.tags.slice(0, 4).map((tg) => (
+                    <span className={`tag ${tg === activeTag ? 'is-match' : ''}`} key={tg}>{tag(tg)}</span>
+                  ))}
+                </span>
+              </button>
+              {pr.post && (
+                <a className="project__post mono" href={path(`/blog/${pr.post}/`)}>
+                  {t.work.readPost} →
+                </a>
+              )}
+            </div>
           ))}
           {list.length === 0 && <p className="empty">{t.work.empty}</p>}
         </div>

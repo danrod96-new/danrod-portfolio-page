@@ -786,11 +786,21 @@ h3 {
   gap: 20px;
   perspective: 1200px;
 }
-.project {
+/* The cell holds the card button and, for projects with a write-up, a link laid over the card's bottom edge (a link
+   can't go inside a button). It tilts and pops in as one, so the link moves with the card. */
+.project-cell {
   --rx: 0deg;
   --ry: 0deg;
   --mx: 50%;
   --my: 50%;
+  position: relative;
+  display: flex;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.2s ease-out;
+  animation: pop 0.45s ease both;
+}
+.project {
+  flex: 1;
   position: relative;
   overflow: hidden;
   text-align: left;
@@ -798,9 +808,20 @@ h3 {
   flex-direction: column;
   gap: 10px;
   padding: 24px;
-  transform: rotateX(var(--rx)) rotateY(var(--ry));
-  transition: transform 0.2s ease-out, border-color 0.3s, box-shadow 0.3s;
-  animation: pop 0.45s ease both;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.project--has-post {
+  padding-bottom: 58px;
+}
+.project__post {
+  position: absolute;
+  left: 24px;
+  bottom: 22px;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+.project__post:hover {
+  text-decoration: underline;
 }
 @keyframes pop {
   from {
@@ -808,7 +829,7 @@ h3 {
     transform: translateY(14px) scale(0.98);
   }
 }
-.project:hover {
+.project-cell:hover .project {
   border-color: rgba(var(--accent-rgb), 0.5);
   box-shadow: var(--shadow);
 }
@@ -820,7 +841,7 @@ h3 {
   transition: opacity 0.3s;
   pointer-events: none;
 }
-.project:hover .project__glow {
+.project-cell:hover .project__glow {
   opacity: 1;
 }
 .project__top {
@@ -854,11 +875,15 @@ h3 {
 .project__desc {
   color: var(--muted);
   font-size: 0.92rem;
-  flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+/* Tags sit at the bottom of the card, however tall its row is; growing the clamped description instead would show
+   lines past the third. */
+.project > .tags {
+  margin-top: auto;
 }
 .empty {
   color: var(--muted);
@@ -925,7 +950,7 @@ h3 {
   object-position: top center;
   transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.project:hover .browser__img {
+.project-cell:hover .browser__img {
   transform: scale(1.04);
 }
 .browser__empty {
@@ -1514,7 +1539,7 @@ h3 {
     opacity: 1;
     transform: none;
   }
-  .project {
+  .project-cell {
     transform: none !important;
   }
 }
