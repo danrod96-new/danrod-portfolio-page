@@ -930,8 +930,21 @@ export const education = {
   cert: 'IELTS General — C1 (2020)',
 }
 
-// Articles published on other sites, listed under the blog. Titles stay in the language they were written in (lang).
+// Articles published on other sites, listed under the blog newest first (in any order here). Titles stay in the
+// language they were written in (lang).
 export const publications = [
+  {
+    title: 'WordPress vs Drupal for Healthcare Websites: Which is the Right Choice?',
+    url: 'https://optasy.com/blog/wordpress-vs-drupal-healthcare-websites-which-right-choice',
+    site: 'OPTASY',
+    date: '2025-08-05',
+    lang: 'en',
+    summary: {
+      en: 'Comparing WordPress and Drupal for healthcare sites on security and HIPAA compliance, cost, scalability, EHR integrations and editing, with a framework for choosing between them.',
+      es: 'Comparación de WordPress y Drupal para sitios de salud en seguridad y cumplimiento de HIPAA, costo, escalabilidad, integraciones con historias clínicas y edición, con un marco para elegir entre ambos.',
+    },
+    tags: ['Drupal', 'WordPress', 'Security'],
+  },
   {
     title: 'How to Use the Paragraphs Module for Healthcare Websites',
     url: 'https://optasy.com/blog/how-use-paragraphs-module-healthcare-websites',

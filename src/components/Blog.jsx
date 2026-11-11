@@ -38,11 +38,13 @@ export function PostCards() {
   )
 }
 
+const byDate = [...publications].sort((a, b) => b.date.localeCompare(a.date))
+
 // Articles written for other sites (data.js), after the posts: the newest `limit` on the home page, all on /blog/.
 export function Publications({ limit }) {
   const { t, p, lang, tag, path } = useLang()
   if (publications.length === 0) return null
-  const shown = publications.slice(0, limit)
+  const shown = byDate.slice(0, limit)
 
   return (
     <section className="publications" id="publications" aria-labelledby="publications-title">
