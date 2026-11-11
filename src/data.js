@@ -384,6 +384,7 @@ export const projects = [
     },
     tags: ['Drupal', 'Accessibility', 'JavaScript', 'WCAG'],
     url: 'https://www.drupal.org/project/fluidui',
+    post: 'fluidui-accessibility-preferences',
     cover: 'fluidproject-ui-options',
     alt: {
       en: 'Fluidproject UI Options logo: a white wheelchair accessibility symbol on a yellow background',
