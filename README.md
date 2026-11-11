@@ -73,9 +73,9 @@ language (`/blog/<slug>/og.png`, `/es/blog/<slug>/og.png`) with its title, tags,
 - **Skills** — click a skill to filter the work grid
 - **Blog** — post cards; each post opens on its own page (`/blog/<slug>/`)
 - **Terminal** — a small shell (`help`, `whoami`, `modules`, `blog`, `contact`…)
-- **Contact** — form sent through [Web3Forms](https://web3forms.com) (access key in `src/data.js`), so no email address is published
+- **Contact** — form sent through [Web3Forms](https://web3forms.com) (access key in `src/data.js`), so the pages themselves don’t show an email address
 - **Privacy** — policy page at `/privacy/`, linked from the footer and the contact form; edit [`src/content/privacy.js`](src/content/privacy.js) whenever the site adds or drops a service
-- **Resume** — menu link to `public/Daniel-Rodriguez-Resume.pdf`, a copy of the CV without the address, phone numbers and email
+- **Resume** — menu link to `public/Daniel-Rodriguez-Resume.pdf`, a copy of the CV with the email kept but no street address or phone numbers
 
 Link previews on social sites and chat apps use `public/og-image.jpg` (1200×630), set in `index.html`; blog posts use
 their own generated image instead.
