@@ -929,3 +929,91 @@ export const education = {
   period: '2002 – 2009',
   cert: 'IELTS General — C1 (2020)',
 }
+
+// Articles published on other sites, listed under the blog. Titles stay in the language they were written in (lang).
+export const publications = [
+  {
+    title: 'How to Use the Paragraphs Module for Healthcare Websites',
+    url: 'https://optasy.com/blog/how-use-paragraphs-module-healthcare-websites',
+    site: 'OPTASY',
+    date: '2024-07-08',
+    lang: 'en',
+    summary: {
+      en: 'Setting up Drupal’s Paragraphs module to build reusable page components for healthcare sites, with examples of the sections they usually need.',
+      es: 'Cómo configurar el módulo Paragraphs de Drupal para crear componentes de página reutilizables en sitios de salud, con ejemplos de las secciones que suelen necesitar.',
+    },
+    tags: ['Drupal'],
+  },
+  {
+    title: 'Best Drupal Modules for Government Websites',
+    url: 'https://optasy.com/blog/best-drupal-modules-government-websites',
+    site: 'OPTASY',
+    date: '2024-06-19',
+    lang: 'en',
+    summary: {
+      en: 'Drupal distributions and contributed modules that help government websites meet accessibility, security and compliance requirements.',
+      es: 'Distribuciones y módulos contribuidos de Drupal que ayudan a los sitios de gobierno a cumplir requisitos de accesibilidad, seguridad y normativa.',
+    },
+    tags: ['Drupal', 'Accessibility', 'Security'],
+  },
+  {
+    title: 'Migrating from other CMS to Drupal: A Step-by-Step Guide for 2024',
+    url: 'https://optasy.com/blog/migrating-other-cms-drupal-step-step-guide-2024',
+    site: 'OPTASY',
+    date: '2024-06-12',
+    lang: 'en',
+    summary: {
+      en: 'A seven-step guide to moving WordPress or static HTML sites to Drupal 10 with the migrate modules.',
+      es: 'Una guía de siete pasos para migrar sitios WordPress o HTML estático a Drupal 10 con los módulos de migración.',
+    },
+    tags: ['Drupal', 'Migration', 'WordPress'],
+  },
+  {
+    title: 'Best Drupal Modules for Higher Education Websites',
+    url: 'https://optasy.com/blog/best-drupal-modules-higher-education-websites',
+    site: 'OPTASY',
+    date: '2024-06-04',
+    lang: 'en',
+    summary: {
+      en: 'Drupal modules for universities and colleges, including Group, H5P and Quiz, for courses and interactive learning content.',
+      es: 'Módulos de Drupal para universidades, como Group, H5P y Quiz, para cursos y contenido de aprendizaje interactivo.',
+    },
+    tags: ['Drupal'],
+  },
+  {
+    title: 'Enhance Drupal Code Quality with GitLab CI',
+    url: 'https://optasy.com/blog/enhance-drupal-code-quality-gitlab-ci',
+    site: 'OPTASY',
+    date: '2024-01-26',
+    lang: 'en',
+    summary: {
+      en: 'Adding Drupal.org’s GitLab CI template to a contributed module, using Date Timepicker as the example, and reading the pipeline’s test and linting results.',
+      es: 'Cómo añadir la plantilla de GitLab CI de Drupal.org a un módulo contribuido, con Date Timepicker como ejemplo, y leer los resultados de pruebas y linting del pipeline.',
+    },
+    tags: ['Drupal', 'GitLab CI/CD'],
+  },
+  {
+    title: 'A Summary of AI Tools Available in the Drupal Ecosystem',
+    url: 'https://optasy.com/blog/summary-ai-tools-available-drupal-ecosystem',
+    site: 'OPTASY',
+    date: '2023-12-20',
+    lang: 'en',
+    summary: {
+      en: 'An overview of AI tools and their Drupal integrations, such as Augmentor AI and AI Interpolator, with a closer look at the OpenAI module and its features.',
+      es: 'Un panorama de las herramientas de IA y sus integraciones con Drupal, como Augmentor AI y AI Interpolator, con una mirada más detallada al módulo OpenAI y sus funciones.',
+    },
+    tags: ['Drupal', 'AI'],
+  },
+  {
+    title: '12 Steps to Install Drupal WxT',
+    url: 'https://optasy.com/blog/12-steps-install-drupal-wxt',
+    site: 'OPTASY',
+    date: '2023-11-05',
+    lang: 'en',
+    summary: {
+      en: 'A step-by-step install of Drupal WxT, the Government of Canada’s Drupal distribution, from prerequisites and database setup with Composer and Drush to theming and post-install tasks.',
+      es: 'Instalación paso a paso de Drupal WxT, la distribución Drupal del Gobierno de Canadá, desde los requisitos y la base de datos con Composer y Drush hasta el tema y las tareas posteriores.',
+    },
+    tags: ['Drupal', 'WxT'],
+  },
+]

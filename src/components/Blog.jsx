@@ -1,4 +1,5 @@
 import { formatDate, posts } from '../blog.js'
+import { publications } from '../data.js'
 import Reveal from './Reveal.jsx'
 import { useLang } from '../lang.js'
 
@@ -37,6 +38,46 @@ export function PostCards() {
   )
 }
 
+// Articles written for other sites (data.js), after the posts: the newest `limit` on the home page, all on /blog/.
+export function Publications({ limit }) {
+  const { t, p, lang, tag, path } = useLang()
+  if (publications.length === 0) return null
+  const shown = publications.slice(0, limit)
+
+  return (
+    <section className="publications" id="publications" aria-labelledby="publications-title">
+      <h3 id="publications-title">{t.blog.elsewhere}</h3>
+      <p className="section__sub">{t.blog.elsewhereSub}</p>
+      <div className="grid">
+        {shown.map((pub) => (
+          <a key={pub.url} className="post-card card" href={pub.url} target="_blank" rel="noreferrer">
+            <p className="post-meta mono muted">
+              <time dateTime={pub.date}>{formatDate(pub.date, lang)}</time> · {pub.site}
+            </p>
+            <span className="post-card__title">
+              <span lang={pub.lang}>{pub.title}</span> {pub.lang !== lang && <span className="post-card__lang muted">{t.blog.inLang(pub.lang)}</span>}
+            </span>
+            <span className="post-card__summary">{p(pub.summary)}</span>
+            <span className="tags">
+              {pub.tags?.map((tg) => (
+                <span className="tag" key={tg}>{tag(tg)}</span>
+              ))}
+            </span>
+            <span className="post-card__more mono">
+              {t.blog.readOn(pub.site)} ↗<span className="sr-only"> {t.newTab}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+      {shown.length < publications.length && (
+        <a className="blog__all mono" href={`${path('/blog/')}#publications`}>
+          {t.blog.allPublications(publications.length)} →
+        </a>
+      )}
+    </section>
+  )
+}
+
 export default function Blog() {
   const { t, path } = useLang()
 
@@ -51,6 +92,7 @@ export default function Blog() {
         </Reveal>
         <PostCards />
         <a className="blog__all mono" href={path('/blog/')}>{t.blog.all} →</a>
+        <Publications limit={3} />
       </div>
     </section>
   )

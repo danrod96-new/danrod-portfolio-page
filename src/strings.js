@@ -76,6 +76,11 @@ const en = {
     empty: 'No posts yet. Check back soon.',
     notFound: 'Post not found',
     feed: 'Follow by RSS',
+    elsewhere: 'Published elsewhere',
+    elsewhereSub: 'Articles I wrote for other sites.',
+    allPublications: (n) => `All ${n} articles`,
+    readOn: (site) => `Read on ${site}`,
+    inLang: (lang) => (lang === 'es' ? '(in Spanish)' : ''),
   },
   terminal: {
     title: 'Prefer the command line?',
@@ -201,6 +206,11 @@ const es = {
     empty: 'Aún no hay artículos. Vuelve pronto.',
     notFound: 'Artículo no encontrado',
     feed: 'Seguir por RSS',
+    elsewhere: 'Publicado en otros sitios',
+    elsewhereSub: 'Artículos que escribí para otros sitios.',
+    allPublications: (n) => `Ver las ${n} publicaciones`,
+    readOn: (site) => `Leer en ${site}`,
+    inLang: (lang) => (lang === 'en' ? '(en inglés)' : ''),
   },
   terminal: {
     title: '¿Prefieres la línea de comandos?',
